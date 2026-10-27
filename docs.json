@@ -60,6 +60,13 @@
     ]
   },
   "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "icon": "github",
+        "href": "https://github.com/mintlify-demo"
+      }
+    ],
     "primary": {
       "type": "button",
       "label": "Get started",
