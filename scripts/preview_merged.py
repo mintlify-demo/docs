@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build a local, merged copy of the whole site for `mint dev` / `mint validate`.
 
-In production, the mintlify/multirepo-action GitHub Action stitches the
-repositories together (see .github/workflows/multirepo.yml). This script does
-the same thing on your laptop so you can preview before pushing.
+In production, Mintlify's native multi-repo support (or the optional GitHub
+Action) stitches the repositories together. This script does the same thing
+on your laptop so you can preview everything before pushing.
 
 It expects the repos to be cloned side by side:
 
@@ -36,11 +36,9 @@ def prefix_navigation(node, dest):
     for key, value in node.items():
         if key == "pages" and isinstance(value, list):
             out[key] = [f"{dest}/{p}" if isinstance(p, str) else prefix_navigation(p, dest) for p in value]
-        elif key == "openapi" and isinstance(value, dict) and isinstance(value.get("source"), str):
-            # Like the action: prefix the spec path, leave `directory` alone.
-            out[key] = {**value, "source": f"{dest}/{value['source']}"}
         elif key == "openapi" and isinstance(value, str):
-            out[key] = f"{dest}/{value}"
+            # Generated endpoint pages go in <url path>/api-reference/..., like native multi-repo.
+            out[key] = {"source": f"{dest}/{value}", "directory": f"{dest}/api-reference"}
         else:
             out[key] = prefix_navigation(value, dest)
     return out
@@ -88,7 +86,7 @@ def main():
         items = nav.get("pages") or nav.get("groups")
         navs[f"{OWNER}/{repo}"] = prefix_navigation(items, repo)
 
-    base = json.loads((here / "docs.base.json").read_text())
+    base = json.loads((here / "docs.json").read_text())
     merged = replace_source_refs(base, navs)
     (out / "docs.json").write_text(json.dumps(merged, indent=2) + "\n")
     print(f"Merged site written to {out}\nNext: cd {out.name} && mint dev")
