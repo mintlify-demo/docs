@@ -60,12 +60,6 @@
     ]
   },
   "navbar": {
-    "links": [
-      {
-        "label": "GitHub",
-        "href": "https://github.com/mintlify-demo"
-      }
-    ],
     "primary": {
       "type": "button",
       "label": "Get started",
@@ -110,38 +104,48 @@
         ]
       },
       {
-        "tab": "Merge Sort API",
-        "icon": "arrow-down-wide-short",
-        "pages": [
+        "tab": "APIs",
+        "icon": "code",
+        "menu": [
           {
-            "sourceRef": "mintlify-demo/merge-sort-api"
-          }
-        ]
-      },
-      {
-        "tab": "Calculator API",
-        "icon": "calculator",
-        "pages": [
+            "item": "Merge Sort API",
+            "icon": "arrow-down-wide-short",
+            "description": "Sort a list and see every merge step",
+            "pages": [
+              {
+                "sourceRef": "mintlify-demo/merge-sort-api"
+              }
+            ]
+          },
           {
-            "sourceRef": "mintlify-demo/calculator-api"
-          }
-        ]
-      },
-      {
-        "tab": "Todo API",
-        "icon": "list-check",
-        "pages": [
+            "item": "Calculator API",
+            "icon": "calculator",
+            "description": "Versions 1 and 2 side by side",
+            "pages": [
+              {
+                "sourceRef": "mintlify-demo/calculator-api"
+              }
+            ]
+          },
           {
-            "sourceRef": "mintlify-demo/todo-api"
-          }
-        ]
-      },
-      {
-        "tab": "Text Utils API",
-        "icon": "font",
-        "pages": [
+            "item": "Todo API",
+            "icon": "list-check",
+            "description": "API key auth and pagination",
+            "pages": [
+              {
+                "sourceRef": "mintlify-demo/todo-api"
+              }
+            ]
+          },
           {
-            "sourceRef": "mintlify-demo/text-utils-api"
+            "item": "Text Utils API",
+            "icon": "font",
+            "description": "Code samples in four languages",
+            "pages": [
+              {
+                "sourceRef": "mintlify-demo/text-utils-api"
+              }
+            ]
           }
         ]
       },
