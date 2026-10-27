@@ -7,23 +7,6 @@ mode: frame
 public: true
 ---
 
-export const HeroCard = ({ filename, title, description, href }) => {
-  return (
-    <a className="group cursor-pointer pb-8" href={href}>
-      <img
-        src={`/images/hero/${filename}.png`}
-        className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
-      />
-      <img
-        src={`/images/hero/${filename}-dark.png`}
-        className="pointer-events-none group-hover:scale-105 transition-all duration-100 hidden dark:block"
-      />
-      <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">{title}</h3>
-      <span className="mt-1.5">{description}</span>
-    </a>
-  );
-};
-
 <div className="relative">
   <div className="absolute -top-14 left-0 right-0 opacity-80">
     <img
@@ -48,30 +31,62 @@ export const HeroCard = ({ filename, title, description, href }) => {
     </div>
 
     <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-2 gap-x-6 gap-y-4">
-      <HeroCard
-        filename="rocket"
-        title="Quickstart"
-        description="Run an API locally and call it from the docs"
-        href="/quickstart"
-      />
-      <HeroCard
-        filename="cli"
-        title="API playground"
-        description="Send real requests from a generated API reference"
-        href="../calculator-api"
-      />
-      <HeroCard
-        filename="components"
-        title="Components"
-        description="Cards, steps, tabs, diagrams, API fields and more"
-        href="/showcase/components"
-      />
-      <HeroCard
-        filename="editor"
-        title="AI features"
-        description="The assistant, llms.txt, the MCP server and the contextual menu"
-        href="/showcase/ai"
-      />
+      <a className="group cursor-pointer pb-8" href="/quickstart">
+        <img
+          src="/images/hero/rocket.png"
+          className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <img
+          src="/images/hero/rocket-dark.png"
+          className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Quickstart</h3>
+        <span className="mt-1.5">Run an API locally and call it from the docs</span>
+      </a>
+      <a className="group cursor-pointer pb-8" href="../calculator-api">
+        <img
+          src="/images/hero/cli.png"
+          className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <img
+          src="/images/hero/cli-dark.png"
+          className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">API playground</h3>
+        <span className="mt-1.5">Send real requests from a generated API reference</span>
+      </a>
+      <a className="group cursor-pointer pb-8" href="/showcase/components">
+        <img
+          src="/images/hero/components.png"
+          className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <img
+          src="/images/hero/components-dark.png"
+          className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Components</h3>
+        <span className="mt-1.5">Cards, steps, tabs, diagrams, API fields and more</span>
+      </a>
+      <a className="group cursor-pointer pb-8" href="/showcase/ai">
+        <img
+          src="/images/hero/editor.png"
+          className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <img
+          src="/images/hero/editor-dark.png"
+          className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
+          alt=""
+        />
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">AI features</h3>
+        <span className="mt-1.5">The assistant, llms.txt, the MCP server and the contextual menu</span>
+      </a>
     </div>
   </div>
 
