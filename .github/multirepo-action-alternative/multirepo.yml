@@ -1,0 +1,28 @@
+# Optional alternative to native multi-repo: copy to .github/workflows/multirepo.yml.
+# See README.md in this folder first.
+name: Combine docs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+  repository_dispatch:
+    types: [docs-updated]
+
+concurrency:
+  group: mintlify-multirepo
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # All child repos are public, so the default token can read them.
+      - uses: mintlify/multirepo-action@v1
+        with:
+          mode: push   # commit straight to main (demo simplicity). Use pull-request to review first.

@@ -1,0 +1,46 @@
+---
+title: Changelog
+description: What's new in the demo and its APIs.
+icon: clock-rotate-left
+---
+
+<Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
+  ## The Mintlify demo org is live
+
+  Five repositories, one docs site.
+
+  - **Four example APIs** built with FastAPI: Merge Sort, Calculator, Todo and Text Utils
+  - **Interactive API references** generated from each API's committed OpenAPI file
+  - **Multi-repo docs**: each API's docs live in its own repository
+  - **Showcase pages** for components and AI features
+
+  <Check>
+    Every endpoint has a playground and code samples.
+  </Check>
+</Update>
+
+<Update label="October 2026" description="Calculator API v2" tags={["API"]}>
+  ## `POST /v2/calculate`
+
+  A single endpoint that takes an `operation` and two or more `operands`.
+
+  ```bash
+  curl -X POST http://localhost:8000/v2/calculate \
+    -H "Content-Type: application/json" \
+    -d '{"operation": "add", "operands": [1, 2, 3]}'
+  ```
+
+  v1 is unchanged and still supported.
+</Update>
+
+<Update label="October 2026" description="Todo API" tags={["API", "Deprecation"]}>
+  ## `GET /todos/list-all` is deprecated
+
+  Use `GET /todos` with `page` and `page_size` instead. The old endpoint still works but is marked deprecated in the API reference.
+</Update>
+
+<Update label="October 2026" description="Text Utils API" tags={["API"]}>
+  ## Code samples in Go
+
+  Every endpoint now shows cURL, Python, JavaScript and Go samples, written with `x-codeSamples` in the OpenAPI spec.
+</Update>

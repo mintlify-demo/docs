@@ -1,0 +1,118 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Mintlify Demo",
+  "description": "A demo docs site showing what Mintlify can do: guides, interactive API references from OpenAPI, AI features, and multi-repo docs.",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#55D799",
+    "dark": "#0D9373"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "/"
+  },
+  "favicon": "/favicon.svg",
+  "appearance": {
+    "default": "system"
+  },
+  "background": {
+    "decoration": "gradient"
+  },
+  "icons": {
+    "library": "fontawesome"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "search": {
+    "prompt": "Search the demo docs..."
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "api": {
+    "playground": {
+      "display": "interactive",
+      "proxy": false
+    },
+    "examples": {
+      "languages": ["bash", "python", "javascript", "go"],
+      "defaults": "all"
+    }
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "icon": "github",
+        "href": "https://github.com/mintlify-demo"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Mintlify docs",
+      "href": "https://www.mintlify.com/docs"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/mintlify-demo",
+      "website": "https://www.mintlify.com"
+    }
+  },
+  "seo": {
+    "metatags": {
+      "og:site_name": "Mintlify Demo"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Get started",
+            "icon": "rocket",
+            "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "Showcase",
+            "icon": "sparkles",
+            "pages": ["showcase/components", "showcase/ai"]
+          }
+        ]
+      },
+      {
+        "tab": "Merge Sort API",
+        "icon": "arrow-down-wide-short",
+        "pages": [{ "sourceRef": "mintlify-demo/merge-sort-api" }]
+      },
+      {
+        "tab": "Calculator API",
+        "icon": "calculator",
+        "pages": [{ "sourceRef": "mintlify-demo/calculator-api" }]
+      },
+      {
+        "tab": "Todo API",
+        "icon": "list-check",
+        "pages": [{ "sourceRef": "mintlify-demo/todo-api" }]
+      },
+      {
+        "tab": "Text Utils API",
+        "icon": "font",
+        "pages": [{ "sourceRef": "mintlify-demo/text-utils-api" }]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "clock-rotate-left",
+        "pages": ["changelog"]
+      }
+    ]
+  }
+}

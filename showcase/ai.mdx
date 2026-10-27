@@ -1,0 +1,142 @@
+---
+title: AI features
+description: How Mintlify makes your docs useful to AI assistants and AI agents, as well as people.
+icon: sparkles
+---
+
+Mintlify docs are built for two audiences: people and AI agents. Most of this is automatic. There's nothing to maintain.
+
+<CardGroup cols={2}>
+  <Card title="Assistant" icon="message-bot">
+    Readers ask questions in plain English and get cited answers.
+  </Card>
+  <Card title="llms.txt" icon="file-lines">
+    An index of your pages that AI tools can read.
+  </Card>
+  <Card title="MCP server" icon="plug">
+    Lets Claude, Cursor and others search your docs directly.
+  </Card>
+  <Card title="skill.md" icon="wand-magic-sparkles">
+    A capability summary so agents know what your product can do.
+  </Card>
+</CardGroup>
+
+## The assistant
+
+The assistant answers questions about your docs and API, cites the pages it used, and writes copyable code.
+
+<Steps>
+  <Step title="Open it">
+    Press <kbd>⌘</kbd> + <kbd>I</kbd> (or <kbd>Ctrl</kbd> + <kbd>I</kbd>), or click **Ask AI** in the search bar.
+  </Step>
+  <Step title="Ask something real">
+    Try these on this site:
+
+    - *How do I authenticate with the Todo API?*
+    - *Write a Python script that pages through every todo.*
+    - *What's the difference between the Calculator API v1 and v2?*
+  </Step>
+  <Step title="Check the sources">
+    Every answer links to the pages it came from. It also reads the OpenAPI specs, so it knows each endpoint's parameters and responses.
+  </Step>
+</Steps>
+
+<Note>
+  The assistant is included on Pro and Enterprise plans. Turn it on and tune it in the Mintlify dashboard.
+</Note>
+
+## llms.txt and llms-full.txt
+
+Mintlify generates two files for every site, automatically:
+
+| File | What's in it |
+| --- | --- |
+| `/llms.txt` | A short index: every page with its title and description |
+| `/llms-full.txt` | The full text of the docs in one file |
+
+Add `.md` to any page URL, or use **View as Markdown** in the contextual menu, to get a clean Markdown version of just that page. Agents get the same content people see, without the page chrome.
+
+<Tip>
+  On this site, try `/llms.txt` and `/quickstart.md` in your browser.
+</Tip>
+
+## MCP server
+
+Your site gets a hosted **MCP server** at `/mcp`, with no setup. An AI tool that connects to it can search your docs and read full pages while it works.
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude mcp add --transport http mintlify-demo https://YOUR-DOCS-DOMAIN/mcp
+    ```
+  </Tab>
+  <Tab title="Cursor">
+    Use **Connect to Cursor** in the contextual menu on any page.
+  </Tab>
+  <Tab title="Any MCP client">
+    Add the URL `https://YOUR-DOCS-DOMAIN/mcp` as an HTTP MCP server.
+  </Tab>
+</Tabs>
+
+<Info>
+  Replace `YOUR-DOCS-DOMAIN` with this site's domain.
+</Info>
+
+## skill.md
+
+Mintlify also hosts a `skill.md` at the root of your site. It follows the [agentskills.io](https://agentskills.io/specification) format and describes what an agent can do with your product, what inputs it needs, and what to watch for. Install it into an agent with:
+
+```bash
+npx skills add https://YOUR-DOCS-DOMAIN
+```
+
+<Note>
+  Mintlify generates `skill.md` for you, and it can take up to 24 hours after the first publish. To write your own, add a `skill.md` file at the root of the repo.
+</Note>
+
+## Contextual menu
+
+The menu next to each page title is set in `docs.json` with `contextual.options`. This site turns on:
+
+<Columns cols={2}>
+  <Card title="Copy page" icon="copy">Copies the page as Markdown.</Card>
+  <Card title="View as Markdown" icon="markdown">Opens the `.md` version.</Card>
+  <Card title="Open in ChatGPT, Claude, Perplexity" icon="arrow-up-right-from-square">Starts a chat with the page as context.</Card>
+  <Card title="Connect MCP to Cursor or VS Code" icon="plug">One-click install of the MCP server.</Card>
+</Columns>
+
+```json docs.json
+{
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  }
+}
+```
+
+## Different content for people and agents
+
+The `Visibility` component shows different content depending on who's reading.
+
+<Visibility for="humans">
+  <Check>You're reading the version written for **people**.</Check>
+</Visibility>
+
+<Visibility for="agents">
+  You're reading the version written for **agents**. To call the Todo API, send `X-API-Key: demo-key` and `POST /todos` with a JSON body containing `title`.
+</Visibility>
+
+Open this page's `.md` URL to see the agent version.
+
+## Also worth showing
+
+<AccordionGroup>
+  <Accordion title="The agent and automations">
+    Mintlify's agent can draft docs changes from a prompt, and automations can keep docs up to date when your code changes. Both open pull requests for review.
+  </Accordion>
+  <Accordion title="Analytics for AI traffic">
+    The analytics dashboard separates human and AI traffic, and shows what people ask the assistant, so you can see which questions your docs don't answer yet.
+  </Accordion>
+  <Accordion title="Bring your own model">
+    Use your own LLM provider key to power the assistant, agent and automations.
+  </Accordion>
+</AccordionGroup>
