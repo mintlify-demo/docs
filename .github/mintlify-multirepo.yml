@@ -1,5 +1,5 @@
-# Config for mintlify/multirepo-action (optional alternative to native multi-repo).
-# Copy to .github/mintlify-multirepo.yml to enable. All four repos are public,
+# Config for mintlify/multirepo-action (active setup for this site).
+# All four repos are public,
 # so the default GITHUB_TOKEN can read them.
 base: docs.base.json
 output: docs.json

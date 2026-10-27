@@ -1,5 +1,4 @@
-# Optional alternative to native multi-repo: copy to .github/workflows/multirepo.yml.
-# See README.md in this folder first.
+# Pulls each API repo's docs/ folder into this repo and generates docs.json from docs.base.json.
 name: Combine docs
 
 on:
