@@ -1,0 +1,33 @@
+/* Mermaid diagrams in the brand green instead of mermaid's default purple. */
+.mermaid svg .node rect,
+.mermaid svg .node polygon,
+.mermaid svg .node circle,
+.mermaid svg .node path,
+.mermaid svg rect.actor {
+  fill: rgba(38, 189, 108, 0.08) !important;
+  stroke: #26bd6c !important;
+}
+
+.mermaid svg .flowchart-link,
+.mermaid svg .messageLine0,
+.mermaid svg .messageLine1,
+.mermaid svg line.actor-line {
+  stroke: #26bd6c !important;
+}
+
+.mermaid svg marker path,
+.mermaid svg #arrowhead path {
+  fill: #26bd6c !important;
+  stroke: #26bd6c !important;
+}
+
+.mermaid svg .edgeLabel,
+.mermaid svg .edgeLabel rect,
+.mermaid svg .labelBkg {
+  background-color: transparent !important;
+  fill: transparent !important;
+}
+
+.mermaid svg .edgeLabel * {
+  background-color: transparent !important;
+}

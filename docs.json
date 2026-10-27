@@ -1,30 +1,30 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "luma",
   "name": "Mintlify Demo",
   "description": "A demo docs site showing what Mintlify can do: guides, interactive API references from OpenAPI, AI features, and multi-repo docs.",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#55D799",
-    "dark": "#0D9373"
+    "primary": "#166E3F",
+    "light": "#26BD6C",
+    "dark": "#166E3F"
   },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
     "href": "/"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "appearance": {
     "default": "system"
-  },
-  "background": {
-    "decoration": "gradient"
   },
   "icons": {
     "library": "fontawesome"
   },
   "styling": {
     "eyebrows": "breadcrumbs"
+  },
+  "interaction": {
+    "drilldown": false
   },
   "search": {
     "prompt": "Search the demo docs..."
@@ -38,36 +38,51 @@
       "proxy": false
     },
     "examples": {
-      "languages": ["bash", "python", "javascript", "go"],
+      "languages": [
+        "bash",
+        "python",
+        "javascript",
+        "go"
+      ],
       "defaults": "all"
     }
   },
   "contextual": {
-    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "navbar": {
     "links": [
       {
         "label": "GitHub",
-        "icon": "github",
         "href": "https://github.com/mintlify-demo"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Mintlify docs",
-      "href": "https://www.mintlify.com/docs"
+      "label": "Get started",
+      "href": "https://mintlify.com/start"
     }
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/mintlify-demo",
-      "website": "https://www.mintlify.com"
+      "x": "https://x.com/mintlify",
+      "linkedin": "https://www.linkedin.com/company/mintlify",
+      "github": "https://github.com/mintlify-demo"
     }
   },
   "seo": {
     "metatags": {
-      "og:site_name": "Mintlify Demo"
+      "og:site_name": "Mintlify Demo",
+      "twitter:site": "@mintlify"
     }
   },
   "navigation": {
@@ -79,39 +94,63 @@
           {
             "group": "Get started",
             "icon": "rocket",
-            "pages": ["index", "quickstart"]
+            "pages": [
+              "index",
+              "quickstart"
+            ]
           },
           {
             "group": "Showcase",
             "icon": "sparkles",
-            "pages": ["showcase/components", "showcase/ai"]
+            "pages": [
+              "showcase/components",
+              "showcase/ai"
+            ]
           }
         ]
       },
       {
         "tab": "Merge Sort API",
         "icon": "arrow-down-wide-short",
-        "pages": [{ "sourceRef": "mintlify-demo/merge-sort-api" }]
+        "pages": [
+          {
+            "sourceRef": "mintlify-demo/merge-sort-api"
+          }
+        ]
       },
       {
         "tab": "Calculator API",
         "icon": "calculator",
-        "pages": [{ "sourceRef": "mintlify-demo/calculator-api" }]
+        "pages": [
+          {
+            "sourceRef": "mintlify-demo/calculator-api"
+          }
+        ]
       },
       {
         "tab": "Todo API",
         "icon": "list-check",
-        "pages": [{ "sourceRef": "mintlify-demo/todo-api" }]
+        "pages": [
+          {
+            "sourceRef": "mintlify-demo/todo-api"
+          }
+        ]
       },
       {
         "tab": "Text Utils API",
         "icon": "font",
-        "pages": [{ "sourceRef": "mintlify-demo/text-utils-api" }]
+        "pages": [
+          {
+            "sourceRef": "mintlify-demo/text-utils-api"
+          }
+        ]
       },
       {
         "tab": "Changelog",
         "icon": "clock-rotate-left",
-        "pages": ["changelog"]
+        "pages": [
+          "changelog"
+        ]
       }
     ]
   }

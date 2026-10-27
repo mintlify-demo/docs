@@ -101,6 +101,25 @@ You can read this whole site without running anything. To use the **Try it** pla
   </Accordion>
 </AccordionGroup>
 
-<Note>
-  Next: take the [component tour](/showcase/components) or see the [AI features](/showcase/ai).
-</Note>
+## How this site is built
+
+Each API's docs live in that API's repository, in its `docs/` folder. This repository holds the site settings, the guides and the changelog, and Mintlify combines all five into one site on every push.
+
+```mermaid
+flowchart LR
+    A[merge-sort-api] --> M{{Mintlify}}
+    B[calculator-api] --> M
+    C[todo-api] --> M
+    D[text-utils-api] --> M
+    E[docs] --> M
+    M --> S[One docs site]
+```
+
+<Columns cols={2}>
+  <Card title="Components" icon="shapes" href="/showcase/components">
+    Every building block used on this site.
+  </Card>
+  <Card title="AI features" icon="sparkles" href="/showcase/ai">
+    The assistant, llms.txt, the MCP server and more.
+  </Card>
+</Columns>

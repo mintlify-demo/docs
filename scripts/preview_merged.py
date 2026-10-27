@@ -39,6 +39,10 @@ def prefix_navigation(node, dest):
         elif key == "openapi" and isinstance(value, str):
             # Generated endpoint pages go in <url path>/api-reference/..., like native multi-repo.
             out[key] = {"source": f"{dest}/{value}", "directory": f"{dest}/api-reference"}
+        elif key == "openapi" and isinstance(value, dict) and "source" in value:
+            out[key] = {**value, "source": f"{dest}/{value['source']}"}
+            if "directory" in value:
+                out[key]["directory"] = f"{dest}/{value['directory']}"
         else:
             out[key] = prefix_navigation(value, dest)
     return out
