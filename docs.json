@@ -89,7 +89,7 @@
         ]
       },
       {
-        "tab": "Merge Sort API",
+        "tab": "Sort API",
         "icon": "arrow-down-wide-short",
         "pages": [{ "sourceRef": "mintlify-demo/merge-sort-api" }]
       },
