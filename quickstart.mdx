@@ -103,16 +103,16 @@ You can read this whole site without running anything. To use the **Try it** pla
 
 ## How this site is built
 
-Each API's docs live in that API's repository, in its `docs/` folder. This repository holds the site settings, the guides and the changelog, and Mintlify combines all five into one site on every push.
+Each API's code and tests live in that API's repository. All of the docs, including each API's guides and OpenAPI spec, live in the [docs repository](https://github.com/mintlify-demo/docs). When an API's code changes, Mintlify's agent opens a pull request in the docs repository with the matching docs update.
 
 ```mermaid
 flowchart LR
-    A[merge-sort-api] --> M{{Mintlify}}
-    B[calculator-api] --> M
-    C[todo-api] --> M
-    D[text-utils-api] --> M
-    E[docs] --> M
-    M --> S[One docs site]
+    A[merge-sort-api] -- code change --> M{{Mintlify agent}}
+    B[calculator-api] -- code change --> M
+    C[todo-api] -- code change --> M
+    D[text-utils-api] -- code change --> M
+    M -- docs PR --> E[docs]
+    E --> S[One docs site]
 ```
 
 <Columns cols={2}>

@@ -1,47 +1,30 @@
 # Mintlify Demo (docs)
 
-The central docs repo for the **mintlify-demo** org: a showcase site for Mintlify account executives. It holds the site settings (`docs.json`), the landing page, guides, the component and AI showcase pages, and the changelog. Each example API keeps its own docs in its own repository and is pulled in with Mintlify's **multi-repository projects**.
+The docs repo for the **mintlify-demo** org: a showcase site for Mintlify account executives. **All** docs live here: the site settings (`docs.json`), the landing page, guides, showcase pages, the changelog, es/fr translations, and the docs for each example API.
 
-| Repo | Docs folder | URL path |
+| Folder | What it is | Code lives in |
 | --- | --- | --- |
-| `mintlify-demo/docs` (this repo, **base source**) | `/` | `/` |
-| `mintlify-demo/merge-sort-api` | `docs/` | `/merge-sort-api` |
-| `mintlify-demo/calculator-api` | `docs/` | `/calculator-api` |
-| `mintlify-demo/todo-api` | `docs/` | `/todo-api` |
-| `mintlify-demo/text-utils-api` | `docs/` | `/text-utils-api` |
+| `/` (`index`, `quickstart`, `showcase/`, `changelog`) | Site pages (public) | - |
+| `es/`, `fr/` | Spanish and French translations of the site pages. The API docs stay in English | - |
+| `merge-sort-api/` | Pages + `openapi.json` | [merge-sort-api](https://github.com/mintlify-demo/merge-sort-api) |
+| `calculator-api/` | Pages + `openapi.v2.json` / `openapi.v1.json` (version switcher) + full `openapi.json` | [calculator-api](https://github.com/mintlify-demo/calculator-api) |
+| `todo-api/` | Pages + `openapi.json`, `schema.graphql` (GraphQL), `asyncapi.yaml` (WebSocket), `sdk-artifacts/python` (Sphinx JSON for the SDK reference) | [todo-api](https://github.com/mintlify-demo/todo-api) |
+| `text-utils-api/` | Pages + `openapi.json` | [text-utils-api](https://github.com/mintlify-demo/text-utils-api) |
 
-## How it fits together
+URLs are `/<api-name>/...`, as before. API pages have no `public: true`, so they need a login. Site pages are `public: true`.
 
-- `docs.json` here is the base config. Each API tab uses `{ "sourceRef": "mintlify-demo/<repo>" }` to drop that repo's navigation into place. Mintlify prefixes its pages with the repo's URL path.
-- Each API repo's `docs/docs.json` has a `navigation.pages` list: a **Get started** group, a **Guides** group, and an **API reference** group generated from the committed `docs/openapi.json`.
-- Links inside child docs include the repo prefix (for example `/todo-api/quickstart`), so they work once merged.
+## How docs stay in sync with code
+The API repos hold only code and tests. Mintlify's **Update from code changes** automation watches them. When a PR changes an API, the automation opens a PR here that updates that API's pages and spec. The nightly demo reset closes open bot PRs and reverts merged ones; it never force-pushes this repo (see `mintlify-demo/demo-kit`).
 
-## Connect it to Mintlify (native multi-repo, Enterprise)
-
-In the dashboard, open **Git settings** and add one source per repository:
-
-| Repository | Branch | docs.json in subdirectory | URL path |
-| --- | --- | --- | --- |
-| `mintlify-demo/docs` (set as **Base**) | `main` | off | _(empty, or `/`)_ |
-| `mintlify-demo/merge-sort-api` | `main` | `docs` | `merge-sort-api` |
-| `mintlify-demo/calculator-api` | `main` | `docs` | `calculator-api` |
-| `mintlify-demo/todo-api` | `main` | `docs` | `todo-api` |
-| `mintlify-demo/text-utils-api` | `main` | `docs` | `text-utils-api` |
-
-The Mintlify GitHub app must have access to all five repos.
-
-## Preview everything locally
-
-Clone all five repos side by side, then:
+## Regenerating a spec by hand
+Each API serves its spec at `http://localhost:8000/openapi.json`. Run the API, then:
 
 ```bash
-npm i -g mint
-python3 scripts/preview_merged.py     # builds ./.preview with every API's docs merged in
-cd .preview && mint dev
+curl -s localhost:8000/openapi.json | python3 -m json.tool > merge-sort-api/openapi.json
 ```
 
-`mint validate` and `mint broken-links` both work inside `.preview`. Run in this repo alone, `mint validate` passes, but `mint broken-links` reports links to the API pages, which live in the other repos.
-
-## Optional: multirepo GitHub Action
-
-If you can't use native multi-repo, see [`.github/multirepo-action-alternative/`](.github/multirepo-action-alternative/README.md).
+## Preview
+```bash
+npm i -g mint
+mint dev
+```

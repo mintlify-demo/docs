@@ -103,16 +103,16 @@ Vous pouvez lire tout ce site sans rien lancer. Pour utiliser le playground **Tr
 
 ## Comment ce site est construit
 
-La documentation de chaque API se trouve dans le dépôt de cette API, dans son dossier `docs/`. Ce dépôt contient les réglages du site, les guides et le journal des modifications, et Mintlify combine les cinq en un seul site à chaque push.
+Le code et les tests de chaque API se trouvent dans le dépôt de cette API. Toute la documentation, y compris les guides et la spécification OpenAPI de chaque API, se trouve dans le [dépôt docs](https://github.com/mintlify-demo/docs). Quand le code d'une API change, l'agent Mintlify ouvre une pull request dans le dépôt docs avec la mise à jour correspondante.
 
 ```mermaid
 flowchart LR
-    A[merge-sort-api] --> M{{Mintlify}}
-    B[calculator-api] --> M
-    C[todo-api] --> M
-    D[text-utils-api] --> M
-    E[docs] --> M
-    M --> S[Un seul site de documentation]
+    A[merge-sort-api] -- changement de code --> M{{Agent Mintlify}}
+    B[calculator-api] -- changement de code --> M
+    C[todo-api] -- changement de code --> M
+    D[text-utils-api] -- changement de code --> M
+    M -- PR docs --> E[docs]
+    E --> S[Un seul site de documentation]
 ```
 
 <Columns cols={2}>

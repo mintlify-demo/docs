@@ -1,7 +1,7 @@
 ---
 title: Démo Mintlify
 sidebarTitle: Aperçu
-description: Guides, références d'API interactives et fonctions d'IA, publiés depuis cinq dépôts GitHub en un seul site.
+description: Guides, références d'API interactives et fonctions d'IA pour quatre API d'exemple, synchronisées avec leur code par l'agent Mintlify.
 icon: house
 mode: frame
 public: true
@@ -27,7 +27,7 @@ public: true
     </h1>
 
     <div className="max-w-xl mx-auto px-4 mt-4 text-lg text-center text-gray-500 dark:text-zinc-500">
-      Quatre API, chacune documentée dans son propre dépôt, publiées ensemble en un seul site avec des références interactives et l'IA intégrée.
+      Quatre API, chacune avec son propre dépôt de code, documentées ensemble en un seul site avec des références interactives et l'IA intégrée.
     </div>
 
     <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-2 gap-x-6 gap-y-4">
@@ -45,7 +45,7 @@ public: true
         <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Démarrage rapide</h3>
         <span className="mt-1.5">Lancez une API en local et appelez-la depuis la documentation</span>
       </a>
-      <a className="group cursor-pointer pb-8" href="../calculator-api">
+      <a className="group cursor-pointer pb-8" href="/calculator-api">
         <img
           src="/images/hero/cli.png"
           className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
@@ -95,20 +95,20 @@ public: true
       API d'exemple
     </h2>
     <p className="mt-2 mb-6 text-gray-500 dark:text-zinc-500">
-      Chaque API est un dépôt distinct avec son code, ses tests, sa spécification OpenAPI et sa documentation.
+      Le code et les tests de chaque API vivent dans leur propre dépôt. Leur documentation vit ici, et l'agent Mintlify la met à jour quand le code change.
     </p>
 
     <Columns cols={2}>
-      <Card title="Merge Sort API" icon="arrow-down-wide-short" href="../merge-sort-api">
+      <Card title="Merge Sort API" icon="arrow-down-wide-short" href="/merge-sort-api">
         Triez une liste et voyez chaque étape de fusion.
       </Card>
-      <Card title="Calculator API" icon="calculator" href="../calculator-api">
+      <Card title="Calculator API" icon="calculator" href="/calculator-api">
         Les versions 1 et 2 côte à côte, avec des erreurs typées.
       </Card>
-      <Card title="Todo API" icon="list-check" href="../todo-api">
+      <Card title="Todo API" icon="list-check" href="/todo-api">
         Authentification par clé d'API, pagination et un endpoint obsolète.
       </Card>
-      <Card title="Text Utils API" icon="font" href="../text-utils-api">
+      <Card title="Text Utils API" icon="font" href="/text-utils-api">
         Exemples de code en quatre langages depuis la spécification OpenAPI.
       </Card>
     </Columns>
@@ -117,7 +117,7 @@ public: true
       Dépôts sources
     </h2>
     <p className="mt-2 mb-6 text-gray-500 dark:text-zinc-500">
-      Chaque page de ce site est générée à partir de ces dépôts publics.
+      Le dépôt de la documentation et le code de chaque API.
     </p>
 
     <Columns cols={2}>
