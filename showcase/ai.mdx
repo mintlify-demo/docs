@@ -97,19 +97,22 @@ npx skills add https://YOUR-DOCS-DOMAIN
 
 ## Contextual menu
 
-The menu next to each page title is set in `docs.json` with `contextual.options`. This site turns on:
+The menu next to each page title is set in `docs.json` with `contextual.options`. This site turns on 17 options, including:
 
 <Columns cols={2}>
   <Card title="Copy page" icon="copy">Copies the page as Markdown.</Card>
   <Card title="View as Markdown" icon="markdown">Opens the `.md` version.</Card>
-  <Card title="Open in ChatGPT, Claude, Perplexity" icon="arrow-up-right-from-square">Starts a chat with the page as context.</Card>
+  <Card title="Open in ChatGPT, Claude, Perplexity, Grok" icon="arrow-up-right-from-square">Starts a chat with the page as context.</Card>
   <Card title="Connect MCP to Cursor or VS Code" icon="plug">One-click install of the MCP server.</Card>
 </Columns>
 
 ```json docs.json
 {
   "contextual": {
-    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+    "options": [
+      "copy", "view", "assistant", "chatgpt", "claude", "perplexity", "grok", "aistudio", "devin",
+      "windsurf", "mcp", "cursor", "vscode", "devin-mcp", "add-mcp", "download-spec", "download-pdf"
+    ]
   }
 }
 ```

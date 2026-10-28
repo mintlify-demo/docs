@@ -1,0 +1,146 @@
+---
+title: Fonctionnalités IA
+description: Comment Mintlify rend votre documentation utile aux assistants et aux agents IA, autant qu'aux personnes.
+icon: sparkles
+public: true
+---
+
+La documentation Mintlify s'adresse à deux publics : les personnes et les agents IA. Presque tout est automatique. Il n'y a rien à maintenir.
+
+<CardGroup cols={2}>
+  <Card title="Assistant" icon="message-bot">
+    Les lecteurs posent leurs questions en langage naturel et obtiennent des réponses sourcées.
+  </Card>
+  <Card title="llms.txt" icon="file-lines">
+    Un index de vos pages lisible par les outils d'IA.
+  </Card>
+  <Card title="Serveur MCP" icon="plug">
+    Permet à Claude, Cursor et d'autres de chercher directement dans votre documentation.
+  </Card>
+  <Card title="skill.md" icon="wand-magic-sparkles">
+    Un résumé des capacités pour que les agents sachent ce que votre produit sait faire.
+  </Card>
+</CardGroup>
+
+## L'assistant
+
+L'assistant répond aux questions sur votre documentation et votre API, cite les pages utilisées et écrit du code prêt à copier.
+
+<Steps>
+  <Step title="Ouvrez-le">
+    Appuyez sur <kbd>⌘</kbd> + <kbd>I</kbd> (ou <kbd>Ctrl</kbd> + <kbd>I</kbd>), ou cliquez sur **Ask AI** dans la barre de recherche.
+  </Step>
+  <Step title="Posez une vraie question">
+    Essayez celles-ci sur ce site :
+
+    - *Comment m'authentifier auprès de la Todo API ?*
+    - *Écris un script Python qui parcourt toutes les pages de todos.*
+    - *Quelle est la différence entre la v1 et la v2 de la Calculator API ?*
+  </Step>
+  <Step title="Vérifiez les sources">
+    Chaque réponse renvoie vers les pages dont elle provient. L'assistant lit aussi les spécifications OpenAPI : il connaît les paramètres et les réponses de chaque endpoint.
+  </Step>
+</Steps>
+
+<Note>
+  L'assistant est inclus dans les offres Pro et Enterprise. Activez-le et réglez-le dans le tableau de bord Mintlify.
+</Note>
+
+## llms.txt et llms-full.txt
+
+Mintlify génère automatiquement deux fichiers pour chaque site :
+
+| Fichier | Contenu |
+| --- | --- |
+| `/llms.txt` | Un index court : chaque page avec son titre et sa description |
+| `/llms-full.txt` | Le texte complet de la documentation dans un seul fichier |
+
+Ajoutez `.md` à l'URL de n'importe quelle page, ou utilisez **Afficher en Markdown** dans le menu contextuel, pour obtenir une version Markdown propre de cette page. Les agents reçoivent le même contenu que les personnes, sans l'habillage de la page.
+
+<Tip>
+  Sur ce site, essayez `/llms.txt` et `/fr/quickstart.md` dans votre navigateur.
+</Tip>
+
+## Serveur MCP
+
+Votre site dispose d'un **serveur MCP** hébergé sur `/mcp`, sans configuration. Un outil d'IA qui s'y connecte peut chercher dans votre documentation et lire des pages entières pendant qu'il travaille.
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude mcp add --transport http mintlify-demo https://YOUR-DOCS-DOMAIN/mcp
+    ```
+  </Tab>
+  <Tab title="Cursor">
+    Utilisez **Connect to Cursor** dans le menu contextuel de n'importe quelle page.
+  </Tab>
+  <Tab title="Tout client MCP">
+    Ajoutez l'URL `https://YOUR-DOCS-DOMAIN/mcp` comme serveur MCP HTTP.
+  </Tab>
+</Tabs>
+
+<Info>
+  Remplacez `YOUR-DOCS-DOMAIN` par le domaine de ce site.
+</Info>
+
+## skill.md
+
+Mintlify héberge aussi un `skill.md` à la racine de votre site. Il suit le format [agentskills.io](https://agentskills.io/specification) et décrit ce qu'un agent peut faire avec votre produit, les données dont il a besoin et les points de vigilance. Installez-le dans un agent avec :
+
+```bash
+npx skills add https://YOUR-DOCS-DOMAIN
+```
+
+<Note>
+  Mintlify génère `skill.md` pour vous ; cela peut prendre jusqu'à 24 heures après la première publication. Pour écrire le vôtre, ajoutez un fichier `skill.md` à la racine du dépôt.
+</Note>
+
+## Menu contextuel
+
+Le menu à côté du titre de chaque page se configure dans `docs.json` avec `contextual.options`. Ce site active 17 options, notamment :
+
+<Columns cols={2}>
+  <Card title="Copier la page" icon="copy">Copie la page en Markdown.</Card>
+  <Card title="Afficher en Markdown" icon="markdown">Ouvre la version `.md`.</Card>
+  <Card title="Ouvrir dans ChatGPT, Claude, Perplexity, Grok" icon="arrow-up-right-from-square">Démarre une conversation avec la page comme contexte.</Card>
+  <Card title="Connecter le MCP à Cursor ou VS Code" icon="plug">Installe le serveur MCP en un clic.</Card>
+</Columns>
+
+```json docs.json
+{
+  "contextual": {
+    "options": [
+      "copy", "view", "assistant", "chatgpt", "claude", "perplexity", "grok", "aistudio", "devin",
+      "windsurf", "mcp", "cursor", "vscode", "devin-mcp", "add-mcp", "download-spec", "download-pdf"
+    ]
+  }
+}
+```
+
+## Un contenu différent pour les personnes et les agents
+
+Le composant `Visibility` affiche un contenu différent selon qui lit.
+
+<Visibility for="humans">
+  <Check>Vous lisez la version écrite pour les **personnes**.</Check>
+</Visibility>
+
+<Visibility for="agents">
+  Vous lisez la version écrite pour les **agents**. Pour appeler la Todo API, envoyez `X-API-Key: demo-key` et `POST /todos` avec un corps JSON contenant `title`.
+</Visibility>
+
+Ouvrez l'URL `.md` de cette page pour voir la version destinée aux agents.
+
+## À montrer aussi
+
+<AccordionGroup>
+  <Accordion title="L'agent et les automatisations">
+    L'agent Mintlify peut rédiger des modifications de la documentation à partir d'un prompt, et les automatisations la tiennent à jour quand votre code change. Les deux ouvrent des pull requests à relire.
+  </Accordion>
+  <Accordion title="Analytique du trafic IA">
+    Le tableau de bord analytique sépare le trafic humain du trafic IA et montre ce que les gens demandent à l'assistant, pour repérer les questions auxquelles votre documentation ne répond pas encore.
+  </Accordion>
+  <Accordion title="Votre propre modèle">
+    Utilisez la clé de votre propre fournisseur de LLM pour l'assistant, l'agent et les automatisations.
+  </Accordion>
+</AccordionGroup>

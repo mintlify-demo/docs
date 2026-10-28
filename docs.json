@@ -34,7 +34,7 @@
   },
   "api": {
     "playground": {
-      "display": "interactive",
+      "display": "auth",
       "proxy": false
     },
     "examples": {
@@ -44,19 +44,29 @@
         "javascript",
         "go"
       ],
-      "defaults": "all"
+      "defaults": "all",
+      "prefill": true
     }
   },
   "contextual": {
     "options": [
       "copy",
       "view",
+      "assistant",
       "chatgpt",
       "claude",
       "perplexity",
+      "grok",
+      "aistudio",
+      "devin",
+      "windsurf",
       "mcp",
       "cursor",
-      "vscode"
+      "vscode",
+      "devin-mcp",
+      "add-mcp",
+      "download-spec",
+      "download-pdf"
     ]
   },
   "navbar": {
@@ -87,80 +97,246 @@
     }
   },
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guides",
-        "icon": "book-open",
-        "groups": [
+        "language": "en",
+        "default": true,
+        "tabs": [
           {
-            "group": "Get started",
-            "icon": "rocket",
-            "pages": [
-              "index",
-              "quickstart"
+            "tab": "Guides",
+            "icon": "book-open",
+            "groups": [
+              {
+                "group": "Get started",
+                "icon": "rocket",
+                "pages": [
+                  "index",
+                  "quickstart"
+                ]
+              },
+              {
+                "group": "Showcase",
+                "icon": "sparkles",
+                "pages": [
+                  "showcase/components",
+                  "showcase/ai"
+                ]
+              }
             ]
           },
           {
-            "group": "Showcase",
-            "icon": "sparkles",
+            "tab": "APIs",
+            "icon": "code",
+            "menu": [
+              {
+                "item": "Merge Sort API",
+                "icon": "arrow-down-wide-short",
+                "description": "Sort a list and see every merge step",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/merge-sort-api"
+                  }
+                ]
+              },
+              {
+                "item": "Calculator API",
+                "icon": "calculator",
+                "description": "Versions 1 and 2 side by side",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/calculator-api"
+                  }
+                ]
+              },
+              {
+                "item": "Todo API",
+                "icon": "list-check",
+                "description": "API key auth and pagination",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/todo-api"
+                  }
+                ]
+              },
+              {
+                "item": "Text Utils API",
+                "icon": "font",
+                "description": "Code samples in four languages",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/text-utils-api"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "icon": "clock-rotate-left",
             "pages": [
-              "showcase/components",
-              "showcase/ai"
+              "changelog"
             ]
           }
         ]
       },
       {
-        "tab": "APIs",
-        "icon": "code",
-        "menu": [
+        "language": "es",
+        "tabs": [
           {
-            "item": "Merge Sort API",
-            "icon": "arrow-down-wide-short",
-            "description": "Sort a list and see every merge step",
-            "pages": [
+            "tab": "Guías",
+            "icon": "book-open",
+            "groups": [
               {
-                "sourceRef": "mintlify-demo/merge-sort-api"
+                "group": "Empezar",
+                "icon": "rocket",
+                "pages": [
+                  "es/index",
+                  "es/quickstart"
+                ]
+              },
+              {
+                "group": "Muestras",
+                "icon": "sparkles",
+                "pages": [
+                  "es/showcase/components",
+                  "es/showcase/ai"
+                ]
               }
             ]
           },
           {
-            "item": "Calculator API",
-            "icon": "calculator",
-            "description": "Versions 1 and 2 side by side",
-            "pages": [
+            "tab": "APIs",
+            "icon": "code",
+            "menu": [
               {
-                "sourceRef": "mintlify-demo/calculator-api"
+                "item": "Merge Sort API",
+                "icon": "arrow-down-wide-short",
+                "description": "Sort a list and see every merge step",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/merge-sort-api"
+                  }
+                ]
+              },
+              {
+                "item": "Calculator API",
+                "icon": "calculator",
+                "description": "Versions 1 and 2 side by side",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/calculator-api"
+                  }
+                ]
+              },
+              {
+                "item": "Todo API",
+                "icon": "list-check",
+                "description": "API key auth and pagination",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/todo-api"
+                  }
+                ]
+              },
+              {
+                "item": "Text Utils API",
+                "icon": "font",
+                "description": "Code samples in four languages",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/text-utils-api"
+                  }
+                ]
               }
             ]
           },
           {
-            "item": "Todo API",
-            "icon": "list-check",
-            "description": "API key auth and pagination",
+            "tab": "Registro de cambios",
+            "icon": "clock-rotate-left",
             "pages": [
-              {
-                "sourceRef": "mintlify-demo/todo-api"
-              }
-            ]
-          },
-          {
-            "item": "Text Utils API",
-            "icon": "font",
-            "description": "Code samples in four languages",
-            "pages": [
-              {
-                "sourceRef": "mintlify-demo/text-utils-api"
-              }
+              "es/changelog"
             ]
           }
         ]
       },
       {
-        "tab": "Changelog",
-        "icon": "clock-rotate-left",
-        "pages": [
-          "changelog"
+        "language": "fr",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "icon": "book-open",
+            "groups": [
+              {
+                "group": "Démarrer",
+                "icon": "rocket",
+                "pages": [
+                  "fr/index",
+                  "fr/quickstart"
+                ]
+              },
+              {
+                "group": "Vitrine",
+                "icon": "sparkles",
+                "pages": [
+                  "fr/showcase/components",
+                  "fr/showcase/ai"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "APIs",
+            "icon": "code",
+            "menu": [
+              {
+                "item": "Merge Sort API",
+                "icon": "arrow-down-wide-short",
+                "description": "Sort a list and see every merge step",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/merge-sort-api"
+                  }
+                ]
+              },
+              {
+                "item": "Calculator API",
+                "icon": "calculator",
+                "description": "Versions 1 and 2 side by side",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/calculator-api"
+                  }
+                ]
+              },
+              {
+                "item": "Todo API",
+                "icon": "list-check",
+                "description": "API key auth and pagination",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/todo-api"
+                  }
+                ]
+              },
+              {
+                "item": "Text Utils API",
+                "icon": "font",
+                "description": "Code samples in four languages",
+                "pages": [
+                  {
+                    "sourceRef": "mintlify-demo/text-utils-api"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Journal des modifications",
+            "icon": "clock-rotate-left",
+            "pages": [
+              "fr/changelog"
+            ]
+          }
         ]
       }
     ]

@@ -1,0 +1,125 @@
+---
+title: Inicio rápido
+description: Ejecuta las cuatro APIs de demo en local y pruébalas desde el playground de API de este sitio.
+icon: rocket
+public: true
+---
+
+Puedes leer todo este sitio sin ejecutar nada. Para usar el playground **Try it**, ejecuta una API en tu portátil.
+
+<Steps>
+  <Step title="Comprueba lo que necesitas">
+    Necesitas Python 3.10 o superior y `git`.
+
+    <Tabs>
+      <Tab title="macOS">
+        ```bash
+        brew install python git
+        ```
+      </Tab>
+      <Tab title="Linux">
+        ```bash
+        sudo apt install python3 python3-venv git
+        ```
+      </Tab>
+      <Tab title="Windows">
+        ```powershell
+        winget install Python.Python.3.12 Git.Git
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Elige una API e iníciala">
+    <CodeGroup>
+      ```bash Merge Sort API
+      git clone https://github.com/mintlify-demo/merge-sort-api.git
+      cd merge-sort-api
+      python3 -m venv .venv && source .venv/bin/activate
+      pip install -r requirements.txt
+      uvicorn main:app --reload
+      ```
+
+      ```bash Calculator API
+      git clone https://github.com/mintlify-demo/calculator-api.git
+      cd calculator-api
+      python3 -m venv .venv && source .venv/bin/activate
+      pip install -r requirements.txt
+      uvicorn main:app --reload
+      ```
+
+      ```bash Todo API
+      git clone https://github.com/mintlify-demo/todo-api.git
+      cd todo-api
+      python3 -m venv .venv && source .venv/bin/activate
+      pip install -r requirements.txt
+      uvicorn main:app --reload
+      ```
+
+      ```bash Text Utils API
+      git clone https://github.com/mintlify-demo/text-utils-api.git
+      cd text-utils-api
+      python3 -m venv .venv && source .venv/bin/activate
+      pip install -r requirements.txt
+      uvicorn main:app --reload
+      ```
+    </CodeGroup>
+
+    <Warning>
+      Todas las APIs usan el puerto `8000`. Ejecuta una cada vez, o inicia las demás con `--port 8001`.
+    </Warning>
+  </Step>
+
+  <Step title="Abre su referencia de API">
+    Abre la pestaña **APIs** en la parte superior de este sitio, elige la API y un endpoint, y haz clic en **Try it**. Las referencias de API están en inglés. El playground envía la petición desde tu navegador directamente a `http://localhost:8000`.
+  </Step>
+
+  <Step title="Envía una petición">
+    Para la Todo API, introduce `demo-key` como clave de API. Las demás APIs no necesitan clave.
+  </Step>
+</Steps>
+
+<Check>
+  Estás ejecutando una API real y llamándola desde documentación generada.
+</Check>
+
+<Tip>
+  ¿Lo vas a enseñar en directo? Inicia la API antes de la llamada y deja el navegador en la página del endpoint. El playground, los ejemplos de código y el visor de respuestas se actualizan mientras escribes.
+</Tip>
+
+## Solución de problemas
+
+<AccordionGroup>
+  <Accordion title="El playground dice que no puede conectar con el servidor">
+    Comprueba que la API está en marcha y muestra `Uvicorn running on http://127.0.0.1:8000`. Las APIs permiten peticiones de otros orígenes, así que no hace falta configurar nada más.
+  </Accordion>
+  <Accordion title="`pip install` falla">
+    Comprueba que activaste el entorno virtual: tu prompt debería empezar por `(.venv)`.
+  </Accordion>
+  <Accordion title="El puerto 8000 ya está en uso">
+    Detén la otra API, o ejecuta `uvicorn main:app --port 8001`.
+  </Accordion>
+</AccordionGroup>
+
+## Cómo se construye este sitio
+
+La documentación de cada API vive en el repositorio de esa API, en su carpeta `docs/`. Este repositorio contiene la configuración del sitio, las guías y el registro de cambios, y Mintlify combina los cinco en un solo sitio en cada push.
+
+```mermaid
+flowchart LR
+    A[merge-sort-api] --> M{{Mintlify}}
+    B[calculator-api] --> M
+    C[todo-api] --> M
+    D[text-utils-api] --> M
+    E[docs] --> M
+    M --> S[Un solo sitio de docs]
+```
+
+<Columns cols={2}>
+  <Card title="Componentes" icon="shapes" href="/es/showcase/components">
+    Todos los bloques que usa este sitio.
+  </Card>
+  <Card title="Funciones de IA" icon="sparkles" href="/es/showcase/ai">
+    El asistente, llms.txt, el servidor MCP y más.
+  </Card>
+</Columns>
