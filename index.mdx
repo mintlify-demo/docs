@@ -1,7 +1,7 @@
 ---
 title: Mintlify Demo
 sidebarTitle: Overview
-description: Guides, interactive API references and AI features, published from five GitHub repositories as one docs site.
+description: Guides, interactive API references and AI features for four example APIs, kept in sync with their code by Mintlify's agent.
 icon: house
 mode: frame
 public: true
@@ -27,7 +27,7 @@ public: true
     </h1>
 
     <div className="max-w-xl mx-auto px-4 mt-4 text-lg text-center text-gray-500 dark:text-zinc-500">
-      Four APIs, each documented in its own repository, published together as one site with interactive references and AI built in.
+      Four APIs, each with its own code repository, documented together in one site with interactive references and AI built in.
     </div>
 
     <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-2 gap-x-6 gap-y-4">
@@ -45,7 +45,7 @@ public: true
         <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Quickstart</h3>
         <span className="mt-1.5">Run an API locally and call it from the docs</span>
       </a>
-      <a className="group cursor-pointer pb-8" href="../calculator-api">
+      <a className="group cursor-pointer pb-8" href="/calculator-api">
         <img
           src="/images/hero/cli.png"
           className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
@@ -95,20 +95,20 @@ public: true
       Example APIs
     </h2>
     <p className="mt-2 mb-6 text-gray-500 dark:text-zinc-500">
-      Each tab is a separate repository with its own code, tests, OpenAPI spec and docs.
+      Each API's code and tests live in their own repository. Their docs live here, and Mintlify's agent updates them when the code changes.
     </p>
 
     <Columns cols={2}>
-      <Card title="Merge Sort API" icon="arrow-down-wide-short" href="../merge-sort-api">
+      <Card title="Merge Sort API" icon="arrow-down-wide-short" href="/merge-sort-api">
         Sort a list and see every merge step.
       </Card>
-      <Card title="Calculator API" icon="calculator" href="../calculator-api">
+      <Card title="Calculator API" icon="calculator" href="/calculator-api">
         Versions 1 and 2 side by side, with typed errors.
       </Card>
-      <Card title="Todo API" icon="list-check" href="../todo-api">
+      <Card title="Todo API" icon="list-check" href="/todo-api">
         API key auth, pagination and a deprecated endpoint.
       </Card>
-      <Card title="Text Utils API" icon="font" href="../text-utils-api">
+      <Card title="Text Utils API" icon="font" href="/text-utils-api">
         Code samples in four languages from the OpenAPI spec.
       </Card>
     </Columns>
@@ -117,7 +117,7 @@ public: true
       Source repositories
     </h2>
     <p className="mt-2 mb-6 text-gray-500 dark:text-zinc-500">
-      Every page on this site is built from these public repositories.
+      The docs repository and the code behind each API.
     </p>
 
     <Columns cols={2}>
