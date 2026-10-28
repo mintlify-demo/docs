@@ -5,6 +5,18 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="October 2026" description="Sort API v2.0.0" tags={["API", "Breaking change"]}>
+  ## Merge Sort API is now the Sort API
+
+  The API now sorts with quick sort instead of merge sort. Quick sort picks the middle item as the pivot and splits the rest into three groups. `POST /sort` returns the same response as before.
+
+  `POST /sort/steps` now returns partition steps instead of merge steps. Each step has `pivot`, `before`, `equal` and `after` fields, replacing `left`, `right` and `merged`. Update any client that reads the old step fields.
+
+  ```json
+  { "step": 1, "pivot": 2, "before": [1], "equal": [2], "after": [4, 3] }
+  ```
+</Update>
+
 <Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
   ## The Mintlify demo org is live
 

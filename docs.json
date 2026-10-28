@@ -129,9 +129,9 @@
             "icon": "code",
             "menu": [
               {
-                "item": "Merge Sort API",
+                "item": "Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "pages": [
                   {
                     "sourceRef": "mintlify-demo/merge-sort-api"
@@ -209,9 +209,9 @@
             "icon": "code",
             "menu": [
               {
-                "item": "Merge Sort API",
+                "item": "Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "pages": [
                   {
                     "sourceRef": "mintlify-demo/merge-sort-api"
@@ -289,9 +289,9 @@
             "icon": "code",
             "menu": [
               {
-                "item": "Merge Sort API",
+                "item": "Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "pages": [
                   {
                     "sourceRef": "mintlify-demo/merge-sort-api"
