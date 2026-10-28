@@ -63,6 +63,7 @@ Ask `/sort/steps` to sort `[4, 3, 2, 1]` and it returns every partition:
     "result": [1, 2, 3, 4],
     "count": 4,
     "order": "asc",
+    "algorithm": "quick",
     "steps": [
       { "step": 1, "pivot": 2, "before": [1], "equal": [2], "after": [4, 3] },
       { "step": 2, "pivot": 3, "before": [], "equal": [3], "after": [4] }
@@ -72,6 +73,8 @@ Ask `/sort/steps` to sort `[4, 3, 2, 1]` and it returns every partition:
 </CodeGroup>
 
 Steps are listed depth-first. The API fully partitions the `before` side before it starts on the `after` side. Groups with zero or one items need no partition, so they don't appear as steps.
+
+`/sort/steps` always uses quick sort. If you send a different `algorithm`, the API ignores it and returns `"algorithm": "quick"`.
 
 <Info>
   Quick sort runs in O(n log n) time on average and O(n²) in the worst case.
