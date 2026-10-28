@@ -137,7 +137,7 @@
           {
             "item": "Todo API",
             "icon": "list-check",
-            "description": "API key auth and pagination",
+            "description": "REST, GraphQL, events and a Python SDK",
             "pages": [
               {
                 "sourceRef": "mintlify-demo/todo-api"

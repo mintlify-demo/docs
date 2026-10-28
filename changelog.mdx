@@ -34,6 +34,29 @@ public: true
   v1 is unchanged and still supported.
 </Update>
 
+<Update label="October 2026" description="Todo API" tags={["API", "GraphQL", "SDK"]}>
+  ## GraphQL, live events, a Python SDK and plan keys
+
+  The Todo API now offers three more ways to work with your todos, plus API keys tied to a plan.
+
+  - **GraphQL** at `/graphql`. It reads and writes the same todos as the REST API. Open it in a browser for GraphiQL.
+  - **Event stream** at `/ws/events`. Connect over WebSocket to receive `todo.created`, `todo.updated` and `todo.deleted` messages as they happen. Pass your key in the `api_key` query parameter.
+  - **Python SDK** `todo-client`, with a reference generated from its docstrings.
+  - **Plan keys**: `demo-key` (standard), `partner-demo-key` (partner) and `enterprise-demo-key` (enterprise). Only the enterprise key can call the new `POST /todos/bulk` endpoint, which creates up to 100 todos at once. Other keys get a `403`.
+
+  ```python
+  from todo_client import TodoClient
+
+  with TodoClient(api_key="demo-key") as todos:
+      todo = todos.create("Write the docs")
+      todos.complete(todo.id)
+  ```
+
+  <Note>
+    The partner and enterprise guides, and the `POST /todos/bulk` reference, are only visible to signed-in readers in those groups.
+  </Note>
+</Update>
+
 <Update label="October 2026" description="Todo API" tags={["API", "Deprecation"]}>
   ## `GET /todos/list-all` is deprecated
 
