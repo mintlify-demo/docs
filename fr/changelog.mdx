@@ -5,32 +5,6 @@ icon: clock-rotate-left
 public: true
 ---
 
-<Update label="Octobre 2026" description="Algorithmes de la Sort API" tags={["API"]}>
-  ## Choisissez un algorithme de tri
-
-  `POST /sort` accepte un champ facultatif `algorithm` : `quick` (par défaut), `merge` (stable) ou `heap`. La réponse inclut l'`algorithm` utilisé par l'API. Une valeur inconnue renvoie une erreur `422`.
-
-  ```json
-  { "numbers": [5, 2, 9, 1], "algorithm": "merge" }
-  ```
-
-  `POST /sort/steps` utilise toujours quick sort. Consultez [Choisir un algorithme](/merge-sort-api#choose-an-algorithm).
-</Update>
-
-<Update label="Octobre 2026" description="Sort API v2" tags={["API", "Changement majeur"]}>
-  ## Quick sort remplace merge sort
-
-  La Merge Sort API devient la **Sort API**, version 2.0.0. `POST /sort` renvoie la même réponse qu'avant.
-
-  `POST /sort/steps` renvoie désormais des étapes de partition au lieu d'étapes de fusion. Chaque étape contient les champs `pivot`, `before`, `equal` et `after`. Les champs `left`, `right` et `merged` n'existent plus.
-
-  ```json
-  { "step": 1, "pivot": 2, "before": [1], "equal": [2], "after": [4, 3] }
-  ```
-
-  Consultez [le fonctionnement de quick sort](/merge-sort-api/guides/how-it-works) pour lire les nouvelles étapes.
-</Update>
-
 <Update label="Octobre 2026" description="v1.0.0" tags={["Lancement", "Docs"]}>
   ## L'organisation de démo Mintlify est en ligne
 
