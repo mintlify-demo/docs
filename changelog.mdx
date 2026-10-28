@@ -34,6 +34,17 @@ public: true
   v1 is unchanged and still supported.
 </Update>
 
+<Update label="October 2026" description="Calculator API" tags={["API", "Docs"]}>
+  ## API reference split by version
+
+  The Calculator API reference now has one group per version, each built from its own OpenAPI file.
+
+  - **API reference: v2** is tagged **Latest** and covers `POST /v2/calculate`.
+  - **API reference: v1** is tagged **Legacy** and covers `POST /v1/add`, `/v1/subtract`, `/v1/multiply` and `/v1/divide`. It starts with a v1 overview page.
+
+  v1 still works. To move your calls to v2, see the **v1 vs v2** guide in the [Calculator API docs](../calculator-api).
+</Update>
+
 <Update label="October 2026" description="Todo API" tags={["API", "Deprecation"]}>
   ## `GET /todos/list-all` is deprecated
 
