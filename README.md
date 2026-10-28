@@ -11,7 +11,7 @@ The docs repo for the **mintlify-demo** org: a showcase site for Mintlify accoun
 | `todo-api/` | Pages + `openapi.json`, `schema.graphql` (GraphQL), `asyncapi.yaml` (WebSocket), `sdk-artifacts/python` (Sphinx JSON for the SDK reference) | [todo-api](https://github.com/mintlify-demo/todo-api) |
 | `text-utils-api/` | Pages + `openapi.json` | [text-utils-api](https://github.com/mintlify-demo/text-utils-api) |
 
-URLs are `/<api-name>/...`, as before. API pages have no `public: true`, so they need a login. Site pages are `public: true`.
+Site pages are served from the root (`/`, `/quickstart`, `/es/...`); the old `/docs/...` URLs redirect there. API URLs are `/<api-name>/...`, as before. API pages have no `public: true`, so they need a login. Site pages are `public: true`.
 
 ## How docs stay in sync with code
 The API repos hold only code and tests. Mintlify's **Update from code changes** automation watches them. When a PR changes an API, the automation opens a PR here that updates that API's pages and spec. The nightly demo reset closes open bot PRs and reverts merged ones; it never force-pushes this repo (see `mintlify-demo/demo-kit`).
