@@ -1,7 +1,7 @@
 ---
-title: Démo Mintlify
-sidebarTitle: Aperçu
-description: Guides, références d'API interactives et fonctions d'IA pour quatre API d'exemple, synchronisées avec leur code par l'agent Mintlify.
+title: Demo de Mintlify
+sidebarTitle: Resumen
+description: Guías, referencias de API interactivas y funciones de IA para cuatro APIs de ejemplo, sincronizadas con su código por el agente de Mintlify.
 icon: house
 mode: frame
 public: true
@@ -23,15 +23,15 @@ public: true
 
   <div className="relative z-10 px-4 py-16 lg:py-48 lg:pb-24 max-w-3xl mx-auto">
     <h1 className="block text-4xl font-medium text-center text-gray-900 dark:text-zinc-50 tracking-tight">
-      Démo Mintlify
+      Demo de Mintlify
     </h1>
 
     <div className="max-w-xl mx-auto px-4 mt-4 text-lg text-center text-gray-500 dark:text-zinc-500">
-      Quatre API, chacune avec son propre dépôt de code, documentées ensemble en un seul site avec des références interactives et l'IA intégrée.
+      Cuatro APIs, cada una con su propio repositorio de código, documentadas juntas en un solo sitio con referencias interactivas e IA integrada.
     </div>
 
     <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-2 gap-x-6 gap-y-4">
-      <a className="group cursor-pointer pb-8" href="/fr/quickstart">
+      <a className="group cursor-pointer pb-8" href="/docs/es/quickstart">
         <img
           src="/images/hero/rocket.png"
           className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
@@ -42,8 +42,8 @@ public: true
           className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
           alt=""
         />
-        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Démarrage rapide</h3>
-        <span className="mt-1.5">Lancez une API en local et appelez-la depuis la documentation</span>
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Inicio rápido</h3>
+        <span className="mt-1.5">Ejecuta una API en local y llámala desde la documentación</span>
       </a>
       <a className="group cursor-pointer pb-8" href="/calculator-api">
         <img
@@ -56,10 +56,10 @@ public: true
           className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
           alt=""
         />
-        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Playground d'API</h3>
-        <span className="mt-1.5">Envoyez de vraies requêtes depuis une référence d'API générée</span>
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Playground de API</h3>
+        <span className="mt-1.5">Envía solicitudes reales desde una referencia de API generada</span>
       </a>
-      <a className="group cursor-pointer pb-8" href="/fr/showcase/components">
+      <a className="group cursor-pointer pb-8" href="/docs/es/showcase/components">
         <img
           src="/images/hero/components.png"
           className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
@@ -70,10 +70,10 @@ public: true
           className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
           alt=""
         />
-        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Composants</h3>
-        <span className="mt-1.5">Cartes, étapes, onglets, diagrammes, champs d'API et plus</span>
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Componentes</h3>
+        <span className="mt-1.5">Tarjetas, pasos, pestañas, diagramas, campos de API y más</span>
       </a>
-      <a className="group cursor-pointer pb-8" href="/fr/showcase/ai">
+      <a className="group cursor-pointer pb-8" href="/docs/es/showcase/ai">
         <img
           src="/images/hero/editor.png"
           className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
@@ -84,40 +84,40 @@ public: true
           className="hidden dark:block pointer-events-none group-hover:scale-105 transition-all duration-100"
           alt=""
         />
-        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Fonctions d'IA</h3>
-        <span className="mt-1.5">L'assistant, llms.txt, le serveur MCP et le menu contextuel</span>
+        <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">Funciones de IA</h3>
+        <span className="mt-1.5">El asistente, llms.txt, el servidor MCP y el menú contextual</span>
       </a>
     </div>
   </div>
 
   <div className="relative z-10 px-10 lg:px-4 pb-24 max-w-3xl mx-auto">
     <h2 className="text-2xl font-medium text-gray-900 dark:text-zinc-50 tracking-tight">
-      API d'exemple
+      APIs de ejemplo
     </h2>
     <p className="mt-2 mb-6 text-gray-500 dark:text-zinc-500">
-      Le code et les tests de chaque API vivent dans leur propre dépôt. Leur documentation vit ici, et l'agent Mintlify la met à jour quand le code change.
+      El código y las pruebas de cada API viven en su propio repositorio. Su documentación vive aquí, y el agente de Mintlify la actualiza cuando cambia el código.
     </p>
 
     <Columns cols={2}>
       <Card title="Merge Sort API" icon="arrow-down-wide-short" href="/merge-sort-api">
-        Triez une liste et voyez chaque étape de fusion.
+        Ordena una lista y mira cada paso de mezcla.
       </Card>
       <Card title="Calculator API" icon="calculator" href="/calculator-api">
-        Les versions 1 et 2 côte à côte, avec des erreurs typées.
+        Las versiones 1 y 2 lado a lado, con errores tipados.
       </Card>
       <Card title="Todo API" icon="list-check" href="/todo-api">
-        Authentification par clé d'API, pagination et un endpoint obsolète.
+        Autenticación con clave de API, paginación y un endpoint obsoleto.
       </Card>
       <Card title="Text Utils API" icon="font" href="/text-utils-api">
-        Exemples de code en quatre langages depuis la spécification OpenAPI.
+        Ejemplos de código en cuatro lenguajes desde la especificación OpenAPI.
       </Card>
     </Columns>
 
     <h2 className="mt-12 text-2xl font-medium text-gray-900 dark:text-zinc-50 tracking-tight">
-      Dépôts sources
+      Repositorios de origen
     </h2>
     <p className="mt-2 mb-6 text-gray-500 dark:text-zinc-500">
-      Le dépôt de la documentation et le code de chaque API.
+      El repositorio de la documentación y el código de cada API.
     </p>
 
     <Columns cols={2}>

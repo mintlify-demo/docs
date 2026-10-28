@@ -110,16 +110,16 @@
                 "group": "Get started",
                 "icon": "rocket",
                 "pages": [
-                  "index",
-                  "quickstart"
+                  "docs/index",
+                  "docs/quickstart"
                 ]
               },
               {
                 "group": "Showcase",
                 "icon": "sparkles",
                 "pages": [
-                  "showcase/components",
-                  "showcase/ai"
+                  "docs/showcase/components",
+                  "docs/showcase/ai"
                 ]
               }
             ]
@@ -323,7 +323,7 @@
             "tab": "Changelog",
             "icon": "clock-rotate-left",
             "pages": [
-              "changelog"
+              "docs/changelog"
             ]
           }
         ]
@@ -339,16 +339,16 @@
                 "group": "Empezar",
                 "icon": "rocket",
                 "pages": [
-                  "es/index",
-                  "es/quickstart"
+                  "docs/es/index",
+                  "docs/es/quickstart"
                 ]
               },
               {
                 "group": "Muestras",
                 "icon": "sparkles",
                 "pages": [
-                  "es/showcase/components",
-                  "es/showcase/ai"
+                  "docs/es/showcase/components",
+                  "docs/es/showcase/ai"
                 ]
               }
             ]
@@ -552,7 +552,7 @@
             "tab": "Registro de cambios",
             "icon": "clock-rotate-left",
             "pages": [
-              "es/changelog"
+              "docs/es/changelog"
             ]
           }
         ]
@@ -568,16 +568,16 @@
                 "group": "Démarrer",
                 "icon": "rocket",
                 "pages": [
-                  "fr/index",
-                  "fr/quickstart"
+                  "docs/fr/index",
+                  "docs/fr/quickstart"
                 ]
               },
               {
                 "group": "Vitrine",
                 "icon": "sparkles",
                 "pages": [
-                  "fr/showcase/components",
-                  "fr/showcase/ai"
+                  "docs/fr/showcase/components",
+                  "docs/fr/showcase/ai"
                 ]
               }
             ]
@@ -781,11 +781,17 @@
             "tab": "Journal des modifications",
             "icon": "clock-rotate-left",
             "pages": [
-              "fr/changelog"
+              "docs/fr/changelog"
             ]
           }
         ]
       }
     ]
-  }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/docs"
+    }
+  ]
 }
