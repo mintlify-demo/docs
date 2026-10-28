@@ -37,8 +37,34 @@ icon: arrow-down-wide-short
 
 | Endpoint | Method | Purpose |
 | --- | --- | --- |
-| `/sort` | `POST` | Sort a list of numbers, ascending or descending |
+| `/sort` | `POST` | Sort a list of numbers, ascending or descending, with quick, merge, or heap sort |
 | `/sort/steps` | `POST` | Same, plus every partition step |
+
+## Choose an algorithm
+
+`POST /sort` takes an optional `algorithm` field. Leave it out to use quick sort.
+
+| `algorithm` | Time | When to use it |
+| --- | --- | --- |
+| `quick` (default) | O(n log n) on average, O(n²) worst case | General-purpose sorting |
+| `merge` | Always O(n log n) | You need a stable sort, where equal values keep their original order |
+| `heap` | Always O(n log n) | You want guaranteed O(n log n) time and don't need a stable sort |
+
+The response echoes the algorithm the API used:
+
+<CodeGroup>
+  ```bash Request
+  curl -X POST http://localhost:8000/sort \
+    -H "Content-Type: application/json" \
+    -d '{"numbers": [5, 2, 9, 1, 5, 6], "order": "desc", "algorithm": "merge"}'
+  ```
+
+  ```json Response
+  { "result": [9, 6, 5, 5, 2, 1], "count": 6, "order": "desc", "algorithm": "merge" }
+  ```
+</CodeGroup>
+
+Any other value returns a `422` validation error. `POST /sort/steps` always uses quick sort, whatever you send in `algorithm`.
 
 <Tip>
   Every endpoint page has a **Try it** playground. Point it at `http://localhost:8000` while the API is running.

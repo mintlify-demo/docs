@@ -5,6 +5,18 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="Octobre 2026" description="Algorithmes de la Sort API" tags={["API"]}>
+  ## Choisissez un algorithme de tri
+
+  `POST /sort` accepte un champ facultatif `algorithm` : `quick` (par défaut), `merge` (stable) ou `heap`. La réponse inclut l'`algorithm` utilisé par l'API. Une valeur inconnue renvoie une erreur `422`.
+
+  ```json
+  { "numbers": [5, 2, 9, 1], "algorithm": "merge" }
+  ```
+
+  `POST /sort/steps` utilise toujours quick sort. Consultez [Choisir un algorithme](/merge-sort-api#choose-an-algorithm).
+</Update>
+
 <Update label="Octobre 2026" description="Sort API v2" tags={["API", "Changement majeur"]}>
   ## Quick sort remplace merge sort
 
