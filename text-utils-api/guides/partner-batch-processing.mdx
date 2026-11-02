@@ -9,7 +9,7 @@ groups: ["partner", "enterprise"]
   This page is for readers in the **partner** or **enterprise** group. Other signed-in readers get a 404.
 </Note>
 
-{user.name ? <>Welcome, {user.name}.</> : null} The Text Utils API takes one text per request. To process a batch, send requests in parallel and keep each text under 100,000 characters.
+{user.name ? <>Welcome, {user.name}.</> : null} The Text Utils API takes one text per request. To process a batch, send requests in parallel and keep each text under 10,000 characters.
 
 <CodeGroup>
 ```python Python
