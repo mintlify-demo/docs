@@ -1,48 +1,55 @@
 ---
-title: How merge sort works
-description: Split the list, sort each half, then merge the halves back together.
+title: How quick sort works
+description: Pick a pivot, partition the list around it, then sort each side.
 icon: diagram-project
 ---
 
-Merge sort is a **divide and conquer** algorithm. It never compares everything to everything. It keeps splitting the list until each piece has one item (which is trivially sorted), then merges pieces back together in order.
+Quick sort is a **divide and conquer** algorithm. It picks one item as the **pivot**, splits the rest of the list into items that come before the pivot and items that come after it, and then sorts each side the same way. A piece with zero or one item is already sorted, so the recursion stops there.
+
+<Warning>
+  Version 2.0.0 of the API switched from merge sort to quick sort. `/sort` still returns the same sorted `result`, but each item in the `/sort/steps` response now has `pivot`, `before`, `equal`, and `after` fields instead of `left`, `right`, and `merged`. Update any client code that reads `steps`.
+</Warning>
 
 ## The idea
 
 ```mermaid
 flowchart TD
-    A["[4, 3, 2, 1]"] --> B["[4, 3]"]
-    A --> C["[2, 1]"]
-    B --> D["[4]"]
-    B --> E["[3]"]
-    C --> F["[2]"]
-    C --> G["[1]"]
-    D --> H["merge: [3, 4]"]
+    A["[4, 3, 2, 1]<br/>pivot: 2"] --> B["before: [1]"]
+    A --> C["equal: [2]"]
+    A --> D["after: [4, 3]<br/>pivot: 3"]
+    D --> E["before: []"]
+    D --> F["equal: [3]"]
+    D --> G["after: [4]"]
+    B --> H["[1, 2, 3, 4]"]
+    C --> H
     E --> H
-    F --> I["merge: [1, 2]"]
-    G --> I
-    H --> J["merge: [1, 2, 3, 4]"]
-    I --> J
+    F --> H
+    G --> H
 ```
 
-## Merging two sorted lists
+## Partitioning around a pivot
 
-Merging is the only real work. Look at the first item of each list, take the smaller one, and repeat.
+Partitioning is the only real work. The API picks the middle item as the pivot and sorts every item into one of three groups.
 
 <Steps>
-  <Step title="Start with two sorted lists">
-    `left = [3, 4]` and `right = [1, 2]`
+  <Step title="Pick the pivot">
+    For `[4, 3, 2, 1]`, the middle item (index `4 // 2 = 2`) is `2`.
   </Step>
-  <Step title="Compare the front items">
-    `3` vs `1`: take `1`. Then `3` vs `2`: take `2`.
+  <Step title="Split into three groups">
+    Items smaller than `2` go to `before: [1]`. Items equal to `2` go to `equal: [2]`. Items larger than `2` go to `after: [4, 3]`.
   </Step>
-  <Step title="Append what's left">
-    The right list is empty, so add the rest of the left list: `3, 4`.
+  <Step title="Sort each side and join">
+    Quick sort `before` and `after` the same way, then join `before + equal + after`. Groups with zero or one item need no more work.
   </Step>
 </Steps>
 
+<Tip>
+  With `"order": "desc"`, the groups flip. Items larger than the pivot go to `before` and smaller items go to `after`.
+</Tip>
+
 ## See it with the API
 
-Ask `/sort/steps` to sort `[4, 3, 2, 1]` and it returns every merge:
+Ask `/sort/steps` to sort `[4, 3, 2, 1]` and it returns every partition:
 
 <CodeGroup>
   ```bash Request
@@ -57,20 +64,31 @@ Ask `/sort/steps` to sort `[4, 3, 2, 1]` and it returns every merge:
     "count": 4,
     "order": "asc",
     "steps": [
-      { "step": 1, "left": [4], "right": [3], "merged": [3, 4] },
-      { "step": 2, "left": [2], "right": [1], "merged": [1, 2] },
-      { "step": 3, "left": [3, 4], "right": [1, 2], "merged": [1, 2, 3, 4] }
+      { "step": 1, "pivot": 2, "before": [1], "equal": [2], "after": [4, 3] },
+      { "step": 2, "pivot": 3, "before": [], "equal": [3], "after": [4] }
     ]
   }
   ```
 </CodeGroup>
 
+Each step records one partition:
+
+| Field | Description |
+| --- | --- |
+| `step` | 1-based position of this partition in the run |
+| `pivot` | The value the list was split around (the middle item) |
+| `before` | Items that sort before the pivot, still unsorted |
+| `equal` | Items equal to the pivot |
+| `after` | Items that sort after the pivot, still unsorted |
+
+Steps are listed depth-first. The `before` side is fully partitioned before the `after` side starts. Groups with zero or one item don't get their own step.
+
 <Info>
-  The sort is **stable**: equal numbers keep their original order. It runs in O(n log n) time.
+  Quick sort runs in O(n log n) time on average and O(n²) in the worst case. Unlike the previous merge sort implementation, it isn't described as a stable sort.
 </Info>
 
 <Expandable title="Read the code">
-  The whole algorithm is about 25 lines in `main.py`: a `merge()` function that combines two sorted lists, and a recursive `merge_sort()` that splits the list and calls `merge()`.
+  The whole algorithm is a single recursive `quick_sort()` function in `main.py`. It picks the middle item as the pivot, builds the `before`, `equal`, and `after` lists, and returns `quick_sort(before) + equal + quick_sort(after)`.
 </Expandable>
 
 Ready to try it? Head to the [quickstart](/merge-sort-api/quickstart).

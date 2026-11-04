@@ -131,7 +131,7 @@
               {
                 "item": "Merge Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "groups": [
                   {
                     "group": "Get started",
@@ -360,7 +360,7 @@
               {
                 "item": "Merge Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "groups": [
                   {
                     "group": "Get started",
@@ -589,7 +589,7 @@
               {
                 "item": "Merge Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "groups": [
                   {
                     "group": "Get started",
