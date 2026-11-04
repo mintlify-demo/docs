@@ -15,8 +15,10 @@ groups: ["enterprise"]
 curl -X POST http://localhost:8000/todos/bulk \
   -H "X-API-Key: enterprise-demo-key" \
   -H "Content-Type: application/json" \
-  -d '{"items": [{"title": "Migrate the docs"}, {"title": "Turn on SSO", "completed": true}]}'
+  -d '{"items": [{"title": "Migrate the docs"}, {"title": "Turn on SSO", "completed": true, "priority": "high"}]}'
 ```
+
+Each item accepts the same fields as [`POST /todos`](/todo-api/api-reference/todos/create-a-todo): `title`, `completed`, and `priority` (`low`, `medium`, or `high`). Items without a `priority` default to `medium`.
 
 The response is the list of created todos, in the order you sent them.
 
@@ -26,7 +28,7 @@ The response is the list of created todos, in the order you sent them.
 | --- | --- |
 | `401` | The API key is missing or wrong. |
 | `403` | The key works but isn't an Enterprise key. |
-| `422` | `items` is empty, has more than 100 entries, or a title is invalid. |
+| `422` | `items` is empty, has more than 100 entries, or a title or priority is invalid. |
 
 ## From Python
 
