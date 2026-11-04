@@ -1,6 +1,6 @@
 ---
 title: Sorting at scale (Enterprise)
-description: Input limits, timing, and memory for large sort requests.
+description: Input limits, timing, and memory guidance for sending large lists to the Sort API, including when to avoid the /sort/steps endpoint.
 icon: gauge-high
 groups: ["enterprise"]
 ---
@@ -15,12 +15,12 @@ groups: ["enterprise"]
 | --- | --- | --- |
 | 1,000 numbers | under 5 ms | Fine for any request |
 | 100,000 numbers | about 200 ms | Send `/sort`, not `/sort/steps` |
-| 1,000,000 numbers | 2 to 3 s | Split the list and merge the sorted parts yourself |
+| 1,000,000 numbers | 2 to 3 s | Split the list and combine the sorted parts yourself |
 
 ## Why not `/sort/steps` for big lists?
 
-`/sort/steps` returns every merge, and a list of *n* numbers has *n − 1* merges. For 100,000 numbers that's a response of several megabytes. Use it for teaching and debugging, not production traffic.
+`/sort/steps` returns every partition. Each step includes the unsorted `before` and `after` groups, so a list of *n* numbers can produce close to *n* steps. For 100,000 numbers that's a response of several megabytes. Use it for teaching and debugging, not production traffic.
 
 ## Memory
 
-Merge sort needs extra memory equal to the input size. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
+Quick sort builds new `before`, `equal`, and `after` lists at every partition, so it needs extra memory on top of the input. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
