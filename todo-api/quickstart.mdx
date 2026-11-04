@@ -51,6 +51,7 @@ icon: rocket
     {
       "title": "Write the docs",
       "completed": false,
+      "priority": "medium",
       "id": 1,
       "created_at": "2026-01-15T09:30:00Z"
     }
@@ -66,9 +67,24 @@ icon: rocket
     ```
   </Step>
 
-  <Step title="List todos">
+  <Step title="Set a priority">
+    Every todo has a `priority` of `low`, `medium`, or `high`. New todos default to `medium`. Set it when you create a todo, or change it later:
+
     ```bash
-    curl "http://localhost:8000/todos?completed=true" -H "X-API-Key: demo-key"
+    curl -X PATCH http://localhost:8000/todos/1 \
+      -H "X-API-Key: demo-key" \
+      -H "Content-Type: application/json" \
+      -d '{"priority": "high"}'
+    ```
+
+    Any other value returns `422`.
+  </Step>
+
+  <Step title="List todos">
+    Filter by `completed`, `priority`, or both:
+
+    ```bash
+    curl "http://localhost:8000/todos?completed=false&priority=high" -H "X-API-Key: demo-key"
     ```
   </Step>
 </Steps>

@@ -5,6 +5,23 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="Noviembre de 2026" description="Todo API" tags={["API"]}>
+  ## Prioridad de las tareas
+
+  Las tareas tienen ahora un campo `priority`: `low`, `medium` o `high`. El valor predeterminado es `medium`.
+
+  - Define `priority` al crear o actualizar una tarea.
+  - Filtra `GET /todos` por prioridad, por ejemplo `?priority=high`.
+  - Los valores no válidos devuelven `422`.
+
+  ```bash
+  curl -X POST http://localhost:8000/todos \
+    -H "X-API-Key: demo-key" \
+    -H "Content-Type: application/json" \
+    -d '{"title": "Fix the login bug", "priority": "high"}'
+  ```
+</Update>
+
 <Update label="Octubre de 2026" description="v1.0.0" tags={["Lanzamiento", "Docs"]}>
   ## La organización de demo de Mintlify ya está disponible
 

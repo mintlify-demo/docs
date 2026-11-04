@@ -5,6 +5,23 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="November 2026" description="Todo API" tags={["API"]}>
+  ## Todo priorities
+
+  Todos now have a `priority` field: `low`, `medium`, or `high`. It defaults to `medium`.
+
+  - Set `priority` when you create or update a todo.
+  - Filter `GET /todos` by priority, for example `?priority=high`.
+  - Invalid values return `422`.
+
+  ```bash
+  curl -X POST http://localhost:8000/todos \
+    -H "X-API-Key: demo-key" \
+    -H "Content-Type: application/json" \
+    -d '{"title": "Fix the login bug", "priority": "high"}'
+  ```
+</Update>
+
 <Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
   ## The Mintlify demo org is live
 

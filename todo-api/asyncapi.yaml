@@ -91,7 +91,7 @@ components:
     Todo:
       type: object
       description: The todo after the change, in the same shape as the REST API returns.
-      required: [id, title, completed, created_at]
+      required: [id, title, completed, priority, created_at]
       properties:
         id:
           type: integer
@@ -102,6 +102,11 @@ components:
         completed:
           type: boolean
           examples: [false]
+        priority:
+          type: string
+          enum: [low, medium, high]
+          description: How important the todo is. Defaults to `medium`.
+          examples: [medium]
         created_at:
           type: string
           format: date-time
