@@ -38,16 +38,6 @@ icon: flask
     { "is_palindrome": true, "text": "Racecar" }
     ```
   </Tab>
-
-  <Tab title="Slugify">
-    ```json Request to /slugify
-    { "text": "Héllo, Mintlify Docs!" }
-    ```
-
-    ```json Response
-    { "original": "Héllo, Mintlify Docs!", "slug": "hello-mintlify-docs" }
-    ```
-  </Tab>
 </Tabs>
 
 ## Strict palindrome mode
@@ -57,26 +47,6 @@ By default `/palindrome` ignores case, spaces and punctuation. Turn that off wit
 <ParamField body="ignore_case_and_punctuation" type="boolean" default="true">
   When `false`, `Racecar` is **not** a palindrome (capital R) but `racecar` is.
 </ParamField>
-
-## Slug options
-
-`/slugify` lowercases the text, removes accents (`é` becomes `e`), and drops anything that isn't a letter or digit. Use these optional fields to control the output:
-
-<ParamField body="separator" type="string" default="-">
-  Character placed between words. Must be `-` or `_`. Any other value returns a `422`.
-</ParamField>
-
-<ParamField body="max_length" type="integer">
-  Maximum slug length, from `1` to `200`. The API cuts longer slugs to this length and removes any trailing separator.
-</ParamField>
-
-```json Request to /slugify
-{ "text": "The quick brown fox", "separator": "_", "max_length": 10 }
-```
-
-```json Response
-{ "original": "The quick brown fox", "slug": "the_quick" }
-```
 
 <AccordionGroup>
   <Accordion title="What counts as a word?">
