@@ -9,7 +9,7 @@ icon: triangle-exclamation
 | Status | Meaning | When |
 | --- | --- | --- |
 | `200` | Success | The calculation worked |
-| `400` | Bad request | You divided by zero |
+| `400` | Bad request | You divided by zero, or used `modulo` with a divisor of zero |
 | `422` | Validation error | A field is missing, the wrong type, or `operands` has fewer than two numbers |
 
 ## Division by zero
@@ -27,6 +27,22 @@ icon: triangle-exclamation
 
   ```json Response (400)
   { "detail": "Cannot divide by zero" }
+  ```
+</CodeGroup>
+
+## Modulo by zero
+
+In v2, `modulo` also returns a `400` when any divisor after the first operand is `0`.
+
+<CodeGroup>
+  ```bash Request
+  curl -i -X POST http://localhost:8000/v2/calculate \
+    -H "Content-Type: application/json" \
+    -d '{"operation": "modulo", "operands": [17, 0]}'
+  ```
+
+  ```json Response (400)
+  { "detail": "Cannot take a remainder when dividing by zero" }
   ```
 </CodeGroup>
 
