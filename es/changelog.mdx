@@ -5,6 +5,18 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="Noviembre de 2026" description="Text Utils API v1.1.0" tags={["API"]}>
+  ## `POST /slugify`
+
+  Convierte cualquier texto en un slug en minúsculas, apto para URL. Usa los campos opcionales `separator` (`-` o `_`) y `max_length` para controlar el resultado.
+
+  ```bash
+  curl -X POST http://localhost:8000/slugify \
+    -H "Content-Type: application/json" \
+    -d '{"text": "Héllo, Mintlify Docs!"}'
+  ```
+</Update>
+
 <Update label="Octubre de 2026" description="v1.0.0" tags={["Lanzamiento", "Docs"]}>
   ## La organización de demo de Mintlify ya está disponible
 

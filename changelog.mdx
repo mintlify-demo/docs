@@ -5,6 +5,18 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="November 2026" description="Text Utils API v1.1.0" tags={["API"]}>
+  ## `POST /slugify`
+
+  Turn any text into a lowercase, URL-friendly slug. Use the optional `separator` (`-` or `_`) and `max_length` fields to control the output.
+
+  ```bash
+  curl -X POST http://localhost:8000/slugify \
+    -H "Content-Type: application/json" \
+    -d '{"text": "Héllo, Mintlify Docs!"}'
+  ```
+</Update>
+
 <Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
   ## The Mintlify demo org is live
 

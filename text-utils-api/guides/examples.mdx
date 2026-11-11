@@ -1,6 +1,6 @@
 ---
 title: Examples
-description: Inputs and outputs for every Text Utils endpoint.
+description: Sample requests and responses for every Text Utils API endpoint, including reverse, word count, palindrome checks, and URL slugs.
 icon: flask
 ---
 
@@ -38,6 +38,20 @@ icon: flask
     { "is_palindrome": true, "text": "Racecar" }
     ```
   </Tab>
+
+  <Tab title="Slugify">
+    ```json Request to /slugify
+    { "text": "Héllo, Mintlify Docs!" }
+    ```
+
+    ```json Response
+    { "original": "Héllo, Mintlify Docs!", "slug": "hello-mintlify-docs" }
+    ```
+
+    <Note>
+      Accents are removed (`é` becomes `e`). Anything that isn't a letter or digit is dropped.
+    </Note>
+  </Tab>
 </Tabs>
 
 ## Strict palindrome mode
@@ -47,6 +61,26 @@ By default `/palindrome` ignores case, spaces and punctuation. Turn that off wit
 <ParamField body="ignore_case_and_punctuation" type="boolean" default="true">
   When `false`, `Racecar` is **not** a palindrome (capital R) but `racecar` is.
 </ParamField>
+
+## Slug options
+
+Use `/slugify` to build URL paths, file names, or IDs from titles. By default, words are joined with `-` and the slug has no length limit. Change that with two optional fields:
+
+<ParamField body="separator" type="string" default="-">
+  Character placed between words. Must be `-` or `_`. Any other value returns a `422`.
+</ParamField>
+
+<ParamField body="max_length" type="integer">
+  Maximum slug length, from `1` to `200`. Longer slugs are cut, and any trailing separator is removed.
+</ParamField>
+
+```json Request to /slugify
+{ "text": "Getting started with Mintlify docs", "separator": "_", "max_length": 20 }
+```
+
+```json Response
+{ "original": "Getting started with Mintlify docs", "slug": "getting_started_with" }
+```
 
 <AccordionGroup>
   <Accordion title="What counts as a word?">
