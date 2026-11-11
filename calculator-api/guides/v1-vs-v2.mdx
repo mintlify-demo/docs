@@ -37,17 +37,43 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
   <Accordion title="Request shape" defaultOpen>
     v1 sends `{ "a": 6, "b": 7 }`. v2 sends `{ "operation": "multiply", "operands": [6, 7] }`.
   </Accordion>
+  <Accordion title="Operations">
+    v1 has `add`, `subtract`, `multiply`, and `divide`. v2 supports those four plus `power` and `modulo`. See [power and modulo](/calculator-api/guides/v1-vs-v2#power-and-modulo).
+  </Accordion>
   <Accordion title="Response shape">
     v1 returns `{ "result": 42 }`. v2 returns the same field and also echoes `operation` and `operands`.
   </Accordion>
   <Accordion title="Errors">
-    The same in both: dividing by zero returns a `400` with a `detail` message.
+    The same in both: dividing by zero returns a `400` with a `detail` message. In v2, `modulo` by zero also returns a `400`.
   </Accordion>
 </AccordionGroup>
 
 <Info>
   A real API would version through a header or a path prefix and keep old versions working. This demo uses the path prefix (`/v1`, `/v2`) and the docs use Mintlify's version switcher, so each version has its own API reference.
 </Info>
+
+## Power and modulo
+
+v2 adds two operations that v1 doesn't have. Like every v2 operation, they apply left to right across `operands`.
+
+- `power` raises each result to the next number. `[2, 3, 2]` is `(2 ** 3) ** 2 = 64`.
+- `modulo` returns the remainder after division. `[17, 5]` is `2`.
+
+<CodeGroup>
+  ```bash power
+  curl -X POST http://localhost:8000/v2/calculate \
+    -H "Content-Type: application/json" \
+    -d '{"operation": "power", "operands": [2, 3, 2]}'
+  # { "result": 64, "operation": "power", "operands": [2, 3, 2] }
+  ```
+
+  ```bash modulo
+  curl -X POST http://localhost:8000/v2/calculate \
+    -H "Content-Type: application/json" \
+    -d '{"operation": "modulo", "operands": [17, 5]}'
+  # { "result": 2, "operation": "modulo", "operands": [17, 5] }
+  ```
+</CodeGroup>
 
 ## Migrating from v1 to v2
 
