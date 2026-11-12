@@ -41,9 +41,36 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
     v1 returns `{ "result": 42 }`. v2 returns the same field and also echoes `operation` and `operands`.
   </Accordion>
   <Accordion title="Errors">
-    The same in both: dividing by zero returns a `400` with a `detail` message.
+    The same in both: dividing by zero returns a `400` with a `detail` message. In v2, `modulo` by zero also returns a `400`.
   </Accordion>
 </AccordionGroup>
+
+## v2 operations
+
+v2 supports every v1 operation plus `power` and `modulo`. Each operation applies left to right across `operands`.
+
+| `operation` | Example `operands` | `result` |
+| --- | --- | --- |
+| `add` | `[1, 2, 3]` | `6` |
+| `subtract` | `[10, 3, 2]` | `5` |
+| `multiply` | `[6, 7, 2]` | `84` |
+| `divide` | `[100, 5, 2]` | `10` |
+| `power` | `[2, 3, 2]` | `64`, because `(2 ** 3) ** 2` |
+| `modulo` | `[17, 5]` | `2` |
+
+```bash
+curl -X POST http://localhost:8000/v2/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"operation": "power", "operands": [2, 3, 2]}'
+```
+
+```json
+{ "result": 64, "operation": "power", "operands": [2, 3, 2] }
+```
+
+<Note>
+  `power` and `modulo` are only available in v2. v1 has no `/v1/power` or `/v1/modulo` endpoint.
+</Note>
 
 <Info>
   A real API would version through a header or a path prefix and keep old versions working. This demo uses the path prefix (`/v1`, `/v2`) and the docs use Mintlify's version switcher, so each version has its own API reference.
