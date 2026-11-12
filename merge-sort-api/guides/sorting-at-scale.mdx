@@ -19,8 +19,8 @@ groups: ["enterprise"]
 
 ## Why not `/sort/steps` for big lists?
 
-`/sort/steps` returns every merge, and a list of *n* numbers has *n − 1* merges. For 100,000 numbers that's a response of several megabytes. Use it for teaching and debugging, not production traffic.
+`/sort/steps` returns every partition, and a list of *n* numbers can produce up to *n* partition steps. Each step also repeats the `before` and `after` lists, so 100,000 numbers produce a response of many megabytes. Use it for teaching and debugging, not production traffic.
 
 ## Memory
 
-Merge sort needs extra memory equal to the input size. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
+The API's quick sort builds new `before`, `equal`, and `after` lists at each partition, so it needs extra memory proportional to the input size. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
