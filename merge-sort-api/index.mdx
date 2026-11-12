@@ -4,7 +4,7 @@ description: Sort numbers with merge sort, and see every merge step along the wa
 icon: arrow-down-wide-short
 ---
 
-{user.name ? <>Welcome back, <strong>{user.name}</strong>{user.plan ? <> (<strong>{user.plan}</strong> plan)</> : null}.</> : null} The Merge Sort API is a small FastAPI service with two endpoints. One gives you a sorted list. The other shows you **how** the list got sorted.
+{user.name ? <>Welcome back, <strong>{user.name}</strong>{user.plan ? <> (<strong>{user.plan}</strong> plan)</> : null}.</> : null} The Merge Sort API is a small FastAPI service with three endpoints. One gives you a sorted list. Another shows you **how** the list got sorted. The third times several sorting algorithms on the same list so you can compare them.
 
 <Note>
   This API is a demo. Its code lives in the [merge-sort-api repository](https://github.com/mintlify-demo/merge-sort-api), and these docs live in the [docs repository](https://github.com/mintlify-demo/docs/tree/main/merge-sort-api).
@@ -25,6 +25,9 @@ icon: arrow-down-wide-short
   <Card title="Sort with steps" icon="list-ol" href="/merge-sort-api/api-reference/sorting/sort-numbers-and-return-every-merge-step">
     `POST /sort/steps` also returns every merge.
   </Card>
+  <Card title="Compare algorithms" icon="stopwatch" href="/merge-sort-api/api-reference/sorting/compare-how-long-each-algorithm-takes">
+    `POST /sort/stats` times quick, merge, and heap sort on your list.
+  </Card>
 </CardGroup>
 
 <Visibility for={{ groups: ["enterprise"] }}>
@@ -41,6 +44,35 @@ test
 | --- | --- | --- |
 | `/sort` | `POST` | Sort a list of numbers, ascending or descending |
 | `/sort/steps` | `POST` | Same, plus every merge step |
+| `/sort/stats` | `POST` | Sort with quick, merge, and heap sort, and compare their timings |
+
+## Compare algorithm timings
+
+Call `/sort/stats` when you want to see which algorithm is fastest for a given input. It accepts the same body as `/sort`. The API sorts your list with quick sort, merge sort, and heap sort, and times each one on the server.
+
+```bash
+curl -X POST http://localhost:8000/sort/stats \
+  -H "Content-Type: application/json" \
+  -d '{"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"}'
+```
+
+The response lists every timing in milliseconds, fastest first, and names the winner in `fastest`:
+
+```json
+{
+  "count": 6,
+  "order": "asc",
+  "result": [1, 2, 5, 5, 6, 9],
+  "timings": [
+    { "algorithm": "heap", "elapsed_ms": 0.0031 },
+    { "algorithm": "merge", "elapsed_ms": 0.0062 },
+    { "algorithm": "quick", "elapsed_ms": 0.0075 }
+  ],
+  "fastest": "heap"
+}
+```
+
+Timings vary from run to run, so send the same list a few times before drawing conclusions.
 
 <Tip>
   Every endpoint page has a **Try it** playground. Point it at `http://localhost:8000` while the API is running.

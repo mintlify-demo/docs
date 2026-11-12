@@ -3,7 +3,7 @@
   "info": {
     "title": "Merge Sort API",
     "summary": "Sort numbers with merge sort and watch how it works.",
-    "description": "A tiny demo API that sorts a list of numbers using the merge sort algorithm.\n\nUse `POST /sort` when you just want the answer, and `POST /sort/steps` when you want to see every merge along the way.",
+    "description": "A tiny demo API that sorts a list of numbers using the merge sort algorithm.\n\nUse `POST /sort` when you just want the answer, and `POST /sort/steps` when you want to see every merge along the way. Use `POST /sort/stats` to compare how long quick sort, merge sort, and heap sort take on the same input.",
     "version": "1.0.0"
   },
   "servers": [
@@ -96,10 +96,86 @@
           }
         }
       }
+    },
+    "/sort/stats": {
+      "post": {
+        "tags": [
+          "Sorting"
+        ],
+        "summary": "Compare how long each algorithm takes",
+        "description": "Sort the same list with quick sort, merge sort, and heap sort, and report how long each took.\n\nUse it to see that the fastest algorithm depends on the input. Timings are measured on the server, in milliseconds, and vary from run to run. `timings` is ordered fastest first, and `fastest` names the winner.",
+        "operationId": "compareSortAlgorithms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SortRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SortStatsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Algorithm": {
+        "type": "string",
+        "enum": [
+          "quick",
+          "merge",
+          "heap"
+        ],
+        "title": "Algorithm"
+      },
+      "AlgorithmTiming": {
+        "properties": {
+          "algorithm": {
+            "$ref": "#/components/schemas/Algorithm",
+            "description": "The algorithm that was timed.",
+            "examples": [
+              "quick"
+            ]
+          },
+          "elapsed_ms": {
+            "type": "number",
+            "title": "Elapsed Ms",
+            "description": "How long the sort took, in milliseconds.",
+            "examples": [
+              0.042
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "algorithm",
+          "elapsed_ms"
+        ],
+        "title": "AlgorithmTiming"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -260,6 +336,67 @@
           "order"
         ],
         "title": "SortResponse"
+      },
+      "SortStatsResponse": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "description": "How many numbers were sorted.",
+            "examples": [
+              6
+            ]
+          },
+          "order": {
+            "$ref": "#/components/schemas/Order",
+            "description": "The direction that was used.",
+            "examples": [
+              "asc"
+            ]
+          },
+          "result": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Result",
+            "description": "The sorted numbers (identical for every algorithm).",
+            "examples": [
+              [
+                1,
+                2,
+                5,
+                5,
+                6,
+                9
+              ]
+            ]
+          },
+          "timings": {
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmTiming"
+            },
+            "type": "array",
+            "title": "Timings",
+            "description": "One timing per algorithm, fastest first."
+          },
+          "fastest": {
+            "$ref": "#/components/schemas/Algorithm",
+            "description": "The algorithm that finished first on this input.",
+            "examples": [
+              "heap"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "order",
+          "result",
+          "timings",
+          "fastest"
+        ],
+        "title": "SortStatsResponse"
       },
       "SortStepsResponse": {
         "properties": {
