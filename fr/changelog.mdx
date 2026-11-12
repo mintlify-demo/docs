@@ -19,6 +19,16 @@ public: true
   ```
 
   Consultez [le fonctionnement du tri rapide](/merge-sort-api/guides/how-it-works) pour lire les nouvelles étapes.
+
+  ### Choisir un algorithme de tri
+
+  `POST /sort` accepte un champ facultatif `algorithm` : `quick` (par défaut), `merge` (stable) ou `heap`. La réponse renvoie `algorithm`. Les valeurs inconnues renvoient `422`. `POST /sort/steps` utilise toujours `quick`.
+
+  ```bash
+  curl -X POST http://localhost:8000/sort \
+    -H "Content-Type: application/json" \
+    -d '{"numbers": [5, 2, 9, 1], "algorithm": "merge"}'
+  ```
 </Update>
 
 <Update label="Octobre 2026" description="v1.0.0" tags={["Lancement", "Docs"]}>

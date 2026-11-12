@@ -23,4 +23,4 @@ groups: ["enterprise"]
 
 ## Memory
 
-The API's quick sort builds new `before`, `equal`, and `after` lists at each partition, so it needs extra memory proportional to the input size. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
+The API's quick sort builds new `before`, `equal`, and `after` lists at each partition, so it needs extra memory proportional to the input size. Send `"algorithm": "heap"` to `/sort` if you need constant extra memory. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.

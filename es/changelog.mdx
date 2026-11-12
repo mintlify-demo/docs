@@ -19,6 +19,16 @@ public: true
   ```
 
   Consulta [cómo funciona quick sort](/merge-sort-api/guides/how-it-works) para leer los nuevos pasos.
+
+  ### Elige un algoritmo de ordenación
+
+  `POST /sort` acepta un campo opcional `algorithm`: `quick` (predeterminado), `merge` (estable) o `heap`. La respuesta incluye `algorithm`. Los valores desconocidos devuelven `422`. `POST /sort/steps` siempre usa `quick`.
+
+  ```bash
+  curl -X POST http://localhost:8000/sort \
+    -H "Content-Type: application/json" \
+    -d '{"numbers": [5, 2, 9, 1], "algorithm": "merge"}'
+  ```
 </Update>
 
 <Update label="Octubre de 2026" description="v1.0.0" tags={["Lanzamiento", "Docs"]}>
