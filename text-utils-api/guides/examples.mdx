@@ -38,20 +38,6 @@ icon: flask
     { "is_palindrome": true, "text": "Racecar" }
     ```
   </Tab>
-
-  <Tab title="Slugify">
-    ```json Request to /slugify
-    { "text": "Héllo, Mintlify Docs!" }
-    ```
-
-    ```json Response
-    { "original": "Héllo, Mintlify Docs!", "slug": "hello-mintlify-docs" }
-    ```
-
-    <Note>
-      Accents are removed (`é` becomes `e`) and anything that isn't a letter or digit is dropped.
-    </Note>
-  </Tab>
 </Tabs>
 
 ## Strict palindrome mode
@@ -61,26 +47,6 @@ By default `/palindrome` ignores case, spaces and punctuation. Turn that off wit
 <ParamField body="ignore_case_and_punctuation" type="boolean" default="true">
   When `false`, `Racecar` is **not** a palindrome (capital R) but `racecar` is.
 </ParamField>
-
-## Slug options
-
-By default `/slugify` joins words with `-` and doesn't limit length. Change that with `separator` and `max_length`:
-
-<ParamField body="separator" type="string" default="-">
-  Character placed between words. Must be `-` or `_`. Any other value returns a `422`.
-</ParamField>
-
-<ParamField body="max_length" type="integer">
-  Maximum slug length, from `1` to `200`. Longer slugs are cut and any trailing separator is removed.
-</ParamField>
-
-```json Request to /slugify
-{ "text": "Getting started with Mintlify", "separator": "_", "max_length": 20 }
-```
-
-```json Response
-{ "original": "Getting started with Mintlify", "slug": "getting_started_with" }
-```
 
 <AccordionGroup>
   <Accordion title="What counts as a word?">

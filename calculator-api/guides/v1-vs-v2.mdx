@@ -37,53 +37,17 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
   <Accordion title="Request shape" defaultOpen>
     v1 sends `{ "a": 6, "b": 7 }`. v2 sends `{ "operation": "multiply", "operands": [6, 7] }`.
   </Accordion>
-  <Accordion title="Operations">
-    v1 supports `add`, `subtract`, `multiply`, and `divide`. v2 supports those four plus `power` and `modulo`. See [power and modulo](#power-and-modulo).
-  </Accordion>
   <Accordion title="Response shape">
     v1 returns `{ "result": 42 }`. v2 returns the same field and also echoes `operation` and `operands`.
   </Accordion>
   <Accordion title="Errors">
-    The same in both: dividing by zero returns a `400` with a `detail` message. In v2, `modulo` by zero also returns a `400`.
+    The same in both: dividing by zero returns a `400` with a `detail` message.
   </Accordion>
 </AccordionGroup>
 
 <Info>
   A real API would version through a header or a path prefix and keep old versions working. This demo uses the path prefix (`/v1`, `/v2`) and the docs use Mintlify's version switcher, so each version has its own API reference.
 </Info>
-
-## Power and modulo
-
-v2 adds two operations that have no v1 endpoint. Like every v2 operation, they apply left to right across `operands`.
-
-| Operation | What it does | Example | Result |
-| --- | --- | --- | --- |
-| `power` | Raises the running result to the next number | `[2, 3, 2]` is `(2 ** 3) ** 2` | `64` |
-| `modulo` | Returns the remainder after dividing by the next number | `[17, 5]` is `17 % 5` | `2` |
-
-<CodeGroup>
-  ```bash power
-  curl -X POST http://localhost:8000/v2/calculate \
-    -H "Content-Type: application/json" \
-    -d '{"operation": "power", "operands": [2, 3, 2]}'
-  ```
-
-  ```bash modulo
-  curl -X POST http://localhost:8000/v2/calculate \
-    -H "Content-Type: application/json" \
-    -d '{"operation": "modulo", "operands": [17, 5]}'
-  ```
-</CodeGroup>
-
-```json
-{ "result": 64, "operation": "power", "operands": [2, 3, 2] }
-```
-
-<Note>
-  `power` does not follow the right-to-left convention of math notation. `[2, 3, 2]` returns `64`, not `2 ** 9 = 512`.
-</Note>
-
-`modulo` returns a `400` if any divisor is `0`. See [handling errors](/calculator-api/guides/errors#modulo-by-zero).
 
 ## Migrating from v1 to v2
 
