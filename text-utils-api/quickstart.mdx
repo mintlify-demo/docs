@@ -1,6 +1,6 @@
 ---
 title: Quickstart
-description: Run the Text Utils API locally and call all three endpoints.
+description: Run the Text Utils API locally and call all four endpoints.
 icon: rocket
 ---
 
@@ -58,6 +58,18 @@ icon: rocket
     curl -X POST http://localhost:8000/palindrome \
       -H 'Content-Type: application/json' \
       -d '{"text": "A man, a plan, a canal: Panama"}'
+    ```
+  </Step>
+
+  <Step title="Make a URL slug">
+    ```bash
+    curl -X POST http://localhost:8000/slugify \
+      -H 'Content-Type: application/json' \
+      -d '{"text": "Héllo, Mintlify Docs!"}'
+    ```
+
+    ```json
+    { "original": "Héllo, Mintlify Docs!", "slug": "hello-mintlify-docs" }
     ```
   </Step>
 </Steps>
