@@ -10,7 +10,7 @@ icon: triangle-exclamation
 | --- | --- | --- |
 | `200` | Success | The calculation worked |
 | `400` | Bad request | You divided by zero, or used `modulo` with a `0` divisor |
-| `422` | Validation error | A field is missing, the wrong type, or `operands` has fewer than two numbers |
+| `422` | Validation error | A field is missing, the wrong type, `operands` has fewer than two numbers, or you sent a negative `number` to `/v2/sqrt` |
 
 ## Division by zero
 

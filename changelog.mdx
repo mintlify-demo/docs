@@ -5,6 +5,22 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="November 2026" description="Calculator API v2" tags={["API"]}>
+  ## `POST /v2/sqrt`
+
+  Returns the square root of `number`, rounded to `precision` decimal places. `precision` defaults to `6` and accepts `0` to `15`. Negative numbers return a `422` validation error.
+
+  ```bash
+  curl -X POST http://localhost:8000/v2/sqrt \
+    -H "Content-Type: application/json" \
+    -d '{"number": 2, "precision": 3}'
+  ```
+
+  ```json
+  { "result": 1.414, "number": 2 }
+  ```
+</Update>
+
 <Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
   ## The Mintlify demo org is live
 

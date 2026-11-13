@@ -29,6 +29,7 @@ The Calculator API does basic arithmetic. It's small on purpose, so the interest
 | --- | --- | --- |
 | **v1** | `POST /v1/add`, `/v1/subtract`, `/v1/multiply`, `/v1/divide` with `{a, b}` | You have exactly two numbers |
 | **v2** | `POST /v2/calculate` with `{operation, operands}` | You have two or more numbers, want one endpoint, or need `power` or `modulo` |
+| **v2** | `POST /v2/sqrt` with `{number, precision}` | You need the square root of one number |
 
 <Note>
   Both versions are supported. v1 is not deprecated.

@@ -3,7 +3,7 @@
   "info": {
     "title": "Calculator API v2",
     "summary": "Add, subtract, multiply and divide over HTTP.",
-    "description": "A small demo API for basic arithmetic.\n\n**v1** has one endpoint per operation and takes exactly two numbers. **v2** adds `POST /v2/calculate`, which takes any operation (including `power` and `modulo`) and up to 20 numbers. Both versions return a `400` error when you divide by zero.",
+    "description": "A small demo API for basic arithmetic.\n\n**v1** has one endpoint per operation and takes exactly two numbers. **v2** adds `POST /v2/calculate`, which takes any operation (including `power` and `modulo`) and up to 20 numbers, plus `POST /v2/sqrt` for square roots. Both versions return a `400` error when you divide by zero.",
     "version": "2.0.0"
   },
   "servers": [
@@ -48,6 +48,48 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/sqrt": {
+      "post": {
+        "tags": [
+          "v2"
+        ],
+        "summary": "Square root of a number",
+        "description": "Return the square root of `number`, rounded to `precision` decimal places.\n\nNegative numbers are rejected with a `422` validation error, since they have no real square root.",
+        "operationId": "v2Sqrt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SqrtRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SqrtResponse"
                 }
               }
             }
@@ -185,6 +227,62 @@
           "modulo"
         ],
         "title": "Operation"
+      },
+      "SqrtRequest": {
+        "properties": {
+          "number": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Number",
+            "description": "The number. Must be zero or positive.",
+            "examples": [
+              144
+            ]
+          },
+          "precision": {
+            "type": "integer",
+            "maximum": 15,
+            "minimum": 0,
+            "title": "Precision",
+            "description": "How many decimal places to round the answer to.",
+            "default": 6,
+            "examples": [
+              2
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "number"
+        ],
+        "title": "SqrtRequest",
+        "description": "A single number to take the square root of (v2)."
+      },
+      "SqrtResponse": {
+        "properties": {
+          "result": {
+            "type": "number",
+            "title": "Result",
+            "description": "The answer.",
+            "examples": [
+              12
+            ]
+          },
+          "number": {
+            "type": "number",
+            "title": "Number",
+            "description": "The number you sent.",
+            "examples": [
+              144
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "result",
+          "number"
+        ],
+        "title": "SqrtResponse"
       },
       "ValidationError": {
         "properties": {
