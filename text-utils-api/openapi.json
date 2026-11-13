@@ -83,13 +83,13 @@
           "Text"
         ],
         "summary": "Count words",
-        "description": "Count words, unique words, characters and lines.\n\nWords are runs of letters, digits, apostrophes and hyphens. Comparison\nfor `unique_words` ignores case.",
+        "description": "Count words, unique words, characters and lines.\n\nWords are runs of letters, digits, apostrophes and hyphens. Comparison\nfor `unique_words` ignores case.\n\nSet `ignore_numbers` to `true` to exclude purely numeric tokens, such as `42` or `3.14`, from the count.",
         "operationId": "countWords",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TextRequest"
+                "$ref": "#/components/schemas/WordCountRequest"
               }
             }
           },
@@ -317,6 +317,33 @@
           "text"
         ],
         "title": "TextRequest"
+      },
+      "WordCountRequest": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Text",
+            "description": "The text to work on (up to 10,000 characters).",
+            "examples": [
+              "Hello, Mintlify!"
+            ]
+          },
+          "ignore_numbers": {
+            "type": "boolean",
+            "title": "Ignore Numbers",
+            "description": "When `true`, purely numeric tokens such as `42` or `3.14` are excluded from the word count.",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "WordCountRequest"
       },
       "ValidationError": {
         "properties": {
