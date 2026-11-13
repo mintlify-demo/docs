@@ -16,7 +16,7 @@ icon: rocket
   </Step>
 
   <Step title="Create a todo">
-    Every request needs the header `X-API-Key: demo-key`.
+    Every request needs the header `X-API-Key: demo-key`. A `title` must be 1 to 200 characters. A longer title returns `422` with a validation error.
 
     <CodeGroup>
       ```bash cURL
