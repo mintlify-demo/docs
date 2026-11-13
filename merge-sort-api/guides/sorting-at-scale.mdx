@@ -15,12 +15,16 @@ groups: ["enterprise"]
 | --- | --- | --- |
 | 1,000 numbers | under 5 ms | Fine for any request |
 | 100,000 numbers | about 200 ms | Send `/sort`, not `/sort/steps` |
-| 1,000,000 numbers | 2 to 3 s | Split the list and merge the sorted parts yourself |
+| 1,000,000 numbers | 2 to 3 s | Split the list and combine the sorted parts yourself |
 
 ## Why not `/sort/steps` for big lists?
 
-`/sort/steps` returns every merge, and a list of *n* numbers has *n − 1* merges. For 100,000 numbers that's a response of several megabytes. Use it for teaching and debugging, not production traffic.
+`/sort/steps` returns every partition, and a list of *n* numbers can need up to *n − 1* partitions. For 100,000 numbers that's a response of several megabytes. Use it for teaching and debugging, not production traffic.
+
+## Worst case
+
+Quick sort runs in O(n log n) time on average but O(n²) in the worst case. The API picks the middle item as the pivot, so already sorted and reverse-sorted lists stay fast. Lists with many distinct values arranged so the middle item is always the smallest or largest hit the worst case.
 
 ## Memory
 
-Merge sort needs extra memory equal to the input size. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
+Quick sort builds new `before`, `equal`, and `after` lists at each partition, so it needs extra memory proportional to the input size. The API holds the whole list in memory, so keep a single request under about 10 MB of JSON.
