@@ -5,6 +5,22 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="November 2026" description="Calculator API v2.1.0" tags={["API", "Deprecation"]}>
+  ## Calculator API v1 is deprecated
+
+  `POST /v1/add`, `/v1/subtract`, `/v1/multiply` and `/v1/divide` are deprecated and will be removed on **2027-01-31**. They still work until then, and the API reference marks them as deprecated.
+
+  Use `POST /v2/calculate` with the matching `operation` instead:
+
+  ```bash
+  curl -X POST http://localhost:8000/v2/calculate \
+    -H "Content-Type: application/json" \
+    -d '{"operation": "add", "operands": [12, 4]}'
+  ```
+
+  See [migrating from v1 to v2](/calculator-api/guides/v1-vs-v2#migrating-from-v1-to-v2).
+</Update>
+
 <Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
   ## The Mintlify demo org is live
 

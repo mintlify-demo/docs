@@ -1,17 +1,21 @@
 ---
 title: v1 (Legacy) overview
-description: The original Calculator API, one endpoint per operation with exactly two numbers.
+description: The deprecated v1 Calculator API has one endpoint per operation with exactly two numbers. It will be removed on 2027-01-31. Migrate to v2.
 icon: clock-rotate-left
 ---
 
+<Warning>
+  v1 is deprecated. All four v1 endpoints will be removed on **2027-01-31**. Use `POST /v2/calculate` for new work, and migrate existing calls before that date.
+</Warning>
+
 You're reading the docs for **v1**, the original Calculator API. For `POST /v2/calculate`, switch to **v2** in the version switcher at the top of the sidebar.
 
-| Endpoint | Body | Returns |
-| --- | --- | --- |
-| `POST /v1/add` | `{"a": 12, "b": 4}` | `{"result": 16}` |
-| `POST /v1/subtract` | `{"a": 12, "b": 4}` | `{"result": 8}` |
-| `POST /v1/multiply` | `{"a": 12, "b": 4}` | `{"result": 48}` |
-| `POST /v1/divide` | `{"a": 12, "b": 4}` | `{"result": 3}`, or `400` when `b` is `0` |
+| Endpoint | Body | Returns | v2 replacement |
+| --- | --- | --- | --- |
+| `POST /v1/add` | `{"a": 12, "b": 4}` | `{"result": 16}` | `POST /v2/calculate` with `"operation": "add"` |
+| `POST /v1/subtract` | `{"a": 12, "b": 4}` | `{"result": 8}` | `POST /v2/calculate` with `"operation": "subtract"` |
+| `POST /v1/multiply` | `{"a": 12, "b": 4}` | `{"result": 48}` | `POST /v2/calculate` with `"operation": "multiply"` |
+| `POST /v1/divide` | `{"a": 12, "b": 4}` | `{"result": 3}`, or `400` when `b` is `0` | `POST /v2/calculate` with `"operation": "divide"` |
 
 ```bash
 curl -X POST http://localhost:8000/v1/add \
@@ -20,5 +24,5 @@ curl -X POST http://localhost:8000/v1/add \
 ```
 
 <Tip>
-  Moving to v2? See [v1 vs v2](/calculator-api/guides/v1-vs-v2) for the same calls side by side.
+  See [migrating from v1 to v2](/calculator-api/guides/v1-vs-v2#migrating-from-v1-to-v2) for the same calls side by side.
 </Tip>

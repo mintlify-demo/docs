@@ -15,33 +15,40 @@ icon: rocket
     ```
   </Step>
 
-  <Step title="Add two numbers (v1)">
+  <Step title="Add two numbers">
     <CodeGroup>
       ```bash cURL
-      curl -X POST http://localhost:8000/v1/add \
+      curl -X POST http://localhost:8000/v2/calculate \
         -H "Content-Type: application/json" \
-        -d '{"a": 12, "b": 4}'
+        -d '{"operation": "add", "operands": [12, 4]}'
       ```
 
       ```python Python
       import requests
 
-      r = requests.post("http://localhost:8000/v1/add", json={"a": 12, "b": 4})
-      print(r.json())  # {'result': 16.0}
+      r = requests.post(
+          "http://localhost:8000/v2/calculate",
+          json={"operation": "add", "operands": [12, 4]},
+      )
+      print(r.json())  # {'result': 16.0, 'operation': 'add', 'operands': [12.0, 4.0]}
       ```
 
       ```javascript JavaScript
-      const res = await fetch("http://localhost:8000/v1/add", {
+      const res = await fetch("http://localhost:8000/v2/calculate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ a: 12, b: 4 }),
+        body: JSON.stringify({ operation: "add", operands: [12, 4] }),
       });
-      console.log(await res.json()); // { result: 16 }
+      console.log(await res.json()); // { result: 16, operation: "add", operands: [12, 4] }
       ```
     </CodeGroup>
+
+    <Note>
+      The v1 endpoints, such as `POST /v1/add`, are deprecated and will be removed on 2027-01-31. Use `POST /v2/calculate` instead.
+    </Note>
   </Step>
 
-  <Step title="Try v2">
+  <Step title="Use more than two numbers">
     Subtract several numbers in one call. The operation runs left to right.
 
     ```bash
@@ -57,9 +64,9 @@ icon: rocket
 
   <Step title="Break it on purpose">
     ```bash
-    curl -i -X POST http://localhost:8000/v1/divide \
+    curl -i -X POST http://localhost:8000/v2/calculate \
       -H "Content-Type: application/json" \
-      -d '{"a": 1, "b": 0}'
+      -d '{"operation": "divide", "operands": [1, 0]}'
     ```
 
     You get an HTTP `400` and `{"detail": "Cannot divide by zero"}`. See [handling errors](/calculator-api/guides/errors).

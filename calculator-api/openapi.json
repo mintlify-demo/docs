@@ -3,8 +3,8 @@
   "info": {
     "title": "Calculator API",
     "summary": "Add, subtract, multiply and divide over HTTP.",
-    "description": "A small demo API for basic arithmetic.\n\n**v1** has one endpoint per operation and takes exactly two numbers. **v2** adds `POST /v2/calculate`, which takes any operation (including `power` and `modulo`) and up to 20 numbers. Both versions return a `400` error when you divide by zero.",
-    "version": "2.0.0"
+    "description": "A small demo API for basic arithmetic.\n\n**v1** (deprecated, removed on 2027-01-31) has one endpoint per operation and takes exactly two numbers. **v2** adds `POST /v2/calculate`, which takes any operation (including `power` and `modulo`) and up to 20 numbers. Both versions return a `400` error when you divide by zero.",
+    "version": "2.1.0"
   },
   "servers": [
     {
@@ -19,8 +19,9 @@
           "v1"
         ],
         "summary": "Add two numbers",
-        "description": "Return `a + b`.",
+        "description": "Return `a + b`. Deprecated: use `POST /v2/calculate` with `operation: add`.",
         "operationId": "v1Add",
+        "deprecated": true,
         "requestBody": {
           "content": {
             "application/json": {
@@ -61,8 +62,9 @@
           "v1"
         ],
         "summary": "Subtract two numbers",
-        "description": "Return `a - b`.",
+        "description": "Return `a - b`. Deprecated: use `POST /v2/calculate` with `operation: subtract`.",
         "operationId": "v1Subtract",
+        "deprecated": true,
         "requestBody": {
           "content": {
             "application/json": {
@@ -103,8 +105,9 @@
           "v1"
         ],
         "summary": "Multiply two numbers",
-        "description": "Return `a * b`.",
+        "description": "Return `a * b`. Deprecated: use `POST /v2/calculate` with `operation: multiply`.",
         "operationId": "v1Multiply",
+        "deprecated": true,
         "requestBody": {
           "content": {
             "application/json": {
@@ -145,8 +148,9 @@
           "v1"
         ],
         "summary": "Divide two numbers",
-        "description": "Return `a / b`. Returns a `400` error if `b` is `0`.",
+        "description": "Return `a / b`. Returns a `400` error if `b` is `0`.\n\nDeprecated: use `POST /v2/calculate` with `operation: divide`.",
         "operationId": "v1Divide",
+        "deprecated": true,
         "requestBody": {
           "content": {
             "application/json": {
@@ -453,7 +457,7 @@
   "tags": [
     {
       "name": "v1",
-      "description": "Original endpoints: one operation each, two numbers."
+      "description": "**Deprecated.** Original endpoints: one operation each, two numbers. Use `POST /v2/calculate` instead. v1 will be removed on 2027-01-31."
     },
     {
       "name": "v2",

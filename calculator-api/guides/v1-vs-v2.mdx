@@ -1,10 +1,14 @@
 ---
 title: v1 vs v2
-description: Pick the right version of the Calculator API for your use case.
+description: Compare Calculator API v1 and v2 side by side, and migrate from the deprecated v1 endpoints to POST /v2/calculate before 2027-01-31.
 icon: code-compare
 ---
 
 v1 shipped first with one endpoint per operation. v2 added a single, more flexible endpoint. Here is the same job in both.
+
+<Warning>
+  v1 is deprecated and will be removed on **2027-01-31**. The v1 endpoints keep working until then, and the API reference marks them as deprecated. Use v2 for new work.
+</Warning>
 
 <Tabs>
   <Tab title="v1: two numbers">
@@ -69,6 +73,15 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
 
 ## Migrating from v1 to v2
 
+Each v1 endpoint maps to `POST /v2/calculate` with a matching `operation`:
+
+| v1 endpoint | v2 request body |
+| --- | --- |
+| `POST /v1/add` | `{"operation": "add", "operands": [a, b]}` |
+| `POST /v1/subtract` | `{"operation": "subtract", "operands": [a, b]}` |
+| `POST /v1/multiply` | `{"operation": "multiply", "operands": [a, b]}` |
+| `POST /v1/divide` | `{"operation": "divide", "operands": [a, b]}` |
+
 <Steps>
   <Step title="Change the URL">
     Replace `/v1/<operation>` with `/v2/calculate`.
@@ -80,3 +93,21 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
     The `result` field works the same way.
   </Step>
 </Steps>
+
+For example, this v1 call:
+
+```bash
+curl -X POST http://localhost:8000/v1/divide \
+  -H "Content-Type: application/json" \
+  -d '{"a": 12, "b": 4}'
+```
+
+becomes this v2 call:
+
+```bash
+curl -X POST http://localhost:8000/v2/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"operation": "divide", "operands": [12, 4]}'
+```
+
+Both return `"result": 3`. Dividing by zero still returns a `400`.

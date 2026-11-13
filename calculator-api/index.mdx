@@ -18,8 +18,8 @@ The Calculator API does basic arithmetic. It's small on purpose, so the interest
   <Card title="Handling errors" icon="triangle-exclamation" href="/calculator-api/guides/errors">
     What happens when you divide by zero.
   </Card>
-  <Card title="Add two numbers" icon="plus" href="/calculator-api/api-reference/v1/add-two-numbers">
-    The simplest endpoint in the API.
+  <Card title="Calculate with any operation" icon="plus" href="/calculator-api/api-reference/v2/calculate-with-any-operation">
+    The endpoint to use for new integrations.
   </Card>
 </CardGroup>
 
@@ -27,9 +27,9 @@ The Calculator API does basic arithmetic. It's small on purpose, so the interest
 
 | Version | Shape | Use it when |
 | --- | --- | --- |
-| **v1** | `POST /v1/add`, `/v1/subtract`, `/v1/multiply`, `/v1/divide` with `{a, b}` | You have exactly two numbers |
-| **v2** | `POST /v2/calculate` with `{operation, operands}` | You have two or more numbers, want one endpoint, or need `power` or `modulo` |
+| **v1** (deprecated) | `POST /v1/add`, `/v1/subtract`, `/v1/multiply`, `/v1/divide` with `{a, b}` | You maintain an existing integration and haven't migrated yet |
+| **v2** | `POST /v2/calculate` with `{operation, operands}` | You're building something new, have two or more numbers, or need `power` or `modulo` |
 
-<Note>
-  Both versions are supported. v1 is not deprecated.
-</Note>
+<Warning>
+  v1 is deprecated and will be removed on **2027-01-31**. Every v1 endpoint still works until then. Move to `POST /v2/calculate` before that date. See [migrating from v1 to v2](/calculator-api/guides/v1-vs-v2#migrating-from-v1-to-v2).
+</Warning>
