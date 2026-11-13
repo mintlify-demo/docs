@@ -53,3 +53,15 @@ In v2, `modulo` follows the same rule. Any `0` divisor after the first operand r
 <Note>
   `422` responses use FastAPI's standard validation format: a `detail` array with the location and message for each invalid field.
 </Note>
+
+## Request IDs
+
+Every response includes an `X-Request-ID` header, including `400` and `422` errors. Log this value in your client so you can trace a specific request when you debug a failure.
+
+```bash
+curl -i -X POST http://localhost:8000/v1/divide \
+  -H "Content-Type: application/json" \
+  -d '{"a": 1, "b": 0}'
+```
+
+The `X-Request-ID` header appears with the other response headers in the output.
