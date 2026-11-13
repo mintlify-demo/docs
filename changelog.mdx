@@ -5,6 +5,21 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="November 13, 2026" description="Week of November 9" tags={["API"]}>
+  ## New features
+
+  - **`POST /slugify` in the Text Utils API**: Turn any text into a lowercase, URL-friendly slug. Accents are removed and non-alphanumeric characters are dropped. Use `separator` (`-` or `_`) and `max_length` (1–200) to shape the result. See the [Text Utils API](/text-utils-api/index).
+
+    ```json
+    { "original": "Héllo, Mintlify Docs!", "slug": "hello-mintlify-docs" }
+    ```
+
+  ## Updates
+
+  - **`power` and `modulo` in Calculator API v2**: `POST /v2/calculate` now accepts two more operations. Both apply left to right, so `power` with `[2, 3, 2]` returns `64`. v1 is unchanged. See [v1 vs v2](/calculator-api/guides/v1-vs-v2).
+  - **Modulo by zero returns a `400`**: Like division, `modulo` returns a `400` when any divisor is `0`. See [handling errors](/calculator-api/guides/errors).
+</Update>
+
 <Update label="October 2026" description="v1.0.0" tags={["Launch", "Docs"]}>
   ## The Mintlify demo org is live
 
