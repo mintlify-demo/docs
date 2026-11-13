@@ -93,6 +93,15 @@ new line. test.
   Showing this live? Start the API before the call, and keep your browser on the endpoint page. The playground, the code samples and the response viewer all update as you type.
 </Tip>
 
+## Rate limits
+
+All demo APIs allow 100 requests per minute per API key. If you go over the limit, the API returns HTTP `429 Too Many Requests` with a `Retry-After` header. The header value is the number of seconds to wait before you send another request.
+
+```http
+HTTP/1.1 429 Too Many Requests
+Retry-After: 30
+```
+
 ## Troubleshooting
 
 <AccordionGroup>
