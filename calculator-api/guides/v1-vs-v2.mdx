@@ -69,14 +69,35 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
 
 ## Migrating from v1 to v2
 
+Move every v1 call to `POST /v2/calculate` before v1 is removed on January 31, 2027. Each v1 endpoint maps to one `operation` value:
+
+| v1 endpoint | v2 request body |
+| --- | --- |
+| `POST /v1/add` | `{"operation": "add", "operands": [a, b]}` |
+| `POST /v1/subtract` | `{"operation": "subtract", "operands": [a, b]}` |
+| `POST /v1/multiply` | `{"operation": "multiply", "operands": [a, b]}` |
+| `POST /v1/divide` | `{"operation": "divide", "operands": [a, b]}` |
+
 <Steps>
   <Step title="Change the URL">
     Replace `/v1/<operation>` with `/v2/calculate`.
   </Step>
   <Step title="Change the body">
-    Move the operation name into the body and put your numbers in `operands`.
+    Set `operation` to the name from the old path, and put `a` and `b` in order in the `operands` array.
+
+    ```bash
+    # Before (v1)
+    curl -X POST http://localhost:8000/v1/divide \
+      -H "Content-Type: application/json" \
+      -d '{"a": 12, "b": 4}'
+
+    # After (v2)
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "divide", "operands": [12, 4]}'
+    ```
   </Step>
   <Step title="Read the same result">
-    The `result` field works the same way.
+    The `result` field works the same way. Both calls above return `"result": 3`. v2 also echoes `operation` and `operands`, and dividing by zero still returns a `400`.
   </Step>
 </Steps>

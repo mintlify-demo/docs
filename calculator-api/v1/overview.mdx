@@ -4,6 +4,10 @@ description: The original Calculator API, one endpoint per operation with exactl
 icon: clock-rotate-left
 ---
 
+<Warning>
+  v1 is deprecated and will be removed on **January 31, 2027**. All four v1 endpoints keep working until then. Migrate to `POST /v2/calculate` before that date.
+</Warning>
+
 You're reading the docs for **v1**, the original Calculator API. For `POST /v2/calculate`, switch to **v2** in the version switcher at the top of the sidebar.
 
 | Endpoint | Body | Returns |
@@ -20,5 +24,5 @@ curl -X POST http://localhost:8000/v1/add \
 ```
 
 <Tip>
-  Moving to v2? See [v1 vs v2](/calculator-api/guides/v1-vs-v2) for the same calls side by side.
+  See [migrating from v1 to v2](/calculator-api/guides/v1-vs-v2#migrating-from-v1-to-v2) for each v1 endpoint's v2 equivalent.
 </Tip>
