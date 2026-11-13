@@ -84,6 +84,6 @@ icon: rocket
     No. Decimals and negative numbers work too. Anything that isn't a number returns a `422` validation error.
   </Accordion>
   <Accordion title="Is there a size limit?">
-    Yes, 1000 numbers per request. A longer list returns a `422`.
+    Yes. `POST /sort` accepts up to 10,000 numbers per request. A longer list returns `413 Payload Too Large` with an error message that explains the limit. `POST /sort/steps` accepts up to 1000 numbers, and a longer list returns a `422`.
   </Accordion>
 </AccordionGroup>
