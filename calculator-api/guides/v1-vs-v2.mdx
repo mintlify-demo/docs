@@ -40,8 +40,26 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
   <Accordion title="Response shape">
     v1 returns `{ "result": 42 }`. v2 returns the same field and also echoes `operation` and `operands`.
   </Accordion>
+  <Accordion title="Operations">
+    v1 has `add`, `subtract`, `multiply`, and `divide`. v2 has those four plus `power` and `modulo`. Both apply left to right across `operands`:
+
+    | Operation | Operands | Result |
+    | --- | --- | --- |
+    | `power` | `[2, 3, 2]` | `(2 ** 3) ** 2 = 64` |
+    | `modulo` | `[17, 5]` | `2` |
+
+    ```bash
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "power", "operands": [2, 3, 2]}'
+    ```
+
+    ```json
+    { "result": 64, "operation": "power", "operands": [2, 3, 2] }
+    ```
+  </Accordion>
   <Accordion title="Errors">
-    The same in both: dividing by zero returns a `400` with a `detail` message.
+    The same in both: dividing by zero returns a `400` with a `detail` message. In v2, `modulo` with a `0` divisor also returns a `400`.
   </Accordion>
 </AccordionGroup>
 
