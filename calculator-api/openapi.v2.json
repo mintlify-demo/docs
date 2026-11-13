@@ -40,6 +40,11 @@
                   "$ref": "#/components/schemas/CalculateResponse"
                 }
               }
+            },
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/X-Request-ID"
+              }
             }
           },
           "400": {
@@ -50,6 +55,11 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/X-Request-ID"
+              }
             }
           },
           "422": {
@@ -59,6 +69,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
+              }
+            },
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/X-Request-ID"
               }
             }
           }
@@ -225,6 +240,14 @@
           "type"
         ],
         "title": "ValidationError"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "description": "Identifier for this request. Included on every response.",
+        "schema": {
+          "type": "string"
+        }
       }
     }
   },
