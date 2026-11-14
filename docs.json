@@ -239,8 +239,7 @@
                       "todo-api/guides/pagination",
                       "todo-api/guides/deprecations",
                       "todo-api/guides/partner-integrations",
-                      "todo-api/guides/enterprise-bulk-import",
-                      "todo-api/guides/support-and-uptime"
+                      "todo-api/guides/enterprise-bulk-import"
                     ]
                   },
                   {

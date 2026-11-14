@@ -48,22 +48,6 @@ By default `/palindrome` ignores case, spaces and punctuation. Turn that off wit
   When `false`, `Racecar` is **not** a palindrome (capital R) but `racecar` is.
 </ParamField>
 
-## Ignore numbers in word counts
-
-By default `/word-count` counts numeric tokens as words. Exclude them with `ignore_numbers`:
-
-<ParamField body="ignore_numbers" type="boolean" default="false">
-  When `true`, purely numeric tokens such as `42` or `3.14` are excluded from the word count.
-</ParamField>
-
-```json Request to /word-count
-{ "text": "Route 66 has 2 lanes", "ignore_numbers": true }
-```
-
-```json Response
-{ "words": 3, "unique_words": 3, "characters": 20, "lines": 1 }
-```
-
 <AccordionGroup>
   <Accordion title="What counts as a word?">
     Runs of letters, digits, apostrophes and hyphens. `don't` and `well-known` are one word each.

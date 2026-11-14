@@ -3,7 +3,7 @@
   "info": {
     "title": "Calculator API v1 (Legacy)",
     "summary": "Add, subtract, multiply and divide over HTTP.",
-    "description": "A small demo API for basic arithmetic.\n\n**v1** has one endpoint per operation and takes exactly two numbers. **v2** adds `POST /v2/calculate`, which takes any operation (including `power` and `modulo`) and up to 20 numbers. Both versions return a `400` error when you divide by zero.",
+    "description": "A small demo API for basic arithmetic.\n\n**v1** has one endpoint per operation and takes exactly two numbers. **v2** adds `POST /v2/calculate`, which takes any operation and up to 20 numbers. Both versions return a `400` error when you divide by zero.",
     "version": "1.0.0"
   },
   "servers": [
@@ -40,11 +40,6 @@
                   "$ref": "#/components/schemas/Result"
                 }
               }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
-              }
             }
           },
           "422": {
@@ -54,11 +49,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
-              }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
               }
             }
           }
@@ -92,11 +82,6 @@
                   "$ref": "#/components/schemas/Result"
                 }
               }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
-              }
             }
           },
           "422": {
@@ -106,11 +91,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
-              }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
               }
             }
           }
@@ -144,11 +124,6 @@
                   "$ref": "#/components/schemas/Result"
                 }
               }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
-              }
             }
           },
           "422": {
@@ -158,11 +133,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
-              }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
               }
             }
           }
@@ -196,11 +166,6 @@
                   "$ref": "#/components/schemas/Result"
                 }
               }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
-              }
             }
           },
           "400": {
@@ -211,11 +176,6 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
-              }
             }
           },
           "422": {
@@ -225,11 +185,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
-              }
-            },
-            "headers": {
-              "X-Request-ID": {
-                "$ref": "#/components/headers/X-Request-ID"
               }
             }
           }
@@ -352,14 +307,6 @@
           "type"
         ],
         "title": "ValidationError"
-      }
-    },
-    "headers": {
-      "X-Request-ID": {
-        "description": "Identifier for this request. Included on every response.",
-        "schema": {
-          "type": "string"
-        }
       }
     }
   },

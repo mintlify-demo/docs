@@ -150,7 +150,7 @@
             }
           },
           "422": {
-            "description": "Validation error, such as a `title` that is empty or longer than 200 characters.",
+            "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
@@ -412,7 +412,7 @@
             }
           },
           "422": {
-            "description": "Validation error, such as a `title` that is empty or longer than 200 characters.",
+            "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
@@ -541,7 +541,7 @@
             "maxLength": 200,
             "minLength": 1,
             "title": "Title",
-            "description": "What needs doing. 1 to 200 characters.",
+            "description": "What needs doing.",
             "examples": [
               "Write the docs"
             ]
@@ -588,7 +588,7 @@
             "maxLength": 200,
             "minLength": 1,
             "title": "Title",
-            "description": "What needs doing. 1 to 200 characters.",
+            "description": "What needs doing.",
             "examples": [
               "Write the docs"
             ]
@@ -676,7 +676,7 @@
               }
             ],
             "title": "Title",
-            "description": "New title. 1 to 200 characters.",
+            "description": "New title.",
             "examples": [
               "Ship the docs"
             ]

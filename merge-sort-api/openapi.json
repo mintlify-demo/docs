@@ -19,7 +19,7 @@
           "Sorting"
         ],
         "summary": "Sort numbers",
-        "description": "Sort a list of numbers in ascending or descending order.\n\nThe sort is **stable** and runs in O(n log n) time. An empty list is valid\nand returns an empty list.\n\nThe list can hold up to 10,000 numbers. A longer list returns `413 Payload Too Large`.",
+        "description": "Sort a list of numbers in ascending or descending order.\n\nThe sort is **stable** and runs in O(n log n) time. An empty list is valid\nand returns an empty list.",
         "operationId": "sortNumbers",
         "requestBody": {
           "content": {
@@ -38,16 +38,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SortResponse"
-                }
-              }
-            }
-          },
-          "413": {
-            "description": "Payload Too Large. The `numbers` list has more than 10,000 items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PayloadTooLargeError"
                 }
               }
             }
@@ -77,7 +67,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SortStepsRequest"
+                "$ref": "#/components/schemas/SortRequest"
               }
             }
           },
@@ -191,57 +181,7 @@
         ],
         "title": "Order"
       },
-      "PayloadTooLargeError": {
-        "properties": {
-          "detail": {
-            "type": "string",
-            "title": "Detail",
-            "description": "Explains the input size limit."
-          }
-        },
-        "type": "object",
-        "required": [
-          "detail"
-        ],
-        "title": "PayloadTooLargeError"
-      },
       "SortRequest": {
-        "properties": {
-          "numbers": {
-            "items": {
-              "type": "number"
-            },
-            "type": "array",
-            "maxItems": 10000,
-            "title": "Numbers",
-            "description": "The numbers to sort. Integers and decimals are both fine. Up to 10,000 items.",
-            "examples": [
-              [
-                5,
-                2,
-                9,
-                1,
-                5,
-                6
-              ]
-            ]
-          },
-          "order": {
-            "$ref": "#/components/schemas/Order",
-            "description": "Sort direction: `asc` (smallest first) or `desc` (largest first).",
-            "default": "asc",
-            "examples": [
-              "asc"
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "numbers"
-        ],
-        "title": "SortRequest"
-      },
-      "SortStepsRequest": {
         "properties": {
           "numbers": {
             "items": {
@@ -275,7 +215,7 @@
         "required": [
           "numbers"
         ],
-        "title": "SortStepsRequest"
+        "title": "SortRequest"
       },
       "SortResponse": {
         "properties": {
