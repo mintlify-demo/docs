@@ -320,6 +320,39 @@
             ]
           },
           {
+            "tab": "Acme Help Center",
+            "icon": "mug-hot",
+            "groups": [
+              {
+                "group": "Get started",
+                "icon": "rocket",
+                "pages": [
+                  "acme/index",
+                  "acme/getting-started"
+                ]
+              },
+              {
+                "group": "Your membership",
+                "icon": "id-card",
+                "pages": [
+                  "acme/plans-and-pricing",
+                  "acme/free-trial",
+                  "acme/shipping",
+                  "acme/refunds"
+                ]
+              },
+              {
+                "group": "Help",
+                "icon": "life-ring",
+                "pages": [
+                  "acme/contact-us",
+                  "acme/password-help",
+                  "acme/faq"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "Changelog",
             "icon": "clock-rotate-left",
             "pages": [
