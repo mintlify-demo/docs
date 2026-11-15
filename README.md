@@ -10,6 +10,7 @@ The docs repo for the **mintlify-demo** org: a showcase site for Mintlify accoun
 | `calculator-api/` | Pages + `openapi.v2.json` / `openapi.v1.json` (version switcher) + full `openapi.json` | [calculator-api](https://github.com/mintlify-demo/calculator-api) |
 | `todo-api/` | Pages + `openapi.json`, `schema.graphql` (GraphQL), `asyncapi.yaml` (WebSocket), `sdk-artifacts/python` (Sphinx JSON for the SDK reference) | [todo-api](https://github.com/mintlify-demo/todo-api) |
 | `text-utils-api/` | Pages + `openapi.json` | [text-utils-api](https://github.com/mintlify-demo/text-utils-api) |
+| `acme/` | **Acme Help Center** (public, `public: true`): plain-English customer help for the made-up Acme Coffee Club | [acme-app](https://github.com/mintlify-demo/acme-app) (`acme/settings.py`) |
 
 Site pages are served from the root (`/`, `/quickstart`, `/es/...`); the old `/docs/...` URLs redirect there. API URLs are `/<api-name>/...`, as before. API pages have no `public: true`, so they need a login. Site pages are `public: true`.
 
