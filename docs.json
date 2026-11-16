@@ -608,8 +608,7 @@
                   "es/acme/plans-and-pricing",
                   "es/acme/free-trial",
                   "es/acme/shipping",
-                  "es/acme/refunds",
-                  "es/acme/pause-membership"
+                  "es/acme/refunds"
                 ]
               },
               {
@@ -878,8 +877,7 @@
                   "fr/acme/plans-and-pricing",
                   "fr/acme/free-trial",
                   "fr/acme/shipping",
-                  "fr/acme/refunds",
-                  "fr/acme/pause-membership"
+                  "fr/acme/refunds"
                 ]
               },
               {
