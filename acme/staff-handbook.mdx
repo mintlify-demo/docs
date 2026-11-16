@@ -1,0 +1,26 @@
+---
+title: "Staff handbook"
+description: "Internal notes for the Acme Coffee Club team. Sign in to read it."
+icon: "lock"
+keywords: ["staff", "handbook", "internal", "team"]
+---
+
+{user.acmeRole === "staff" ? (
+  <>
+    <Info>Welcome, {user.firstName}. This page is only for the Acme team.</Info>
+
+    <Steps>
+      <Step title="Open the roastery">
+        The roastery opens at 7am. The first person in turns on the roaster.
+      </Step>
+      <Step title="Pack today's orders">
+        Pack every order before 2pm so it ships the same day.
+      </Step>
+      <Step title="Answer the support inbox">
+        Reply to every customer within one business day.
+      </Step>
+    </Steps>
+  </>
+) : (
+  <Warning>This page is only for Acme staff. Sign in with a staff account to read it.</Warning>
+)}
