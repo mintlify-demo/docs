@@ -1,0 +1,89 @@
+---
+title: Démarrage rapide
+description: Lancez l'API Merge Sort en local et effectuez votre première requête.
+icon: rocket
+---
+
+<Steps>
+  <Step title="Récupérer le code et installer">
+    <CodeGroup>
+      ```bash macOS / Linux
+      git clone https://github.com/mintlify-demo/merge-sort-api.git
+      cd merge-sort-api
+      python3 -m venv .venv && source .venv/bin/activate
+      pip install -r requirements.txt
+      ```
+
+      ```powershell Windows
+      git clone https://github.com/mintlify-demo/merge-sort-api.git
+      cd merge-sort-api
+      python -m venv .venv; .venv\Scripts\Activate.ps1
+      pip install -r requirements.txt
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Démarrer le serveur">
+    ```bash
+    uvicorn main:app --reload
+    ```
+
+    L'API tourne maintenant sur `http://localhost:8000`.
+  </Step>
+
+  <Step title="Trier quelque chose">
+    <Tabs>
+      <Tab title="cURL">
+        ```bash
+        curl -X POST http://localhost:8000/sort \
+          -H "Content-Type: application/json" \
+          -d '{"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"}'
+        ```
+      </Tab>
+      <Tab title="Python">
+        ```python
+        import requests
+
+        r = requests.post(
+            "http://localhost:8000/sort",
+            json={"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"},
+        )
+        print(r.json())
+        ```
+      </Tab>
+      <Tab title="JavaScript">
+        ```javascript
+        const res = await fetch("http://localhost:8000/sort", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ numbers: [5, 2, 9, 1, 5, 6], order: "asc" }),
+        });
+        console.log(await res.json());
+        ```
+      </Tab>
+    </Tabs>
+
+    Vous devriez obtenir :
+
+    ```json
+    { "result": [1, 2, 5, 5, 6, 9], "count": 6, "order": "asc" }
+    ```
+  </Step>
+
+  <Step title="Observer les fusions">
+    Appelez `/sort/steps` avec le même corps pour voir chaque fusion. Lisez [fonctionnement du tri fusion](/fr/merge-sort-api/guides/how-it-works) pour comprendre le résultat.
+  </Step>
+</Steps>
+
+<Check>
+  Vous venez de trier une liste via HTTP. Ouvrez `http://localhost:8000/docs` pour la documentation interactive de FastAPI, ou utilisez le playground de n'importe quelle page d'endpoint ici.
+</Check>
+
+<AccordionGroup>
+  <Accordion title="Dois-je envoyer des entiers ?">
+    Non. Les décimaux et les nombres négatifs fonctionnent aussi. Tout ce qui n'est pas un nombre renvoie une erreur de validation `422`.
+  </Accordion>
+  <Accordion title="Y a-t-il une limite de taille ?">
+    Oui, 1000 nombres par requête. Une liste plus longue renvoie une `422`.
+  </Accordion>
+</AccordionGroup>

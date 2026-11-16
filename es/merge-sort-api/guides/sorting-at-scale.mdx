@@ -1,0 +1,26 @@
+---
+title: Ordenación a escala (Enterprise)
+description: Límites de entrada, tiempos y memoria para solicitudes de ordenación grandes.
+icon: gauge-high
+groups: ["enterprise"]
+---
+
+<Note>
+  Solo los lectores del grupo **enterprise** pueden abrir esta página. Todos los demás reciben un 404.
+</Note>
+
+{user.name ? <>{user.name}, esto es</> : <>Esto es</>} lo que puedes esperar cuando envías listas grandes a `POST /sort`.
+
+| Tamaño de la lista | Tiempo típico | Notas |
+| --- | --- | --- |
+| 1,000 números | menos de 5 ms | Adecuado para cualquier solicitud |
+| 100,000 números | unos 200 ms | Usa `/sort`, no `/sort/steps` |
+| 1,000,000 números | de 2 a 3 s | Divide la lista y fusiona tú mismo las partes ordenadas |
+
+## ¿Por qué no usar `/sort/steps` para listas grandes? {#why-not-/sort/steps-for-big-lists}
+
+`/sort/steps` devuelve cada fusión, y una lista de *n* números tiene *n − 1* fusiones. Para 100,000 números, eso supone una respuesta de varios megabytes. Úsalo para enseñar y depurar, no para tráfico de producción.
+
+## Memoria {#memory}
+
+Merge sort necesita memoria adicional igual al tamaño de la entrada. La API mantiene toda la lista en memoria, así que mantén cada solicitud por debajo de unos 10 MB de JSON.

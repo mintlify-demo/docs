@@ -6,12 +6,12 @@ public: true
 ---
 
 <Update label="Octubre de 2026" description="v1.0.0" tags={["Lanzamiento", "Docs"]}>
-  ## La organización de demo de Mintlify ya está disponible
+  ## La organización de demo de Mintlify ya está disponible {#the-mintlify-demo-org-is-live}
 
-  Cinco repositorios, un sitio de documentación.
+  Cinco repositorios, un solo sitio de documentación.
 
-  - **Cuatro APIs de ejemplo** con FastAPI: Merge Sort, Calculator, Todo y Text Utils
-  - **Referencias de API interactivas** generadas desde el archivo OpenAPI de cada API
+  - **Cuatro APIs de ejemplo** creadas con FastAPI: Merge Sort, Calculator, Todo y Text Utils
+  - **Referencias de API interactivas** generadas a partir del archivo OpenAPI confirmado de cada API
   - **Documentación multirrepositorio**: la documentación de cada API vive en su propio repositorio
   - **Páginas de muestra** de componentes y funciones de IA
 
@@ -21,7 +21,7 @@ public: true
 </Update>
 
 <Update label="Octubre de 2026" description="Calculator API v2" tags={["API"]}>
-  ## `POST /v2/calculate`
+  ## `POST /v2/calculate` {#post-/v2/calculate}
 
   Un solo endpoint que recibe una `operation` y dos o más `operands`.
 
@@ -31,17 +31,17 @@ public: true
     -d '{"operation": "add", "operands": [1, 2, 3]}'
   ```
 
-  La v1 no cambia y sigue siendo compatible.
+  v1 no cambia y sigue siendo compatible.
 </Update>
 
-<Update label="Octubre de 2026" description="Todo API" tags={["API", "Obsoleto"]}>
-  ## `GET /todos/list-all` está obsoleto
+<Update label="Octubre de 2026" description="Todo API" tags={["API", "Obsolescencia"]}>
+  ## `GET /todos/list-all` está obsoleto {#get-/todos/list-all-is-deprecated}
 
-  Usa `GET /todos` con `page` y `page_size`. El endpoint antiguo sigue funcionando, pero aparece como obsoleto en la referencia de API.
+  Usa `GET /todos` con `page` y `page_size` en su lugar. El endpoint anterior sigue funcionando, pero está marcado como obsoleto en la referencia de API.
 </Update>
 
 <Update label="Octubre de 2026" description="Text Utils API" tags={["API"]}>
-  ## Ejemplos de código en Go
+  ## Ejemplos de código en Go {#code-samples-in-go}
 
-  Cada endpoint muestra ahora ejemplos en cURL, Python, JavaScript y Go, escritos con `x-codeSamples` en la especificación OpenAPI.
+  Cada endpoint ahora muestra ejemplos en cURL, Python, JavaScript y Go, escritos con `x-codeSamples` en la especificación OpenAPI.
 </Update>

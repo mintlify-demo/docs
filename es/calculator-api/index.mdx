@@ -1,0 +1,35 @@
+---
+title: API de Calculadora
+description: Suma, resta, multiplica y divide por HTTP, con una v1 y una v2 para comparar.
+icon: calculator
+---
+
+{user.name ? <>Hola de nuevo, <strong>{user.name}</strong>{user.plan ? <> (plan <strong>{user.plan}</strong>)</> : null}.</> : null} Usa el selector de versión para cambiar entre **v2 (Latest)** y **v1 (Legacy)**. La referencia de API de cada versión se genera a partir de su propia especificación (`openapi.v2.json` y `openapi.v1.json`).
+
+La API de Calculadora hace aritmética básica. Es pequeña a propósito, así que lo interesante es cómo está documentada: dos versiones de la API, errores tipados y un playground en cada endpoint.
+
+<CardGroup cols={2}>
+  <Card title="Inicio rápido" icon="rocket" href="/es/calculator-api/quickstart">
+    Ejecuta la API y suma dos números.
+  </Card>
+  <Card title="v1 frente a v2" icon="code-compare" href="/es/calculator-api/guides/v1-vs-v2">
+    Cuándo usar cada versión.
+  </Card>
+  <Card title="Manejo de errores" icon="triangle-exclamation" href="/es/calculator-api/guides/errors">
+    Qué ocurre cuando divides por cero.
+  </Card>
+  <Card title="Sumar dos números" icon="plus" href="/es/calculator-api/api-reference/v1/add-two-numbers">
+    El endpoint más sencillo de la API.
+  </Card>
+</CardGroup>
+
+## Versiones {#versions}
+
+| Versión | Forma | Úsala cuando |
+| --- | --- | --- |
+| **v1** | `POST /v1/add`, `/v1/subtract`, `/v1/multiply`, `/v1/divide` con `{a, b}` | Tienes exactamente dos números |
+| **v2** | `POST /v2/calculate` con `{operation, operands}` | Tienes dos o más números, o quieres un solo endpoint |
+
+<Note>
+  Ambas versiones son compatibles. La v1 no está obsoleta.
+</Note>

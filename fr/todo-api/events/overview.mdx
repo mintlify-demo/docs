@@ -1,0 +1,33 @@
+---
+title: Flux d'événements
+description: Recevez chaque modification de tâche en temps réel via un WebSocket, documenté avec AsyncAPI.
+icon: bolt
+---
+
+Connectez-vous à `/ws/events` et le serveur envoie un message JSON pour chaque tâche créée, mise à jour ou supprimée, que la modification provienne de REST, de GraphQL ou du SDK.
+
+La référence du canal ci-dessous est générée à partir de [`asyncapi.yaml`](https://github.com/mintlify-demo/docs/blob/main/todo-api/asyncapi.yaml), un document AsyncAPI 3.0.
+
+## Connexion {#connect}
+
+Les navigateurs ne peuvent pas définir d'en-têtes sur un WebSocket : passez donc votre clé d'API dans le paramètre de requête `api_key`.
+
+```javascript
+const ws = new WebSocket("ws://localhost:8000/ws/events?api_key=demo-key");
+ws.onmessage = (msg) => console.log(JSON.parse(msg.data));
+// {"type": "connection.ready", "plan": "standard", ...}
+// {"type": "todo.created", "data": {"id": 1, "title": "Write the docs", ...}, ...}
+```
+
+## Messages {#messages}
+
+| Type | Direction | Quand |
+| --- | --- | --- |
+| `connection.ready` | Du serveur vers le client | Juste après la connexion |
+| `todo.created` | Du serveur vers le client | Une tâche a été créée |
+| `todo.updated` | Du serveur vers le client | Une tâche a été modifiée |
+| `todo.deleted` | Du serveur vers le client | Une tâche a été supprimée (`data` vaut `{"id": ...}`) |
+| `ping` / `pong` | Les deux | Vérifier la connexion |
+| `subscribe` / `subscribed` | Les deux | Ne recevoir que certains types d'événements |
+
+Une clé incorrecte ou manquante ferme la connexion avec le code `1008`.

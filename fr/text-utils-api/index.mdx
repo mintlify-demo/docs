@@ -1,0 +1,34 @@
+---
+title: API Text Utils
+description: Inversez du texte, comptez les mots et détectez les palindromes, avec une seule requête POST pour chaque opération.
+icon: font
+---
+
+{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : null} L'API Text Utils comporte trois endpoints. Chacun accepte `{"text": "..."}` et renvoie du JSON. Chaque page d'endpoint de la référence d'API inclut des exemples de code prêts à l'emploi en **cURL, Python, JavaScript et Go**.
+
+<CardGroup cols={2}>
+  <Card title="Démarrage rapide" icon="rocket" href="/fr/text-utils-api/quickstart">
+    Lancez l'API et inversez votre première chaîne.
+  </Card>
+  <Card title="Exemples" icon="flask" href="/fr/text-utils-api/guides/examples">
+    Des entrées et sorties réelles pour chaque endpoint.
+  </Card>
+  <Card title="Inverser du texte" icon="arrow-right-arrow-left" href="/fr/text-utils-api/api-reference/text/reverse-text">
+    `POST /reverse`
+  </Card>
+  <Card title="Détecter un palindrome" icon="spell-check" href="/fr/text-utils-api/api-reference/text/check-for-a-palindrome">
+    `POST /palindrome`
+  </Card>
+</CardGroup>
+
+<Columns cols={3}>
+  <Card title="/reverse" icon="arrow-right-arrow-left">
+    Le texte, à l'envers.
+  </Card>
+  <Card title="/word-count" icon="hashtag">
+    Mots, mots uniques, caractères, lignes.
+  </Card>
+  <Card title="/palindrome" icon="spell-check">
+    Identique dans les deux sens ?
+  </Card>
+</Columns>

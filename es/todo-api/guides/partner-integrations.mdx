@@ -1,0 +1,41 @@
+---
+title: Integraciones de partners
+description: Mantén una aplicación de partner sincronizada con el flujo de eventos de la Todo API.
+icon: handshake
+groups: ["partner", "enterprise"]
+---
+
+<Note>
+  Esta página es para lectores de los grupos **partner** o **enterprise**. Los demás lectores con sesión iniciada reciben un 404.
+</Note>
+
+{user.name ? <>Bienvenido, {user.name}.</> : null} Los partners suelen replicar las tareas en su propia aplicación. En lugar de consultar `GET /todos` periódicamente, abre un WebSocket al [flujo de eventos](/es/todo-api/events/overview) y aplica cada cambio a medida que llega.
+
+<Steps>
+  <Step title="Cargar el estado actual">
+    Recorre `GET /todos` una vez, o llama a `TodoClient.iter_all()` desde el [SDK de Python](/es/todo-api/sdk/overview).
+  </Step>
+  <Step title="Abrir el flujo">
+    Conéctate a `ws://localhost:8000/ws/events?api_key=partner-demo-key`. El primer mensaje es `connection.ready` con tu plan.
+  </Step>
+  <Step title="Aplicar los cambios">
+    Inserta o actualiza la tarea con `todo.created` y `todo.updated`, y elimínala con `todo.deleted`.
+  </Step>
+</Steps>
+
+```python
+import asyncio, json, websockets
+
+async def mirror():
+    url = "ws://localhost:8000/ws/events?api_key=partner-demo-key"
+    async with websockets.connect(url) as ws:
+        async for raw in ws:
+            event = json.loads(raw)
+            print(event["type"], event.get("data"))
+
+asyncio.run(mirror())
+```
+
+<Tip>
+  Envía `{"type": "subscribe", "events": ["todo.created"]}` para recibir solo los eventos que necesitas.
+</Tip>

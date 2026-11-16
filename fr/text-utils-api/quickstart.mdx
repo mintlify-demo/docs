@@ -1,0 +1,67 @@
+---
+title: Démarrage rapide
+description: Exécutez l'API Text Utils en local et appelez ses trois endpoints.
+icon: rocket
+---
+
+<Steps>
+  <Step title="Installer et lancer">
+    ```bash
+    git clone https://github.com/mintlify-demo/text-utils-api.git
+    cd text-utils-api
+    python3 -m venv .venv && source .venv/bin/activate
+    pip install -r requirements.txt
+    uvicorn main:app --reload
+    ```
+  </Step>
+
+  <Step title="Inverser du texte">
+    <CodeGroup>
+      ```bash cURL
+      curl -X POST http://localhost:8000/reverse \
+        -H 'Content-Type: application/json' \
+        -d '{"text": "Hello, Mintlify!"}'
+      ```
+
+      ```python Python
+      import requests
+
+      r = requests.post("http://localhost:8000/reverse", json={"text": "Hello, Mintlify!"})
+      print(r.json())
+      ```
+
+      ```javascript JavaScript
+      const res = await fetch("http://localhost:8000/reverse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: "Hello, Mintlify!" }),
+      });
+      console.log(await res.json());
+      ```
+    </CodeGroup>
+
+    ```json
+    { "original": "Hello, Mintlify!", "reversed": "!yfitniM ,olleH" }
+    ```
+  </Step>
+
+  <Step title="Compter les mots">
+    ```bash
+    curl -X POST http://localhost:8000/word-count \
+      -H 'Content-Type: application/json' \
+      -d '{"text": "to be or not to be"}'
+    ```
+  </Step>
+
+  <Step title="Détecter un palindrome">
+    ```bash
+    curl -X POST http://localhost:8000/palindrome \
+      -H 'Content-Type: application/json' \
+      -d '{"text": "A man, a plan, a canal: Panama"}'
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  Les pages de référence de l'API incluent aussi ces mêmes exemples en Go, écrits avec l'extension OpenAPI `x-codeSamples`.
+</Tip>

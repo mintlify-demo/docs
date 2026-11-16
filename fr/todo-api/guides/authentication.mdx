@@ -1,0 +1,47 @@
+---
+title: Authentification
+description: Authentifiez chaque requête avec une clé d'API dans l'en-tête X-API-Key.
+icon: key
+---
+
+Chaque endpoint nécessite une clé d'API. Envoyez-la dans l'en-tête `X-API-Key`.
+
+```bash
+curl http://localhost:8000/todos -H "X-API-Key: demo-key"
+```
+
+## Clés par forfait {#keys-by-plan}
+
+Chaque clé appartient à un forfait. Le forfait détermine quels endpoints la clé peut appeler.
+
+| Clé | Forfait | Peut appeler |
+| --- | --- | --- |
+| `demo-key` | Standard | Tous les endpoints sauf la création en masse |
+| `partner-demo-key` | Partner | Tous les endpoints sauf la création en masse |
+| `enterprise-demo-key` | Enterprise | Tous les endpoints, y compris [`POST /todos/bulk`](/fr/todo-api/guides/enterprise-bulk-import) |
+
+<Info>
+  Ces clés de démo sont publiques à dessein. Pour utiliser d'autres clés, définissez `TODO_API_KEY`, `TODO_PARTNER_API_KEY` et `TODO_ENTERPRISE_API_KEY` avant de démarrer le serveur.
+</Info>
+
+{user.name ? <Tip>Connecté en tant que <strong>{user.name}</strong>{user.plan ? <> avec le forfait <strong>{user.plan}</strong></> : null} : le playground de chaque page d'endpoint contient déjà la clé de votre forfait{user.apiKey ? <> (<code>{user.apiKey}</code>)</> : null}.</Tip> : null}
+
+## Ce qui se passe sans clé {#what-happens-without-a-key}
+
+Une clé manquante ou incorrecte renvoie `401` :
+
+```json
+{ "detail": "Invalid or missing API key" }
+```
+
+## Dans le playground de l'API {#in-the-api-playground}
+
+Chaque page d'endpoint de la référence d'API comporte un champ **Authorization**. Lorsque vous êtes connecté à la documentation, il est rempli avec la clé de votre forfait. Sinon, saisissez-y `demo-key`, et le playground ajoute l'en-tête pour vous.
+
+<ParamField header="X-API-Key" type="string" required>
+  Votre clé d'API. Pour la démo, utilisez `demo-key`.
+</ParamField>
+
+<Warning>
+  Ne commitez jamais de vraies clés d'API. Cette clé de démo est publique à dessein.
+</Warning>

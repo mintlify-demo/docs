@@ -1,0 +1,63 @@
+---
+title: Todo API
+description: Una pequeña API CRUD con autenticación por clave de API, paginación y un endpoint obsoleto.
+icon: list-check
+---
+
+{user.name ? <>Bienvenido de nuevo, <strong>{user.name}</strong>{user.plan ? <> (plan <strong>{user.plan}</strong>)</> : null}.</> : <>Bienvenido.</>} La Todo API guarda las tareas en memoria. Es la demo para mostrar **autenticación**, **paginación** y **obsolescencia** en una referencia de API real, además de una API **GraphQL**, un flujo de eventos por **WebSocket** y un **SDK de Python** generado a partir del código.
+
+{user.plan === "enterprise" ? (
+  <Check>
+    Tienes el plan <strong>Enterprise</strong>. Tu clave (<code>enterprise-demo-key</code>) ya está completada en cada página de endpoint, y puedes crear hasta 100 tareas a la vez con <code>POST /todos/bulk</code>.
+  </Check>
+) : user.plan === "partner" ? (
+  <Info>
+    Tienes el plan <strong>Partner</strong>. Tu clave (<code>partner-demo-key</code>) ya está completada en cada página de endpoint. Usa el <a href="/es/todo-api/events/overview">flujo de eventos</a> para replicar las tareas en tu aplicación.
+  </Info>
+) : user.plan ? (
+  <Tip>
+    Tienes el plan <strong>Standard</strong>. Tu clave (<code>demo-key</code>) ya está completada en cada página de endpoint. La importación masiva viene con Enterprise.
+  </Tip>
+) : null}
+
+<CardGroup cols={3}>
+  <Card title="Inicio rápido" icon="rocket" href="/es/todo-api/quickstart">
+    Crea tu primera tarea en un minuto.
+  </Card>
+  <Card title="Autenticación" icon="key" href="/es/todo-api/guides/authentication">
+    Envía tu clave en `X-API-Key`.
+  </Card>
+  <Card title="Paginación" icon="layer-group" href="/es/todo-api/guides/pagination">
+    Recorre listas grandes página a página.
+  </Card>
+</CardGroup>
+
+<CardGroup cols={3}>
+  <Card title="API GraphQL" icon="diagram-project" href="/es/todo-api/graphql/overview">
+    Las mismas tareas a través de GraphQL.
+  </Card>
+  <Card title="Flujo de eventos" icon="bolt" href="/es/todo-api/events/overview">
+    Cambios en vivo a través de un WebSocket.
+  </Card>
+  <Card title="SDK de Python" icon="python" href="/es/todo-api/sdk/overview">
+    `TodoClient`, referencia generada.
+  </Card>
+</CardGroup>
+
+## Endpoints {#endpoints}
+
+| Método | Ruta | Qué hace |
+| --- | --- | --- |
+| `GET` | `/todos` | Lista las tareas (paginado, filtrable) |
+| `POST` | `/todos` | Crea una tarea |
+| `GET` | `/todos/{todo_id}` | Obtiene una tarea |
+| `PATCH` | `/todos/{todo_id}` | Actualiza una tarea |
+| `DELETE` | `/todos/{todo_id}` | Elimina una tarea |
+| `GET` | `/todos/list-all` | <Badge color="orange">Obsoleto</Badge> Lista todas las tareas, sin paginar |
+| `POST` | `/todos/bulk` | <Badge color="purple">Enterprise</Badge> Crea hasta 100 tareas a la vez |
+| `POST` | `/graphql` | Consultas y mutaciones de GraphQL |
+| `WS` | `/ws/events` | Flujo de `todo.created`, `todo.updated`, `todo.deleted` |
+
+<Warning>
+  Los datos se guardan en memoria. Reiniciar el servidor borra todas las tareas.
+</Warning>

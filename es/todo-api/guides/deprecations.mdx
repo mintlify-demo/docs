@@ -1,0 +1,29 @@
+---
+title: Obsolescencias
+description: Endpoints que todavía funcionan pero se eliminarán, y qué usar en su lugar.
+icon: triangle-exclamation
+---
+
+Los endpoints obsoletos siguen funcionando, pero están marcados en la referencia de la API y se eliminarán en una versión futura.
+
+| Obsoleto | Usar en su lugar | Por qué |
+| --- | --- | --- |
+| `GET /todos/list-all` | `GET /todos` con `page` y `page_size` | Devuelve todas las tareas a la vez, lo que se vuelve lento a medida que crece la lista |
+
+## Migrar desde `list-all` {#migrate-off-list-all}
+
+<Steps>
+  <Step title="Cambiar la ruta">
+    Llama a `GET /todos` en lugar de `GET /todos/list-all`.
+  </Step>
+  <Step title="Leer items de la respuesta">
+    La nueva respuesta es un objeto. Las tareas están en `items`, no en el nivel superior.
+  </Step>
+  <Step title="Recorrer las páginas">
+    Usa `total_pages` para saber cuándo detenerte. Consulta [paginación](/es/todo-api/guides/pagination).
+  </Step>
+</Steps>
+
+<Note>
+  En la especificación OpenAPI este endpoint tiene `deprecated: true`, por lo que Mintlify lo muestra con un indicador de obsolescencia.
+</Note>

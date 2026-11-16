@@ -1,0 +1,71 @@
+---
+title: Démarrage rapide
+description: Lancez l'API Calculator en local et effectuez votre premier calcul.
+icon: rocket
+---
+
+<Steps>
+  <Step title="Installer et lancer">
+    ```bash
+    git clone https://github.com/mintlify-demo/calculator-api.git
+    cd calculator-api
+    python3 -m venv .venv && source .venv/bin/activate
+    pip install -r requirements.txt
+    uvicorn main:app --reload
+    ```
+  </Step>
+
+  <Step title="Additionner deux nombres (v1)">
+    <CodeGroup>
+      ```bash cURL
+      curl -X POST http://localhost:8000/v1/add \
+        -H "Content-Type: application/json" \
+        -d '{"a": 12, "b": 4}'
+      ```
+
+      ```python Python
+      import requests
+
+      r = requests.post("http://localhost:8000/v1/add", json={"a": 12, "b": 4})
+      print(r.json())  # {'result': 16.0}
+      ```
+
+      ```javascript JavaScript
+      const res = await fetch("http://localhost:8000/v1/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ a: 12, b: 4 }),
+      });
+      console.log(await res.json()); // { result: 16 }
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Essayer la v2">
+    Soustrayez plusieurs nombres en un seul appel. L'opération s'effectue de gauche à droite.
+
+    ```bash
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "subtract", "operands": [10, 3, 2]}'
+    ```
+
+    ```json
+    { "result": 5, "operation": "subtract", "operands": [10, 3, 2] }
+    ```
+  </Step>
+
+  <Step title="Provoquer une erreur volontairement">
+    ```bash
+    curl -i -X POST http://localhost:8000/v1/divide \
+      -H "Content-Type: application/json" \
+      -d '{"a": 1, "b": 0}'
+    ```
+
+    Vous obtenez un HTTP `400` et `{"detail": "Cannot divide by zero"}`. Consultez [gérer les erreurs](/fr/calculator-api/guides/errors).
+  </Step>
+</Steps>
+
+<Tip>
+  Utilisez le playground **Try it** de n'importe quelle [page d'endpoint](/fr/calculator-api/api-reference/v2/calculate-with-any-operation) pour envoyer des requêtes depuis votre navigateur.
+</Tip>

@@ -1,0 +1,38 @@
+---
+title: Importación masiva (Enterprise)
+description: Crea hasta 100 tareas en una sola solicitud con una clave de API Enterprise.
+icon: boxes-stacked
+groups: ["enterprise"]
+---
+
+<Note>
+  Solo los lectores del grupo **enterprise** pueden abrir esta página. Todos los demás reciben un 404, y el endpoint `POST /todos/bulk` queda oculto en su referencia de la API.
+</Note>
+
+{user.name ? <>Hola, {user.name}: tu</> : <>Tu</>} plan Enterprise incluye la importación masiva: envía hasta 100 tareas en una sola solicitud a [`POST /todos/bulk`](/es/todo-api/api-reference/todos/bulk-create-todos-enterprise).
+
+```bash
+curl -X POST http://localhost:8000/todos/bulk \
+  -H "X-API-Key: enterprise-demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"items": [{"title": "Migrate the docs"}, {"title": "Turn on SSO", "completed": true}]}'
+```
+
+La respuesta es la lista de tareas creadas, en el orden en que las enviaste.
+
+## Errores {#errors}
+
+| Estado | Cuándo |
+| --- | --- |
+| `401` | La clave de API falta o es incorrecta. |
+| `403` | La clave funciona, pero no es una clave Enterprise. |
+| `422` | `items` está vacío, tiene más de 100 entradas o un título no es válido. |
+
+## Desde Python {#from-python}
+
+```python
+from todo_client import TodoClient
+
+with TodoClient(api_key="enterprise-demo-key") as todos:
+    created = todos.bulk_create(["Migrate the docs", "Turn on SSO"])
+```

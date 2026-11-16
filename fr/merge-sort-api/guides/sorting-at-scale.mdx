@@ -1,0 +1,26 @@
+---
+title: Trier à grande échelle (Enterprise)
+description: Limites d'entrée, temps d'exécution et mémoire pour les grosses requêtes de tri.
+icon: gauge-high
+groups: ["enterprise"]
+---
+
+<Note>
+  Seuls les lecteurs du groupe **enterprise** peuvent ouvrir cette page. Tous les autres obtiennent une 404.
+</Note>
+
+{user.name ? <>{user.name}, voici</> : <>Voici</>} ce à quoi vous attendre lorsque vous envoyez de grandes listes à `POST /sort`.
+
+| Taille de la liste | Temps typique | Remarques |
+| --- | --- | --- |
+| 1 000 nombres | moins de 5 ms | Convient à toute requête |
+| 100 000 nombres | environ 200 ms | Utilisez `/sort`, pas `/sort/steps` |
+| 1 000 000 nombres | 2 à 3 s | Divisez la liste et fusionnez vous-même les parties triées |
+
+## Pourquoi pas `/sort/steps` pour les grandes listes ? {#why-not-/sort/steps-for-big-lists}
+
+`/sort/steps` renvoie chaque fusion, et une liste de *n* nombres comporte *n − 1* fusions. Pour 100 000 nombres, cela représente une réponse de plusieurs mégaoctets. Utilisez-le pour l'apprentissage et le débogage, pas pour le trafic de production.
+
+## Mémoire {#memory}
+
+Le tri fusion nécessite une mémoire supplémentaire égale à la taille de l'entrée. L'API conserve toute la liste en mémoire : limitez donc chaque requête à environ 10 Mo de JSON.

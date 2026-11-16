@@ -1,0 +1,63 @@
+---
+title: API Todo
+description: Une petite API CRUD avec authentification par clé d'API, pagination et un endpoint obsolète.
+icon: list-check
+---
+
+{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : <>Bienvenue.</>} L'API Todo stocke les tâches en mémoire. C'est la démo qui illustre l'**authentification**, la **pagination** et la **dépréciation** dans une véritable référence d'API, ainsi qu'une API **GraphQL**, un flux d'événements **WebSocket** et un **SDK Python** généré à partir du code.
+
+{user.plan === "enterprise" ? (
+  <Check>
+    Vous avez le forfait <strong>Enterprise</strong>. Votre clé (<code>enterprise-demo-key</code>) est déjà renseignée sur chaque page d'endpoint, et vous pouvez créer jusqu'à 100 tâches en une fois avec <code>POST /todos/bulk</code>.
+  </Check>
+) : user.plan === "partner" ? (
+  <Info>
+    Vous avez le forfait <strong>Partner</strong>. Votre clé (<code>partner-demo-key</code>) est déjà renseignée sur chaque page d'endpoint. Utilisez le <a href="/fr/todo-api/events/overview">flux d'événements</a> pour répliquer les tâches dans votre application.
+  </Info>
+) : user.plan ? (
+  <Tip>
+    Vous avez le forfait <strong>Standard</strong>. Votre clé (<code>demo-key</code>) est déjà renseignée sur chaque page d'endpoint. L'import en masse est inclus avec Enterprise.
+  </Tip>
+) : null}
+
+<CardGroup cols={3}>
+  <Card title="Démarrage rapide" icon="rocket" href="/fr/todo-api/quickstart">
+    Créez votre première tâche en une minute.
+  </Card>
+  <Card title="Authentification" icon="key" href="/fr/todo-api/guides/authentication">
+    Envoyez votre clé dans `X-API-Key`.
+  </Card>
+  <Card title="Pagination" icon="layer-group" href="/fr/todo-api/guides/pagination">
+    Parcourez de longues listes page par page.
+  </Card>
+</CardGroup>
+
+<CardGroup cols={3}>
+  <Card title="API GraphQL" icon="diagram-project" href="/fr/todo-api/graphql/overview">
+    Les mêmes tâches via GraphQL.
+  </Card>
+  <Card title="Flux d'événements" icon="bolt" href="/fr/todo-api/events/overview">
+    Les modifications en direct via un WebSocket.
+  </Card>
+  <Card title="SDK Python" icon="python" href="/fr/todo-api/sdk/overview">
+    `TodoClient`, référence générée.
+  </Card>
+</CardGroup>
+
+## Endpoints {#endpoints}
+
+| Méthode | Chemin | Rôle |
+| --- | --- | --- |
+| `GET` | `/todos` | Lister les tâches (paginé, filtrable) |
+| `POST` | `/todos` | Créer une tâche |
+| `GET` | `/todos/{todo_id}` | Obtenir une tâche |
+| `PATCH` | `/todos/{todo_id}` | Mettre à jour une tâche |
+| `DELETE` | `/todos/{todo_id}` | Supprimer une tâche |
+| `GET` | `/todos/list-all` | <Badge color="orange">Obsolète</Badge> Lister toutes les tâches, sans pagination |
+| `POST` | `/todos/bulk` | <Badge color="purple">Enterprise</Badge> Créer jusqu'à 100 tâches en une fois |
+| `POST` | `/graphql` | Requêtes et mutations GraphQL |
+| `WS` | `/ws/events` | Flux de `todo.created`, `todo.updated`, `todo.deleted` |
+
+<Warning>
+  Les données sont stockées en mémoire. Redémarrer le serveur efface toutes les tâches.
+</Warning>

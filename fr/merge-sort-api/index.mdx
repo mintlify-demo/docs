@@ -1,0 +1,47 @@
+---
+title: API Merge Sort
+description: Triez des nombres avec le tri fusion et visualisez chaque étape de fusion.
+icon: arrow-down-wide-short
+---
+
+{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : null} L'API Merge Sort est un petit service FastAPI doté de deux endpoints. L'un vous renvoie une liste triée. L'autre vous montre **comment** la liste a été triée.
+
+<Note>
+  Cette API est une démo. Son code se trouve dans le [dépôt merge-sort-api](https://github.com/mintlify-demo/merge-sort-api), et cette documentation dans le [dépôt docs](https://github.com/mintlify-demo/docs/tree/main/merge-sort-api).
+</Note>
+
+## Ce que vous pouvez faire {#what-you-can-do}
+
+<CardGroup cols={2}>
+  <Card title="Démarrage rapide" icon="rocket" href="/fr/merge-sort-api/quickstart">
+    Lancez l'API en local et triez votre première liste en moins d'une minute.
+  </Card>
+  <Card title="Fonctionnement du tri fusion" icon="diagram-project" href="/fr/merge-sort-api/guides/how-it-works">
+    Une présentation visuelle de la division, du tri et de la fusion.
+  </Card>
+  <Card title="Trier des nombres" icon="arrow-down-wide-short" href="/fr/merge-sort-api/api-reference/sorting/sort-numbers">
+    `POST /sort` renvoie la liste triée.
+  </Card>
+  <Card title="Trier avec les étapes" icon="list-ol" href="/fr/merge-sort-api/api-reference/sorting/sort-numbers-and-return-every-merge-step">
+    `POST /sort/steps` renvoie en plus chaque fusion.
+  </Card>
+</CardGroup>
+
+<Visibility for={{ groups: ["enterprise"] }}>
+  <Check>
+    Lecteurs Enterprise : consultez [Trier à grande échelle](/fr/merge-sort-api/guides/sorting-at-scale) pour les limites et le dimensionnement.
+  </Check>
+</Visibility>
+
+## En un coup d'œil {#at-a-glance}
+
+test
+
+| Endpoint | Méthode | Rôle |
+| --- | --- | --- |
+| `/sort` | `POST` | Trier une liste de nombres, par ordre croissant ou décroissant |
+| `/sort/steps` | `POST` | Idem, avec en plus chaque étape de fusion |
+
+<Tip>
+  Chaque page d'endpoint dispose d'un playground **Try it**. Pointez-le vers `http://localhost:8000` pendant que l'API tourne.
+</Tip>

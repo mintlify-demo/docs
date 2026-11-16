@@ -1,0 +1,41 @@
+---
+title: Gérer les erreurs
+description: Les codes de statut renvoyés par l'API Calculator et comment les gérer.
+icon: triangle-exclamation
+---
+
+## Codes de statut {#status-codes}
+
+| Statut | Signification | Quand |
+| --- | --- | --- |
+| `200` | Succès | Le calcul a fonctionné |
+| `400` | Requête invalide | Vous avez divisé par zéro |
+| `422` | Erreur de validation | Un champ est manquant, du mauvais type, ou `operands` contient moins de deux nombres |
+
+## Division par zéro {#division-by-zero}
+
+<Warning>
+  Diviser par zéro renvoie une `400`, pas une `500`. Gérez ce cas dans votre client.
+</Warning>
+
+<CodeGroup>
+  ```bash Request
+  curl -i -X POST http://localhost:8000/v1/divide \
+    -H "Content-Type: application/json" \
+    -d '{"a": 1, "b": 0}'
+  ```
+
+  ```json Response (400)
+  { "detail": "Cannot divide by zero" }
+  ```
+</CodeGroup>
+
+## Champs de la réponse d'erreur {#error-response-fields}
+
+<ResponseField name="detail" type="string" required>
+  Un message lisible décrivant ce qui s'est mal passé.
+</ResponseField>
+
+<Note>
+  Les réponses `422` utilisent le format de validation standard de FastAPI : un tableau `detail` contenant l'emplacement et le message de chaque champ invalide.
+</Note>

@@ -1,0 +1,25 @@
+---
+title: SDK de Python
+description: Usa el paquete todo-client, con una referencia generada por Sphinx a partir de sus docstrings.
+icon: python
+---
+
+`todo-client` es un pequeño cliente de Python para la Todo API. Se encuentra en la [carpeta `sdk/`](https://github.com/mintlify-demo/todo-api/tree/main/sdk) del repositorio de la Todo API.
+
+```bash
+pip install "git+https://github.com/mintlify-demo/todo-api.git#subdirectory=sdk"
+```
+
+```python
+from todo_client import TodoClient
+
+with TodoClient(api_key="demo-key") as todos:
+    todo = todos.create("Write the docs")
+    todos.complete(todo.id)
+    for item in todos.iter_all():
+        print(item.title, item.completed)
+```
+
+## Cómo se construye esta referencia {#how-this-reference-is-built}
+
+Las páginas que aparecen a continuación provienen de los docstrings del SDK. Sphinx las compila a JSON (`make sdk-docs`), el resultado se confirma en el repositorio de la documentación en `todo-api/sdk-artifacts/python/` y Mintlify lo convierte en una página por cada módulo, clase y función.

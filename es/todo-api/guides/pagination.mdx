@@ -1,0 +1,81 @@
+---
+title: Paginación
+description: Usa page y page_size para recorrer listas grandes de tareas.
+icon: layer-group
+---
+
+`GET /todos` devuelve una página cada vez. Contrólala con dos parámetros de consulta.
+
+<ParamField query="page" type="integer" default="1">
+  La página que se devuelve, empezando en `1`.
+</ParamField>
+
+<ParamField query="page_size" type="integer" default="10">
+  Elementos por página, de `1` a `100`.
+</ParamField>
+
+## Leer la respuesta {#reading-the-response}
+
+<ResponseField name="items" type="Todo[]">
+  Las tareas de esta página.
+</ResponseField>
+
+<ResponseField name="total" type="integer">
+  Cuántas tareas coinciden con tu filtro en todas las páginas.
+</ResponseField>
+
+<ResponseField name="total_pages" type="integer">
+  Cuántas páginas hay con el `page_size` actual.
+</ResponseField>
+
+```bash
+curl "http://localhost:8000/todos?page=2&page_size=5" -H "X-API-Key: demo-key"
+```
+
+```json
+{
+  "items": [],
+  "total": 8,
+  "page": 2,
+  "page_size": 5,
+  "total_pages": 2
+}
+```
+
+## Recorrer todas las páginas {#walk-every-page}
+
+<CodeGroup>
+  ```python Python
+  import requests
+
+  page = 1
+  while True:
+      data = requests.get(
+          "http://localhost:8000/todos",
+          headers={"X-API-Key": "demo-key"},
+          params={"page": page, "page_size": 50},
+      ).json()
+      for todo in data["items"]:
+          print(todo["title"])
+      if page >= data["total_pages"]:
+          break
+      page += 1
+  ```
+
+  ```javascript JavaScript
+  let page = 1;
+  while (true) {
+    const res = await fetch(`http://localhost:8000/todos?page=${page}&page_size=50`, {
+      headers: { "X-API-Key": "demo-key" },
+    });
+    const data = await res.json();
+    data.items.forEach((todo) => console.log(todo.title));
+    if (page >= data.total_pages) break;
+    page += 1;
+  }
+  ```
+</CodeGroup>
+
+<Tip>
+  Combina la paginación con el filtro `completed`, por ejemplo `?completed=false&page_size=20`.
+</Tip>
