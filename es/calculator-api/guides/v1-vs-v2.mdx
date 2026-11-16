@@ -1,0 +1,64 @@
+---
+title: v1 frente a v2
+description: Elige la versión adecuada de la API de Calculadora para tu caso de uso.
+icon: code-compare
+---
+
+La v1 se lanzó primero con un endpoint por operación. La v2 añadió un único endpoint más flexible. Aquí tienes la misma tarea en ambas.
+
+<Tabs>
+  <Tab title="v1: dos números">
+    ```bash
+    curl -X POST http://localhost:8000/v1/multiply \
+      -H "Content-Type: application/json" \
+      -d '{"a": 6, "b": 7}'
+    ```
+
+    ```json
+    { "result": 42 }
+    ```
+  </Tab>
+  <Tab title="v2: cualquier cantidad de operandos">
+    ```bash
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "multiply", "operands": [6, 7, 2]}'
+    ```
+
+    ```json
+    { "result": 84, "operation": "multiply", "operands": [6, 7, 2] }
+    ```
+  </Tab>
+</Tabs>
+
+## Diferencias {#differences}
+
+<AccordionGroup>
+  <Accordion title="Forma de la solicitud" defaultOpen>
+    La v1 envía `{ "a": 6, "b": 7 }`. La v2 envía `{ "operation": "multiply", "operands": [6, 7] }`.
+  </Accordion>
+  <Accordion title="Forma de la respuesta">
+    La v1 devuelve `{ "result": 42 }`. La v2 devuelve el mismo campo y además repite `operation` y `operands`.
+  </Accordion>
+  <Accordion title="Errores">
+    Igual en ambas: dividir por cero devuelve un `400` con un mensaje `detail`.
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+  Una API real gestionaría las versiones mediante un encabezado o un prefijo de ruta y mantendría las versiones antiguas en funcionamiento. Esta demo usa el prefijo de ruta (`/v1`, `/v2`) y la documentación usa el selector de versión de Mintlify, por lo que cada versión tiene su propia referencia de API.
+</Info>
+
+## Migrar de v1 a v2 {#migrating-from-v1-to-v2}
+
+<Steps>
+  <Step title="Cambia la URL">
+    Sustituye `/v1/<operation>` por `/v2/calculate`.
+  </Step>
+  <Step title="Cambia el cuerpo">
+    Mueve el nombre de la operación al cuerpo y pon tus números en `operands`.
+  </Step>
+  <Step title="Lee el mismo resultado">
+    El campo `result` funciona de la misma manera.
+  </Step>
+</Steps>

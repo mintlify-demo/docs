@@ -1,0 +1,44 @@
+---
+title: API GraphQL
+description: Consulta y modifica tareas a través de GraphQL, con una referencia generada a partir del esquema.
+icon: diagram-project
+---
+
+La Todo API también habla GraphQL en `/graphql`. Lee y escribe las mismas tareas que la API REST, así que una tarea que crees aquí aparece en `GET /todos` y en el [flujo de eventos](/es/todo-api/events/overview).
+
+Las páginas de referencia que aparecen a continuación se generan a partir de [`schema.graphql`](https://github.com/mintlify-demo/docs/blob/main/todo-api/schema.graphql), que coincide con el código del servidor en [`todo_graphql.py`](https://github.com/mintlify-demo/todo-api/blob/main/todo_graphql.py). Cuando el esquema cambia, la referencia cambia con él.
+
+## Enviar una consulta {#send-a-query}
+
+Envía tu clave de API en el encabezado `X-API-Key`, igual que con REST.
+
+<CodeGroup>
+```bash cURL
+curl http://localhost:8000/graphql \
+  -H "X-API-Key: demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ todos(pageSize: 5) { total items { id title completed } } }"}'
+```
+
+```graphql Query
+query {
+  todos(pageSize: 5, completed: false) {
+    total
+    items { id title completed createdAt }
+  }
+}
+```
+
+```graphql Mutation
+mutation {
+  createTodo(input: { title: "Write the docs" }) {
+    id
+    title
+  }
+}
+```
+</CodeGroup>
+
+<Tip>
+  Con la API en ejecución, abre `http://localhost:8000/graphql` en un navegador para usar GraphiQL. Añade `{"X-API-Key": "demo-key"}` en su panel **Headers**.
+</Tip>

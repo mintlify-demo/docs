@@ -1,0 +1,47 @@
+---
+title: Autenticación
+description: Autentica cada solicitud con una clave de API en el encabezado X-API-Key.
+icon: key
+---
+
+Todos los endpoints requieren una clave de API. Envíala en el encabezado `X-API-Key`.
+
+```bash
+curl http://localhost:8000/todos -H "X-API-Key: demo-key"
+```
+
+## Claves por plan {#keys-by-plan}
+
+Cada clave pertenece a un plan. El plan determina qué endpoints puede llamar la clave.
+
+| Clave | Plan | Puede llamar |
+| --- | --- | --- |
+| `demo-key` | Standard | Todos los endpoints excepto la creación masiva |
+| `partner-demo-key` | Partner | Todos los endpoints excepto la creación masiva |
+| `enterprise-demo-key` | Enterprise | Todos los endpoints, incluido [`POST /todos/bulk`](/es/todo-api/guides/enterprise-bulk-import) |
+
+<Info>
+  Estas claves de demostración son públicas a propósito. Para usar otras claves, define `TODO_API_KEY`, `TODO_PARTNER_API_KEY` y `TODO_ENTERPRISE_API_KEY` antes de iniciar el servidor.
+</Info>
+
+{user.name ? <Tip>Has iniciado sesión como <strong>{user.name}</strong>{user.plan ? <> con el plan <strong>{user.plan}</strong></> : null}: el playground de cada página de endpoint ya tiene completada la clave de tu plan{user.apiKey ? <> (<code>{user.apiKey}</code>)</> : null}.</Tip> : null}
+
+## Qué ocurre sin una clave {#what-happens-without-a-key}
+
+Una clave ausente o incorrecta devuelve `401`:
+
+```json
+{ "detail": "Invalid or missing API key" }
+```
+
+## En el playground de la API {#in-the-api-playground}
+
+Cada página de endpoint de la referencia de la API tiene un campo **Authorization**. Cuando has iniciado sesión en la documentación, se completa con la clave de tu plan. De lo contrario, introduce `demo-key` ahí y el playground añadirá el encabezado por ti.
+
+<ParamField header="X-API-Key" type="string" required>
+  Tu clave de API. Para la demo, usa `demo-key`.
+</ParamField>
+
+<Warning>
+  Nunca confirmes claves de API reales en el repositorio. Esta clave de demostración es pública a propósito.
+</Warning>

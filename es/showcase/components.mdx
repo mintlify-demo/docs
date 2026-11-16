@@ -5,28 +5,28 @@ icon: shapes
 public: true
 ---
 
-Cada ejemplo de esta página es MDX real. Usa la opción **Ver como Markdown** de la página para copiar cualquiera de ellos.
+Cada ejemplo a continuación es MDX real. Abre la opción **View as Markdown** de la página para copiar cualquiera de ellos.
 
-## Avisos
+## Avisos {#callouts}
 
-<Note>Una **nota** añade contexto.</Note>
+<Note>Una **nota** agrega contexto adicional.</Note>
 <Tip>Un **consejo** comparte un atajo o una buena práctica.</Tip>
-<Info>Un aviso de **información** destaca un dato útil.</Info>
+<Info>Un aviso de **información** destaca contexto útil.</Info>
 <Check>Una **confirmación** indica que algo salió bien.</Check>
 <Warning>Una **advertencia** señala algo con lo que hay que tener cuidado.</Warning>
 <Danger>Un aviso de **peligro** marca algo que puede romper cosas.</Danger>
 
-## Tarjetas
+## Tarjetas {#cards}
 
 <CardGroup cols={3}>
   <Card title="Tarjeta simple" icon="star">
     Una tarjeta con un icono y texto.
   </Card>
   <Card title="Tarjeta con enlace" icon="link" href="/es/quickstart">
-    Añade `href` y toda la tarjeta se puede pulsar.
+    Agrega `href` y toda la tarjeta se puede pulsar.
   </Card>
   <Card title="Tarjeta con CTA" icon="arrow-right" href="/es/changelog" cta="Ver el registro de cambios">
-    Añade `cta` para personalizar el texto del enlace.
+    Agrega `cta` para una etiqueta de enlace personalizada.
   </Card>
 </CardGroup>
 
@@ -34,24 +34,24 @@ Cada ejemplo de esta página es MDX real. Usa la opción **Ver como Markdown** d
   Usa `horizontal` para un diseño compacto de ancho completo.
 </Card>
 
-## Columnas
+## Columnas {#columns}
 
 <Columns cols={2}>
-  <Card title="Columna izquierda" icon="arrow-left">Las columnas organizan cualquier contenido en una cuadrícula adaptable.</Card>
-  <Card title="Columna derecha" icon="arrow-right">En pantallas pequeñas se apilan.</Card>
+  <Card title="Columna izquierda" icon="arrow-left">Las columnas organizan cualquier cosa en una cuadrícula adaptable.</Card>
+  <Card title="Columna derecha" icon="arrow-right">Se apilan en pantallas pequeñas.</Card>
 </Columns>
 
-## Pasos
+## Pasos {#steps}
 
 <Steps>
   <Step title="Primer paso" icon="1">
     Los pasos numeran un procedimiento automáticamente.
   </Step>
   <Step title="Segundo paso">
-    Un paso puede contener cualquier cosa, incluido código:
+    Coloca cualquier contenido en un paso, incluido código:
 
     ```bash
-    echo "hola desde un paso"
+    echo "hello from a step"
     ```
   </Step>
   <Step title="Tercer paso">
@@ -59,18 +59,18 @@ Cada ejemplo de esta página es MDX real. Usa la opción **Ver como Markdown** d
   </Step>
 </Steps>
 
-## Pestañas
+## Pestañas {#tabs}
 
 <Tabs>
   <Tab title="Primera pestaña" icon="1">
     Las pestañas alternan entre opciones, como sistemas operativos o lenguajes.
   </Tab>
   <Tab title="Segunda pestaña" icon="2">
-    La elección del lector se recuerda en todas las páginas que usan los mismos títulos de pestaña.
+    La elección del lector se recuerda en las páginas que usan los mismos títulos de pestaña.
   </Tab>
 </Tabs>
 
-## Grupos de código y bloques de código
+## Grupos de código y bloques de código {#code-groups-and-code-blocks}
 
 <CodeGroup>
   ```python Python
@@ -89,48 +89,48 @@ Cada ejemplo de esta página es MDX real. Usa la opción **Ver como Markdown** d
 
 ```python title="highlight.py" lines highlight={2,3}
 def total(items):
-    subtotal = sum(items)       # resaltado
-    return subtotal * 1.08      # resaltado
+    subtotal = sum(items)       # highlighted
+    return subtotal * 1.08      # highlighted
 ```
 
-## Acordeones
+## Acordeones {#accordions}
 
 <AccordionGroup>
   <Accordion title="Cerrado por defecto" icon="chevron-down">
-    Los acordeones ocultan los detalles hasta que el lector los necesita.
+    Los acordeones ocultan detalles hasta que el lector los quiere ver.
   </Accordion>
   <Accordion title="Abierto por defecto" defaultOpen>
-    Usa `defaultOpen` para que empiece desplegado.
+    Establece `defaultOpen` para que empiece expandido.
   </Accordion>
 </AccordionGroup>
 
-## Diagramas con Mermaid
+## Diagramas con Mermaid {#diagrams-with-mermaid}
 
-Escribe un bloque `mermaid` y Mintlify lo dibuja, en modo claro y oscuro.
+Escribe un bloque delimitado `mermaid` y Mintlify lo renderiza, en modo claro y oscuro.
 
 ```mermaid
 sequenceDiagram
-    participant Lector
-    participant Docs as Docs de Mintlify
+    participant Reader as Lector
+    participant Docs as Documentación de Mintlify
     participant API as Tu API
-    Lector->>Docs: Abre la página de un endpoint
-    Docs->>Lector: Muestra el editor de peticiones y ejemplos de código
-    Lector->>API: Pulsa "Try it"
-    API-->>Lector: 200 OK con JSON
+    Reader->>Docs: Abre una página de endpoint
+    Docs->>Reader: Muestra el generador de solicitudes y ejemplos de código
+    Reader->>API: Hace clic en "Try it"
+    API-->>Reader: 200 OK con JSON
 ```
 
-Los diagramas de flujo funcionan igual.
+Los diagramas de flujo funcionan de la misma manera.
 
 ```mermaid
 flowchart LR
-    Idea --> Borrador --> Revisión --> Publicación
-    Revisión -- cambios solicitados --> Borrador
+    Idea[Idea] --> Draft[Borrador] --> Review[Revisión] --> Publish[Publicación]
+    Review -- cambios solicitados --> Draft
 ```
 
-## Campos de API
+## Campos de API {#api-fields}
 
 <ParamField path="user_id" type="string" required>
-  El ID del usuario. Los parámetros de ruta, los parámetros de consulta, las cabeceras y los campos del cuerpo tienen cada uno su variante.
+  El ID del usuario. Los parámetros de ruta, los parámetros de consulta, los encabezados y los campos del cuerpo tienen cada uno su propia variante.
 </ParamField>
 
 <ParamField query="limit" type="integer" default="10">
@@ -146,27 +146,27 @@ flowchart LR
   </Expandable>
 </ResponseField>
 
-## Ejemplos de petición y respuesta
+## Ejemplos de solicitud y respuesta {#request-and-response-examples}
 
 <RequestExample>
-  ```bash Petición
+  ```bash Request
   curl https://api.example.com/users/42
   ```
 </RequestExample>
 
 <ResponseExample>
-  ```json Respuesta
+  ```json Response
   { "user": { "name": "Ada", "plan": "free" } }
   ```
 </ResponseExample>
 
-## Marcos e imágenes
+## Marcos e imágenes {#frames-and-images}
 
-<Frame caption="Una imagen SVG dentro de un Frame, con pie de foto.">
-  <img src="/logo/light.svg" alt="Logo de Mintlify Demo" />
+<Frame caption="Una imagen SVG dentro de un Frame, con una leyenda.">
+  <img src="/logo/light.svg" alt="Logotipo de Mintlify Demo" />
 </Frame>
 
-## Insignias, tooltips e iconos
+## Insignias, tooltips e iconos {#badges-tooltips-and-icons}
 
 <Badge color="green" icon="circle-check">Estable</Badge> <Badge color="orange" icon="clock">Beta</Badge> <Badge color="red" icon="ban">Obsoleto</Badge> <Badge color="blue" stroke>Contorno</Badge> <Badge color="purple" shape="pill">Píldora</Badge>
 
@@ -174,7 +174,7 @@ Pasa el cursor sobre <Tooltip headline="OpenAPI" tip="Un formato estándar para 
 
 Iconos en línea: <Icon icon="rocket" size={16} /> <Icon icon="bolt" size={16} color="#0D9373" /> <Icon icon="heart" size={16} color="#EF4444" />
 
-## Árbol
+## Árbol {#tree}
 
 <Tree>
   <Tree.Folder name="merge-sort-api" defaultOpen>
@@ -191,7 +191,7 @@ Iconos en línea: <Icon icon="rocket" size={16} /> <Icon icon="bolt" size={16} c
   </Tree.Folder>
 </Tree>
 
-## Colores
+## Colores {#colors}
 
 <Color variant="compact">
   <Color.Item name="primary" value="#0D9373" />
@@ -199,50 +199,50 @@ Iconos en línea: <Icon icon="rocket" size={16} /> <Icon icon="bolt" size={16} c
   <Color.Item name="surface" value={{ light: "#F8FAFC", dark: "#0F172A" }} />
 </Color>
 
-## Tarjeta de repositorio de GitHub
+## Tarjeta de repositorio de GitHub {#github-repo-card}
 
 <GitHub.Repo repo="mintlify/docs" />
 
-## Prompt
+## Prompt {#prompt}
 
-<Prompt description="Dáselo a tu agente de programación para que escriba docs con tu estilo.">
+<Prompt description="Dale esto a tu agente de programación para que escriba documentación con tu estilo.">
 Eres un redactor técnico. Escribe documentación clara y concisa para desarrolladores.
 - Usa la segunda persona ("tú") y verbos en voz activa.
-- Empieza cada procedimiento con un título orientado al objetivo.
-- Incluye un ejemplo de código ejecutable para cada endpoint.
+- Comienza cada procedimiento con un encabezado orientado a un objetivo.
+- Muestra un ejemplo de código ejecutable para cada endpoint.
 </Prompt>
 
-## Vistas
+## Vistas {#views}
 
 <View title="Python" icon="python">
   ```python
-  print("Las vistas cambian el contenido de toda la página.")
+  print("Views switch the content for the whole page.")
   ```
 </View>
 
 <View title="JavaScript" icon="js">
   ```javascript
-  console.log("Elige un lenguaje y la página cambia.");
+  console.log("Pick a language and the page changes.");
   ```
 </View>
 
-## Matemáticas
+## Matemáticas {#math}
 
-Matemáticas en línea como $E = mc^2$ y en bloque:
+Matemáticas en línea como $E = mc^2$ y matemáticas en bloque:
 
 $$
 \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
 $$
 
-## Tablas y Markdown
+## Tablas y Markdown {#tables-and-markdown}
 
 | Función | Free | Pro | Enterprise |
 | --- | :---: | :---: | :---: |
-| Alojamiento de docs | Sí | Sí | Sí |
+| Alojamiento de documentación | Sí | Sí | Sí |
 | Asistente de IA | | Sí | Sí |
 | Proyectos multirrepositorio | | | Sí |
 
-> Las citas, la **negrita**, la *cursiva*, el ~~tachado~~, el `código en línea` y los [enlaces](/es/quickstart) funcionan como esperas.
+> Las citas en bloque, la **negrita**, la *cursiva*, el ~~tachado~~, el `código en línea` y los [enlaces](/es/quickstart) funcionan como esperarías.
 
 - [x] Las listas de tareas
 - [ ] también funcionan

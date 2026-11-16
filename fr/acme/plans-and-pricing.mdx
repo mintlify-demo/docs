@@ -1,0 +1,45 @@
+---
+title: "Formules et tarifs"
+description: "Comparez les formules d'Acme Coffee Club et choisissez celle qui vous convient."
+icon: "tags"
+public: true
+keywords: ["formules", "tarifs", "prix", "coût", "free", "pro", "team"]
+---
+
+Acme Coffee Club propose trois formules. Tous les prix sont en dollars américains.
+
+{user.firstName ? (
+  <Info>Bonjour {user.firstName} ! Vous avez la formule <strong>{user.acmePlan ?? "Free"}</strong>.</Info>
+) : null}
+
+<Columns cols={3}>
+  <Card title="Free" icon="seedling">
+    **0 $**
+
+    1 sachet de café par mois.
+  </Card>
+  <Card title="Pro" icon="star">
+    <Badge color="green" icon="heart">La plus populaire</Badge>
+
+    **12 $ par mois**
+
+    3 sachets de café par mois.
+  </Card>
+  <Card title="Team" icon="users">
+    **29 $ par mois, par personne**
+
+    Du café pour tout votre bureau.
+  </Card>
+</Columns>
+
+| Formule | Prix | Café |
+| --- | --- | --- |
+| Free | 0 $ | 1 sachet par mois |
+| Pro | 12 $ par mois | 3 sachets par mois |
+| Team | 29 $ par mois, par personne | Pour toute votre équipe |
+
+<Note>Vous pouvez changer de formule à tout moment. Chaque nouveau compte commence par un [essai gratuit](/fr/acme/free-trial).</Note>
+
+{user.acmePlan === "Pro" ? (
+  <Tip>Avantage membre Pro : vous pouvez changer de torréfaction à tout moment depuis les paramètres du <strong>Compte</strong>.</Tip>
+) : null}

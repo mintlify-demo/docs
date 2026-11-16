@@ -1,0 +1,58 @@
+---
+title: Ejemplos
+description: Entradas y salidas para cada endpoint de Text Utils.
+icon: flask
+---
+
+<Tabs>
+  <Tab title="Invertir">
+    ```json Request to /reverse
+    { "text": "stressed" }
+    ```
+
+    ```json Response
+    { "original": "stressed", "reversed": "desserts" }
+    ```
+  </Tab>
+
+  <Tab title="Recuento de palabras">
+    ```json Request to /word-count
+    { "text": "Hello\nhello world" }
+    ```
+
+    ```json Response
+    { "words": 3, "unique_words": 2, "characters": 17, "lines": 2 }
+    ```
+
+    <Note>
+      `unique_words` no distingue entre mayúsculas y minúsculas, así que `Hello` y `hello` cuentan una sola vez.
+    </Note>
+  </Tab>
+
+  <Tab title="Palíndromo">
+    ```json Request to /palindrome
+    { "text": "Racecar" }
+    ```
+
+    ```json Response
+    { "is_palindrome": true, "text": "Racecar" }
+    ```
+  </Tab>
+</Tabs>
+
+## Modo estricto de palíndromo {#strict-palindrome-mode}
+
+De forma predeterminada, `/palindrome` ignora las mayúsculas, los espacios y la puntuación. Desactívalo con `ignore_case_and_punctuation`:
+
+<ParamField body="ignore_case_and_punctuation" type="boolean" default="true">
+  Cuando es `false`, `Racecar` **no** es un palíndromo (R mayúscula), pero `racecar` sí lo es.
+</ParamField>
+
+<AccordionGroup>
+  <Accordion title="¿Qué cuenta como palabra?">
+    Secuencias de letras, dígitos, apóstrofos y guiones. `don't` y `well-known` cuentan como una palabra cada una.
+  </Accordion>
+  <Accordion title="¿Cuál es el límite de tamaño?">
+    10 000 caracteres por solicitud. Un texto más largo devuelve un `422`.
+  </Accordion>
+</AccordionGroup>

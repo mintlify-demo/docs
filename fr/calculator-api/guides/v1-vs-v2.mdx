@@ -1,0 +1,64 @@
+---
+title: v1 vs v2
+description: Choisissez la bonne version de l'API Calculator pour votre cas d'usage.
+icon: code-compare
+---
+
+La v1 est sortie en premier, avec un endpoint par opération. La v2 a ajouté un endpoint unique et plus flexible. Voici la même tâche dans les deux versions.
+
+<Tabs>
+  <Tab title="v1 : deux nombres">
+    ```bash
+    curl -X POST http://localhost:8000/v1/multiply \
+      -H "Content-Type: application/json" \
+      -d '{"a": 6, "b": 7}'
+    ```
+
+    ```json
+    { "result": 42 }
+    ```
+  </Tab>
+  <Tab title="v2 : n'importe quel nombre d'opérandes">
+    ```bash
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "multiply", "operands": [6, 7, 2]}'
+    ```
+
+    ```json
+    { "result": 84, "operation": "multiply", "operands": [6, 7, 2] }
+    ```
+  </Tab>
+</Tabs>
+
+## Différences {#differences}
+
+<AccordionGroup>
+  <Accordion title="Forme de la requête" defaultOpen>
+    La v1 envoie `{ "a": 6, "b": 7 }`. La v2 envoie `{ "operation": "multiply", "operands": [6, 7] }`.
+  </Accordion>
+  <Accordion title="Forme de la réponse">
+    La v1 renvoie `{ "result": 42 }`. La v2 renvoie le même champ et reprend également `operation` et `operands`.
+  </Accordion>
+  <Accordion title="Erreurs">
+    Identiques dans les deux : diviser par zéro renvoie une `400` avec un message `detail`.
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+  Une vraie API gérerait les versions via un en-tête ou un préfixe de chemin et maintiendrait le fonctionnement des anciennes versions. Cette démo utilise le préfixe de chemin (`/v1`, `/v2`) et la documentation utilise le sélecteur de version de Mintlify, de sorte que chaque version a sa propre référence API.
+</Info>
+
+## Migrer de la v1 à la v2 {#migrating-from-v1-to-v2}
+
+<Steps>
+  <Step title="Changer l'URL">
+    Remplacez `/v1/<operation>` par `/v2/calculate`.
+  </Step>
+  <Step title="Changer le corps">
+    Déplacez le nom de l'opération dans le corps et placez vos nombres dans `operands`.
+  </Step>
+  <Step title="Lire le même résultat">
+    Le champ `result` fonctionne de la même manière.
+  </Step>
+</Steps>

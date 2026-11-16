@@ -1,0 +1,41 @@
+---
+title: Procesamiento por lotes para partners
+description: Procesa muchos documentos con la Text Utils API desde una integración de partner.
+icon: handshake
+groups: ["partner", "enterprise"]
+---
+
+<Note>
+  Esta página es para lectores de los grupos **partner** o **enterprise**. Los demás lectores con sesión iniciada reciben un 404.
+</Note>
+
+{user.name ? <>Bienvenido, {user.name}.</> : null} La Text Utils API recibe un texto por solicitud. Para procesar un lote, envía solicitudes en paralelo y mantén cada texto por debajo de 100 000 caracteres.
+
+<CodeGroup>
+```python Python
+import asyncio, httpx
+
+TEXTS = ["Hello, Mintlify!", "A man, a plan, a canal: Panama", "Docs that write themselves"]
+
+async def main():
+    async with httpx.AsyncClient(base_url="http://localhost:8000") as client:
+        results = await asyncio.gather(*(client.post("/word-count", json={"text": t}) for t in TEXTS))
+        for text, r in zip(TEXTS, results):
+            print(text, r.json()["words"])
+
+asyncio.run(main())
+```
+
+```javascript JavaScript
+const texts = ["Hello, Mintlify!", "A man, a plan, a canal: Panama"];
+const results = await Promise.all(
+  texts.map((text) =>
+    fetch("http://localhost:8000/word-count", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    }).then((r) => r.json()),
+  ),
+);
+```
+</CodeGroup>

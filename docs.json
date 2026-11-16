@@ -400,30 +400,30 @@
               {
                 "item": "Merge Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Ordena una lista y ve cada paso de fusión",
                 "groups": [
                   {
-                    "group": "Get started",
+                    "group": "Empezar",
                     "icon": "rocket",
                     "pages": [
-                      "merge-sort-api/index",
-                      "merge-sort-api/quickstart"
+                      "es/merge-sort-api/index",
+                      "es/merge-sort-api/quickstart"
                     ]
                   },
                   {
-                    "group": "Guides",
+                    "group": "Guías",
                     "icon": "book-open",
                     "pages": [
-                      "merge-sort-api/guides/how-it-works",
-                      "merge-sort-api/guides/sorting-at-scale"
+                      "es/merge-sort-api/guides/how-it-works",
+                      "es/merge-sort-api/guides/sorting-at-scale"
                     ]
                   },
                   {
-                    "group": "API reference",
+                    "group": "Referencia de la API",
                     "icon": "code",
                     "openapi": {
                       "source": "merge-sort-api/openapi.json",
-                      "directory": "merge-sort-api/api-reference"
+                      "directory": "es/merge-sort-api/api-reference"
                     }
                   }
                 ]
@@ -431,56 +431,56 @@
               {
                 "item": "Calculator API",
                 "icon": "calculator",
-                "description": "Versions 1 and 2 side by side",
+                "description": "Versiones 1 y 2 lado a lado",
                 "versions": [
                   {
                     "version": "v2",
-                    "tag": "Latest",
+                    "tag": "Más reciente",
                     "default": true,
                     "groups": [
                       {
-                        "group": "Get started",
+                        "group": "Empezar",
                         "icon": "rocket",
                         "pages": [
-                          "calculator-api/index",
-                          "calculator-api/quickstart"
+                          "es/calculator-api/index",
+                          "es/calculator-api/quickstart"
                         ]
                       },
                       {
-                        "group": "Guides",
+                        "group": "Guías",
                         "icon": "book-open",
                         "pages": [
-                          "calculator-api/guides/v1-vs-v2",
-                          "calculator-api/guides/errors"
+                          "es/calculator-api/guides/v1-vs-v2",
+                          "es/calculator-api/guides/errors"
                         ]
                       },
                       {
-                        "group": "API reference",
+                        "group": "Referencia de la API",
                         "icon": "code",
                         "openapi": {
                           "source": "calculator-api/openapi.v2.json",
-                          "directory": "calculator-api/api-reference"
+                          "directory": "es/calculator-api/api-reference"
                         }
                       }
                     ]
                   },
                   {
                     "version": "v1",
-                    "tag": "Legacy",
+                    "tag": "Heredada",
                     "groups": [
                       {
-                        "group": "Get started",
+                        "group": "Empezar",
                         "icon": "rocket",
                         "pages": [
-                          "calculator-api/v1/overview"
+                          "es/calculator-api/v1/overview"
                         ]
                       },
                       {
-                        "group": "API reference",
+                        "group": "Referencia de la API",
                         "icon": "code",
                         "openapi": {
                           "source": "calculator-api/openapi.v1.json",
-                          "directory": "calculator-api/api-reference"
+                          "directory": "es/calculator-api/api-reference"
                         }
                       }
                     ]
@@ -490,67 +490,67 @@
               {
                 "item": "Todo API",
                 "icon": "list-check",
-                "description": "API key auth and pagination",
+                "description": "Autenticación con clave de API y paginación",
                 "groups": [
                   {
-                    "group": "Get started",
+                    "group": "Empezar",
                     "icon": "rocket",
                     "pages": [
-                      "todo-api/index",
-                      "todo-api/quickstart"
+                      "es/todo-api/index",
+                      "es/todo-api/quickstart"
                     ]
                   },
                   {
-                    "group": "Guides",
+                    "group": "Guías",
                     "icon": "book-open",
                     "pages": [
-                      "todo-api/guides/authentication",
-                      "todo-api/guides/pagination",
-                      "todo-api/guides/deprecations",
-                      "todo-api/guides/partner-integrations",
-                      "todo-api/guides/enterprise-bulk-import"
+                      "es/todo-api/guides/authentication",
+                      "es/todo-api/guides/pagination",
+                      "es/todo-api/guides/deprecations",
+                      "es/todo-api/guides/partner-integrations",
+                      "es/todo-api/guides/enterprise-bulk-import"
                     ]
                   },
                   {
-                    "group": "API reference",
+                    "group": "Referencia de la API",
                     "icon": "code",
                     "openapi": {
                       "source": "todo-api/openapi.json",
-                      "directory": "todo-api/api-reference"
+                      "directory": "es/todo-api/api-reference"
                     }
                   },
                   {
-                    "group": "GraphQL API",
+                    "group": "API de GraphQL",
                     "icon": "diagram-project",
                     "pages": [
-                      "todo-api/graphql/overview"
+                      "es/todo-api/graphql/overview"
                     ],
                     "graphql": {
                       "source": "todo-api/schema.graphql",
-                      "directory": "todo-api/graphql/reference"
+                      "directory": "es/todo-api/graphql/reference"
                     }
                   },
                   {
-                    "group": "Event stream (WebSocket)",
+                    "group": "Flujo de eventos (WebSocket)",
                     "icon": "bolt",
                     "pages": [
-                      "todo-api/events/overview"
+                      "es/todo-api/events/overview"
                     ],
                     "asyncapi": {
                       "source": "todo-api/asyncapi.yaml",
-                      "directory": "todo-api/events/reference"
+                      "directory": "es/todo-api/events/reference"
                     }
                   },
                   {
-                    "group": "Python SDK",
+                    "group": "SDK de Python",
                     "icon": "python",
                     "pages": [
-                      "todo-api/sdk/overview"
+                      "es/todo-api/sdk/overview"
                     ],
                     "sdk": {
                       "format": "sphinx",
                       "source": "todo-api/sdk-artifacts/python",
-                      "directory": "todo-api/sdk/reference"
+                      "directory": "es/todo-api/sdk/reference"
                     }
                   }
                 ]
@@ -558,32 +558,72 @@
               {
                 "item": "Text Utils API",
                 "icon": "font",
-                "description": "Code samples in four languages",
+                "description": "Ejemplos de código en cuatro lenguajes",
                 "groups": [
                   {
-                    "group": "Get started",
+                    "group": "Empezar",
                     "icon": "rocket",
                     "pages": [
-                      "text-utils-api/index",
-                      "text-utils-api/quickstart"
+                      "es/text-utils-api/index",
+                      "es/text-utils-api/quickstart"
                     ]
                   },
                   {
-                    "group": "Guides",
+                    "group": "Guías",
                     "icon": "book-open",
                     "pages": [
-                      "text-utils-api/guides/examples",
-                      "text-utils-api/guides/partner-batch-processing"
+                      "es/text-utils-api/guides/examples",
+                      "es/text-utils-api/guides/partner-batch-processing"
                     ]
                   },
                   {
-                    "group": "API reference",
+                    "group": "Referencia de la API",
                     "icon": "code",
                     "openapi": {
                       "source": "text-utils-api/openapi.json",
-                      "directory": "text-utils-api/api-reference"
+                      "directory": "es/text-utils-api/api-reference"
                     }
                   }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Centro de ayuda de Acme",
+            "icon": "mug-hot",
+            "groups": [
+              {
+                "group": "Empezar",
+                "icon": "rocket",
+                "pages": [
+                  "es/acme/index",
+                  "es/acme/getting-started"
+                ]
+              },
+              {
+                "group": "Tu membresía",
+                "icon": "id-card",
+                "pages": [
+                  "es/acme/plans-and-pricing",
+                  "es/acme/free-trial",
+                  "es/acme/shipping",
+                  "es/acme/refunds"
+                ]
+              },
+              {
+                "group": "Ayuda",
+                "icon": "life-ring",
+                "pages": [
+                  "es/acme/contact-us",
+                  "es/acme/password-help",
+                  "es/acme/faq"
+                ]
+              },
+              {
+                "group": "Para el personal de Acme",
+                "icon": "lock",
+                "pages": [
+                  "es/acme/staff-handbook"
                 ]
               }
             ]
@@ -629,30 +669,30 @@
               {
                 "item": "Merge Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Triez une liste et voyez chaque étape de fusion",
                 "groups": [
                   {
-                    "group": "Get started",
+                    "group": "Démarrer",
                     "icon": "rocket",
                     "pages": [
-                      "merge-sort-api/index",
-                      "merge-sort-api/quickstart"
+                      "fr/merge-sort-api/index",
+                      "fr/merge-sort-api/quickstart"
                     ]
                   },
                   {
                     "group": "Guides",
                     "icon": "book-open",
                     "pages": [
-                      "merge-sort-api/guides/how-it-works",
-                      "merge-sort-api/guides/sorting-at-scale"
+                      "fr/merge-sort-api/guides/how-it-works",
+                      "fr/merge-sort-api/guides/sorting-at-scale"
                     ]
                   },
                   {
-                    "group": "API reference",
+                    "group": "Référence de l'API",
                     "icon": "code",
                     "openapi": {
                       "source": "merge-sort-api/openapi.json",
-                      "directory": "merge-sort-api/api-reference"
+                      "directory": "fr/merge-sort-api/api-reference"
                     }
                   }
                 ]
@@ -660,56 +700,56 @@
               {
                 "item": "Calculator API",
                 "icon": "calculator",
-                "description": "Versions 1 and 2 side by side",
+                "description": "Versions 1 et 2 côte à côte",
                 "versions": [
                   {
                     "version": "v2",
-                    "tag": "Latest",
+                    "tag": "Dernière",
                     "default": true,
                     "groups": [
                       {
-                        "group": "Get started",
+                        "group": "Démarrer",
                         "icon": "rocket",
                         "pages": [
-                          "calculator-api/index",
-                          "calculator-api/quickstart"
+                          "fr/calculator-api/index",
+                          "fr/calculator-api/quickstart"
                         ]
                       },
                       {
                         "group": "Guides",
                         "icon": "book-open",
                         "pages": [
-                          "calculator-api/guides/v1-vs-v2",
-                          "calculator-api/guides/errors"
+                          "fr/calculator-api/guides/v1-vs-v2",
+                          "fr/calculator-api/guides/errors"
                         ]
                       },
                       {
-                        "group": "API reference",
+                        "group": "Référence de l'API",
                         "icon": "code",
                         "openapi": {
                           "source": "calculator-api/openapi.v2.json",
-                          "directory": "calculator-api/api-reference"
+                          "directory": "fr/calculator-api/api-reference"
                         }
                       }
                     ]
                   },
                   {
                     "version": "v1",
-                    "tag": "Legacy",
+                    "tag": "Ancienne",
                     "groups": [
                       {
-                        "group": "Get started",
+                        "group": "Démarrer",
                         "icon": "rocket",
                         "pages": [
-                          "calculator-api/v1/overview"
+                          "fr/calculator-api/v1/overview"
                         ]
                       },
                       {
-                        "group": "API reference",
+                        "group": "Référence de l'API",
                         "icon": "code",
                         "openapi": {
                           "source": "calculator-api/openapi.v1.json",
-                          "directory": "calculator-api/api-reference"
+                          "directory": "fr/calculator-api/api-reference"
                         }
                       }
                     ]
@@ -719,67 +759,67 @@
               {
                 "item": "Todo API",
                 "icon": "list-check",
-                "description": "API key auth and pagination",
+                "description": "Authentification par clé d'API et pagination",
                 "groups": [
                   {
-                    "group": "Get started",
+                    "group": "Démarrer",
                     "icon": "rocket",
                     "pages": [
-                      "todo-api/index",
-                      "todo-api/quickstart"
+                      "fr/todo-api/index",
+                      "fr/todo-api/quickstart"
                     ]
                   },
                   {
                     "group": "Guides",
                     "icon": "book-open",
                     "pages": [
-                      "todo-api/guides/authentication",
-                      "todo-api/guides/pagination",
-                      "todo-api/guides/deprecations",
-                      "todo-api/guides/partner-integrations",
-                      "todo-api/guides/enterprise-bulk-import"
+                      "fr/todo-api/guides/authentication",
+                      "fr/todo-api/guides/pagination",
+                      "fr/todo-api/guides/deprecations",
+                      "fr/todo-api/guides/partner-integrations",
+                      "fr/todo-api/guides/enterprise-bulk-import"
                     ]
                   },
                   {
-                    "group": "API reference",
+                    "group": "Référence de l'API",
                     "icon": "code",
                     "openapi": {
                       "source": "todo-api/openapi.json",
-                      "directory": "todo-api/api-reference"
+                      "directory": "fr/todo-api/api-reference"
                     }
                   },
                   {
-                    "group": "GraphQL API",
+                    "group": "API GraphQL",
                     "icon": "diagram-project",
                     "pages": [
-                      "todo-api/graphql/overview"
+                      "fr/todo-api/graphql/overview"
                     ],
                     "graphql": {
                       "source": "todo-api/schema.graphql",
-                      "directory": "todo-api/graphql/reference"
+                      "directory": "fr/todo-api/graphql/reference"
                     }
                   },
                   {
-                    "group": "Event stream (WebSocket)",
+                    "group": "Flux d'événements (WebSocket)",
                     "icon": "bolt",
                     "pages": [
-                      "todo-api/events/overview"
+                      "fr/todo-api/events/overview"
                     ],
                     "asyncapi": {
                       "source": "todo-api/asyncapi.yaml",
-                      "directory": "todo-api/events/reference"
+                      "directory": "fr/todo-api/events/reference"
                     }
                   },
                   {
-                    "group": "Python SDK",
+                    "group": "SDK Python",
                     "icon": "python",
                     "pages": [
-                      "todo-api/sdk/overview"
+                      "fr/todo-api/sdk/overview"
                     ],
                     "sdk": {
                       "format": "sphinx",
                       "source": "todo-api/sdk-artifacts/python",
-                      "directory": "todo-api/sdk/reference"
+                      "directory": "fr/todo-api/sdk/reference"
                     }
                   }
                 ]
@@ -787,32 +827,72 @@
               {
                 "item": "Text Utils API",
                 "icon": "font",
-                "description": "Code samples in four languages",
+                "description": "Exemples de code en quatre langages",
                 "groups": [
                   {
-                    "group": "Get started",
+                    "group": "Démarrer",
                     "icon": "rocket",
                     "pages": [
-                      "text-utils-api/index",
-                      "text-utils-api/quickstart"
+                      "fr/text-utils-api/index",
+                      "fr/text-utils-api/quickstart"
                     ]
                   },
                   {
                     "group": "Guides",
                     "icon": "book-open",
                     "pages": [
-                      "text-utils-api/guides/examples",
-                      "text-utils-api/guides/partner-batch-processing"
+                      "fr/text-utils-api/guides/examples",
+                      "fr/text-utils-api/guides/partner-batch-processing"
                     ]
                   },
                   {
-                    "group": "API reference",
+                    "group": "Référence de l'API",
                     "icon": "code",
                     "openapi": {
                       "source": "text-utils-api/openapi.json",
-                      "directory": "text-utils-api/api-reference"
+                      "directory": "fr/text-utils-api/api-reference"
                     }
                   }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Centre d'aide Acme",
+            "icon": "mug-hot",
+            "groups": [
+              {
+                "group": "Démarrer",
+                "icon": "rocket",
+                "pages": [
+                  "fr/acme/index",
+                  "fr/acme/getting-started"
+                ]
+              },
+              {
+                "group": "Votre abonnement",
+                "icon": "id-card",
+                "pages": [
+                  "fr/acme/plans-and-pricing",
+                  "fr/acme/free-trial",
+                  "fr/acme/shipping",
+                  "fr/acme/refunds"
+                ]
+              },
+              {
+                "group": "Aide",
+                "icon": "life-ring",
+                "pages": [
+                  "fr/acme/contact-us",
+                  "fr/acme/password-help",
+                  "fr/acme/faq"
+                ]
+              },
+              {
+                "group": "Pour le personnel d'Acme",
+                "icon": "lock",
+                "pages": [
+                  "fr/acme/staff-handbook"
                 ]
               }
             ]

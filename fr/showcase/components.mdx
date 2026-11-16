@@ -5,18 +5,18 @@ icon: shapes
 public: true
 ---
 
-Chaque exemple de cette page est du vrai MDX. Utilisez l'option **Afficher en Markdown** de la page pour copier n'importe lequel d'entre eux.
+Chaque exemple ci-dessous est du vrai MDX. Ouvrez l'option **View as Markdown** de la page pour en copier n'importe quelle partie.
 
-## Encadrés
+## Encadrés {#callouts}
 
-<Note>Une **note** ajoute du contexte.</Note>
-<Tip>Une **astuce** partage un raccourci ou une bonne pratique.</Tip>
-<Info>Un encadré **info** met en avant une information utile.</Info>
+<Note>Une **note** ajoute du contexte supplémentaire.</Note>
+<Tip>Un **conseil** partage un raccourci ou une bonne pratique.</Tip>
+<Info>Un encadré **info** met en avant des informations de contexte utiles.</Info>
 <Check>Une **validation** confirme une réussite.</Check>
-<Warning>Un **avertissement** signale un point d'attention.</Warning>
-<Danger>Un encadré **danger** signale ce qui peut tout casser.</Danger>
+<Warning>Un **avertissement** signale un point auquel faire attention.</Warning>
+<Danger>Un encadré **danger** signale quelque chose qui peut tout casser.</Danger>
 
-## Cartes
+## Cartes {#cards}
 
 <CardGroup cols={3}>
   <Card title="Carte simple" icon="star">
@@ -31,27 +31,27 @@ Chaque exemple de cette page est du vrai MDX. Utilisez l'option **Afficher en Ma
 </CardGroup>
 
 <Card title="Carte horizontale" icon="grip-lines" horizontal>
-  Utilisez `horizontal` pour une mise en page compacte, en pleine largeur.
+  Utilisez `horizontal` pour une mise en page compacte en pleine largeur.
 </Card>
 
-## Colonnes
+## Colonnes {#columns}
 
 <Columns cols={2}>
-  <Card title="Colonne de gauche" icon="arrow-left">Les colonnes disposent n'importe quel contenu dans une grille adaptative.</Card>
+  <Card title="Colonne de gauche" icon="arrow-left">Les colonnes organisent n'importe quel contenu dans une grille responsive.</Card>
   <Card title="Colonne de droite" icon="arrow-right">Elles s'empilent sur les petits écrans.</Card>
 </Columns>
 
-## Étapes
+## Étapes {#steps}
 
 <Steps>
   <Step title="Première étape" icon="1">
-    Les étapes numérotent une procédure automatiquement.
+    Les étapes numérotent automatiquement une procédure.
   </Step>
   <Step title="Deuxième étape">
-    Une étape peut contenir n'importe quoi, y compris du code :
+    Placez n'importe quel contenu dans une étape, y compris du code :
 
     ```bash
-    echo "bonjour depuis une étape"
+    echo "hello from a step"
     ```
   </Step>
   <Step title="Troisième étape">
@@ -59,18 +59,18 @@ Chaque exemple de cette page est du vrai MDX. Utilisez l'option **Afficher en Ma
   </Step>
 </Steps>
 
-## Onglets
+## Onglets {#tabs}
 
 <Tabs>
   <Tab title="Premier onglet" icon="1">
-    Les onglets permettent de passer d'une option à l'autre, comme des systèmes d'exploitation ou des langages.
+    Les onglets permettent de basculer entre des alternatives, comme des systèmes d'exploitation ou des langages.
   </Tab>
   <Tab title="Deuxième onglet" icon="2">
-    Le choix du lecteur est mémorisé sur toutes les pages qui utilisent les mêmes titres d'onglets.
+    Le choix du lecteur est mémorisé sur les pages qui utilisent les mêmes titres d'onglets.
   </Tab>
 </Tabs>
 
-## Groupes de code et blocs de code
+## Groupes de code et blocs de code {#code-groups-and-code-blocks}
 
 <CodeGroup>
   ```python Python
@@ -89,48 +89,48 @@ Chaque exemple de cette page est du vrai MDX. Utilisez l'option **Afficher en Ma
 
 ```python title="highlight.py" lines highlight={2,3}
 def total(items):
-    subtotal = sum(items)       # surligné
-    return subtotal * 1.08      # surligné
+    subtotal = sum(items)       # highlighted
+    return subtotal * 1.08      # highlighted
 ```
 
-## Accordéons
+## Accordéons {#accordions}
 
 <AccordionGroup>
   <Accordion title="Fermé par défaut" icon="chevron-down">
-    Les accordéons masquent les détails jusqu'à ce que le lecteur en ait besoin.
+    Les accordéons masquent les détails jusqu'à ce que le lecteur souhaite les voir.
   </Accordion>
   <Accordion title="Ouvert par défaut" defaultOpen>
-    Utilisez `defaultOpen` pour qu'il soit déplié au départ.
+    Définissez `defaultOpen` pour qu'il soit déplié au départ.
   </Accordion>
 </AccordionGroup>
 
-## Diagrammes avec Mermaid
+## Diagrammes avec Mermaid {#diagrams-with-mermaid}
 
-Écrivez un bloc `mermaid` et Mintlify le dessine, en mode clair comme en mode sombre.
+Écrivez un bloc délimité `mermaid` et Mintlify l'affiche, en mode clair comme en mode sombre.
 
 ```mermaid
 sequenceDiagram
-    participant Lecteur
-    participant Docs as Docs Mintlify
+    participant Reader as Lecteur
+    participant Docs as Documentation Mintlify
     participant API as Votre API
-    Lecteur->>Docs: Ouvre la page d'un endpoint
-    Docs->>Lecteur: Affiche le générateur de requêtes et des exemples de code
-    Lecteur->>API: Clique sur "Try it"
-    API-->>Lecteur: 200 OK avec du JSON
+    Reader->>Docs: Ouvre une page d'endpoint
+    Docs->>Reader: Affiche le générateur de requêtes et les exemples de code
+    Reader->>API: Clique sur "Try it"
+    API-->>Reader: 200 OK avec du JSON
 ```
 
-Les organigrammes fonctionnent de la même façon.
+Les organigrammes fonctionnent de la même manière.
 
 ```mermaid
 flowchart LR
-    Idée --> Brouillon --> Relecture --> Publication
-    Relecture -- modifications demandées --> Brouillon
+    Idea[Idée] --> Draft[Brouillon] --> Review[Relecture] --> Publish[Publication]
+    Review -- modifications demandées --> Draft
 ```
 
-## Champs d'API
+## Champs d'API {#api-fields}
 
 <ParamField path="user_id" type="string" required>
-  L'ID de l'utilisateur. Les paramètres de chemin, les paramètres de requête, les en-têtes et les champs du corps ont chacun leur variante.
+  L'ID de l'utilisateur. Les paramètres de chemin, les paramètres de requête, les en-têtes et les champs du corps ont chacun leur propre variante.
 </ParamField>
 
 <ParamField query="limit" type="integer" default="10">
@@ -142,39 +142,39 @@ flowchart LR
 
   <Expandable title="propriétés">
     <ResponseField name="name" type="string">Le nom de l'utilisateur.</ResponseField>
-    <ResponseField name="plan" type="string" default="free">L'offre de l'utilisateur.</ResponseField>
+    <ResponseField name="plan" type="string" default="free">Le forfait de l'utilisateur.</ResponseField>
   </Expandable>
 </ResponseField>
 
-## Exemples de requête et de réponse
+## Exemples de requête et de réponse {#request-and-response-examples}
 
 <RequestExample>
-  ```bash Requête
+  ```bash Request
   curl https://api.example.com/users/42
   ```
 </RequestExample>
 
 <ResponseExample>
-  ```json Réponse
+  ```json Response
   { "user": { "name": "Ada", "plan": "free" } }
   ```
 </ResponseExample>
 
-## Cadres et images
+## Cadres et images {#frames-and-images}
 
 <Frame caption="Une image SVG dans un Frame, avec une légende.">
-  <img src="/logo/light.svg" alt="Logo Mintlify Demo" />
+  <img src="/logo/light.svg" alt="Logo de la démo Mintlify" />
 </Frame>
 
-## Badges, infobulles et icônes
+## Badges, infobulles et icônes {#badges-tooltips-and-icons}
 
 <Badge color="green" icon="circle-check">Stable</Badge> <Badge color="orange" icon="clock">Bêta</Badge> <Badge color="red" icon="ban">Obsolète</Badge> <Badge color="blue" stroke>Contour</Badge> <Badge color="purple" shape="pill">Pilule</Badge>
 
-Survolez <Tooltip headline="OpenAPI" tip="Un format standard pour décrire les API HTTP. Mintlify le transforme en référence d'API interactive.">OpenAPI</Tooltip> pour voir une infobulle.
+Survolez <Tooltip headline="OpenAPI" tip="Un format standard pour décrire les API HTTP. Mintlify le transforme en référence d'API interactive.">OpenAPI</Tooltip> pour afficher une infobulle.
 
-Icônes dans le texte : <Icon icon="rocket" size={16} /> <Icon icon="bolt" size={16} color="#0D9373" /> <Icon icon="heart" size={16} color="#EF4444" />
+Icônes en ligne : <Icon icon="rocket" size={16} /> <Icon icon="bolt" size={16} color="#0D9373" /> <Icon icon="heart" size={16} color="#EF4444" />
 
-## Arborescence
+## Arborescence {#tree}
 
 <Tree>
   <Tree.Folder name="merge-sort-api" defaultOpen>
@@ -191,7 +191,7 @@ Icônes dans le texte : <Icon icon="rocket" size={16} /> <Icon icon="bolt" size=
   </Tree.Folder>
 </Tree>
 
-## Couleurs
+## Couleurs {#colors}
 
 <Color variant="compact">
   <Color.Item name="primary" value="#0D9373" />
@@ -199,50 +199,50 @@ Icônes dans le texte : <Icon icon="rocket" size={16} /> <Icon icon="bolt" size=
   <Color.Item name="surface" value={{ light: "#F8FAFC", dark: "#0F172A" }} />
 </Color>
 
-## Carte de dépôt GitHub
+## Carte de dépôt GitHub {#github-repo-card}
 
 <GitHub.Repo repo="mintlify/docs" />
 
-## Prompt
+## Prompt {#prompt}
 
-<Prompt description="Donnez-le à votre agent de code pour qu'il écrive la doc dans votre style.">
+<Prompt description="Donnez ceci à votre agent de code pour qu'il rédige la documentation dans votre style.">
 Vous êtes rédacteur technique. Rédigez une documentation claire et concise pour les développeurs.
-- Utilisez la deuxième personne ("vous") et des verbes à la voix active.
-- Commencez chaque procédure par un titre orienté objectif.
+- Utilisez la deuxième personne (« vous ») et des verbes à la voix active.
+- Commencez chaque procédure par un titre orienté vers un objectif.
 - Montrez un exemple de code exécutable pour chaque endpoint.
 </Prompt>
 
-## Vues
+## Vues {#views}
 
 <View title="Python" icon="python">
   ```python
-  print("Les vues changent le contenu de toute la page.")
+  print("Views switch the content for the whole page.")
   ```
 </View>
 
 <View title="JavaScript" icon="js">
   ```javascript
-  console.log("Choisissez un langage et la page change.");
+  console.log("Pick a language and the page changes.");
   ```
 </View>
 
-## Mathématiques
+## Mathématiques {#math}
 
-Des maths dans le texte comme $E = mc^2$ et en bloc :
+Des formules en ligne comme $E = mc^2$ et des formules en bloc :
 
 $$
 \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
 $$
 
-## Tableaux et Markdown
+## Tableaux et Markdown {#tables-and-markdown}
 
 | Fonctionnalité | Free | Pro | Enterprise |
 | --- | :---: | :---: | :---: |
-| Hébergement de la doc | Oui | Oui | Oui |
+| Hébergement de la documentation | Oui | Oui | Oui |
 | Assistant IA | | Oui | Oui |
 | Projets multi-dépôts | | | Oui |
 
-> Les citations, le **gras**, l'*italique*, le ~~barré~~, le `code en ligne` et les [liens](/fr/quickstart) fonctionnent comme prévu.
+> Les citations, le **gras**, l'*italique*, le ~~barré~~, le `code en ligne` et les [liens](/fr/quickstart) fonctionnent tous comme prévu.
 
 - [x] Les listes de tâches
 - [ ] fonctionnent aussi

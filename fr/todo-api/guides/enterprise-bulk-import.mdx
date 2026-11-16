@@ -1,0 +1,38 @@
+---
+title: Import en masse (Enterprise)
+description: Créez jusqu'à 100 tâches en une seule requête avec une clé d'API Enterprise.
+icon: boxes-stacked
+groups: ["enterprise"]
+---
+
+<Note>
+  Seuls les lecteurs du groupe **enterprise** peuvent ouvrir cette page. Tous les autres obtiennent une 404, et l'endpoint `POST /todos/bulk` est masqué dans leur référence d'API.
+</Note>
+
+{user.name ? <>Bonjour {user.name}, votre</> : <>Votre</>} forfait Enterprise inclut l'import en masse : envoyez jusqu'à 100 tâches en une seule requête à [`POST /todos/bulk`](/fr/todo-api/api-reference/todos/bulk-create-todos-enterprise).
+
+```bash
+curl -X POST http://localhost:8000/todos/bulk \
+  -H "X-API-Key: enterprise-demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"items": [{"title": "Migrate the docs"}, {"title": "Turn on SSO", "completed": true}]}'
+```
+
+La réponse est la liste des tâches créées, dans l'ordre où vous les avez envoyées.
+
+## Erreurs {#errors}
+
+| Statut | Quand |
+| --- | --- |
+| `401` | La clé d'API est manquante ou incorrecte. |
+| `403` | La clé est valide, mais ce n'est pas une clé Enterprise. |
+| `422` | `items` est vide, contient plus de 100 entrées, ou un titre n'est pas valide. |
+
+## Depuis Python {#from-python}
+
+```python
+from todo_client import TodoClient
+
+with TodoClient(api_key="enterprise-demo-key") as todos:
+    created = todos.bulk_create(["Migrate the docs", "Turn on SSO"])
+```

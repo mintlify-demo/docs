@@ -1,15 +1,21 @@
 ---
 title: Inicio rápido
-description: Ejecuta las cuatro APIs de demo en local y pruébalas desde el playground de API de este sitio.
+description: Ejecuta las cuatro APIs de demo localmente y pruébalas desde el playground de API de este sitio.
 icon: rocket
 public: true
 ---
 
-Puedes leer todo este sitio sin ejecutar nada. Para usar el playground **Try it**, ejecuta una API en tu portátil.
+Puedes leer todo este sitio sin ejecutar nada. Para usar el playground **Try it**, ejecuta una API en tu computadora.
+
+cambio
+
+marco haciendo cambios
+
+nueva línea. prueba.
 
 <Steps>
   <Step title="Comprueba lo que necesitas">
-    Necesitas Python 3.10 o superior y `git`.
+    Necesitas Python 3.10 o posterior y `git`.
 
     <Tabs>
       <Tab title="macOS">
@@ -66,15 +72,15 @@ Puedes leer todo este sitio sin ejecutar nada. Para usar el playground **Try it*
     </CodeGroup>
 
     <Warning>
-      Todas las APIs usan el puerto `8000`. Ejecuta una cada vez, o inicia las demás con `--port 8001`.
+      Todas las APIs usan el puerto `8000`. Ejecuta una a la vez, o inicia las demás con `--port 8001`.
     </Warning>
   </Step>
 
   <Step title="Abre su referencia de API">
-    Abre la pestaña **APIs** en la parte superior de este sitio, elige la API y un endpoint, y haz clic en **Try it**. Las referencias de API están en inglés. El playground envía la petición desde tu navegador directamente a `http://localhost:8000`.
+    Elige la pestaña correspondiente en la parte superior de este sitio, selecciona un endpoint y haz clic en **Try it**. El playground envía la solicitud desde tu navegador directamente a `http://localhost:8000`.
   </Step>
 
-  <Step title="Envía una petición">
+  <Step title="Envía una solicitud">
     Para la Todo API, introduce `demo-key` como clave de API. Las demás APIs no necesitan clave.
   </Step>
 </Steps>
@@ -84,26 +90,26 @@ Puedes leer todo este sitio sin ejecutar nada. Para usar el playground **Try it*
 </Check>
 
 <Tip>
-  ¿Lo vas a enseñar en directo? Inicia la API antes de la llamada y deja el navegador en la página del endpoint. El playground, los ejemplos de código y el visor de respuestas se actualizan mientras escribes.
+  ¿Vas a mostrar esto en vivo? Inicia la API antes de la llamada y mantén tu navegador en la página del endpoint. El playground, los ejemplos de código y el visor de respuestas se actualizan mientras escribes.
 </Tip>
 
-## Solución de problemas
+## Solución de problemas {#troubleshooting}
 
 <AccordionGroup>
-  <Accordion title="El playground dice que no puede conectar con el servidor">
-    Comprueba que la API está en marcha y muestra `Uvicorn running on http://127.0.0.1:8000`. Las APIs permiten peticiones de otros orígenes, así que no hace falta configurar nada más.
+  <Accordion title="El playground dice que no puede conectarse al servidor">
+    Asegúrate de que la API esté en ejecución y muestre `Uvicorn running on http://127.0.0.1:8000`. Las APIs permiten solicitudes de origen cruzado, así que no se necesita configuración adicional.
   </Accordion>
   <Accordion title="`pip install` falla">
-    Comprueba que activaste el entorno virtual: tu prompt debería empezar por `(.venv)`.
+    Comprueba que activaste el entorno virtual: tu prompt debería comenzar con `(.venv)`.
   </Accordion>
   <Accordion title="El puerto 8000 ya está en uso">
-    Detén la otra API, o ejecuta `uvicorn main:app --port 8001`.
+    Detén la otra API o ejecuta `uvicorn main:app --port 8001`.
   </Accordion>
 </AccordionGroup>
 
-## Cómo se construye este sitio
+## Cómo está construido este sitio {#how-this-site-is-built}
 
-El código y las pruebas de cada API viven en el repositorio de esa API. Toda la documentación, incluidas las guías y la especificación OpenAPI de cada API, vive en el [repositorio de docs](https://github.com/mintlify-demo/docs). Cuando cambia el código de una API, el agente de Mintlify abre un pull request en el repositorio de docs con la actualización correspondiente.
+El código y las pruebas de cada API viven en el repositorio de esa API. Toda la documentación, incluidas las guías y la especificación OpenAPI de cada API, vive en el [repositorio de documentación](https://github.com/mintlify-demo/docs). Cuando cambia el código de una API, el agente de Mintlify abre una pull request en el repositorio de documentación con la actualización correspondiente.
 
 ```mermaid
 flowchart LR
@@ -111,13 +117,13 @@ flowchart LR
     B[calculator-api] -- cambio de código --> M
     C[todo-api] -- cambio de código --> M
     D[text-utils-api] -- cambio de código --> M
-    M -- PR de docs --> E[docs]
-    E --> S[Un solo sitio de docs]
+    M -- PR de documentación --> E[docs]
+    E --> S[Un solo sitio de documentación]
 ```
 
 <Columns cols={2}>
   <Card title="Componentes" icon="shapes" href="/es/showcase/components">
-    Todos los bloques que usa este sitio.
+    Cada pieza utilizada en este sitio.
   </Card>
   <Card title="Funciones de IA" icon="sparkles" href="/es/showcase/ai">
     El asistente, llms.txt, el servidor MCP y más.

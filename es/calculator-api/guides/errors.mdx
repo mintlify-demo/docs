@@ -1,0 +1,41 @@
+---
+title: Manejo de errores
+description: Los códigos de estado que devuelve la API de Calculadora y cómo manejarlos.
+icon: triangle-exclamation
+---
+
+## Códigos de estado {#status-codes}
+
+| Estado | Significado | Cuándo |
+| --- | --- | --- |
+| `200` | Éxito | El cálculo funcionó |
+| `400` | Solicitud incorrecta | Dividiste por cero |
+| `422` | Error de validación | Falta un campo, tiene el tipo incorrecto o `operands` tiene menos de dos números |
+
+## División por cero {#division-by-zero}
+
+<Warning>
+  Dividir por cero devuelve un `400`, no un `500`. Manéjalo en tu cliente.
+</Warning>
+
+<CodeGroup>
+  ```bash Request
+  curl -i -X POST http://localhost:8000/v1/divide \
+    -H "Content-Type: application/json" \
+    -d '{"a": 1, "b": 0}'
+  ```
+
+  ```json Response (400)
+  { "detail": "Cannot divide by zero" }
+  ```
+</CodeGroup>
+
+## Campos de la respuesta de error {#error-response-fields}
+
+<ResponseField name="detail" type="string" required>
+  Un mensaje legible que describe qué salió mal.
+</ResponseField>
+
+<Note>
+  Las respuestas `422` usan el formato de validación estándar de FastAPI: un array `detail` con la ubicación y el mensaje de cada campo no válido.
+</Note>

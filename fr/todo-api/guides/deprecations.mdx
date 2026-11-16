@@ -1,0 +1,29 @@
+---
+title: Dépréciations
+description: Les endpoints qui fonctionnent encore mais seront supprimés, et ce qu'il faut utiliser à la place.
+icon: triangle-exclamation
+---
+
+Les endpoints obsolètes continuent de fonctionner, mais ils sont signalés dans la référence d'API et seront supprimés dans une version future.
+
+| Obsolète | À utiliser à la place | Pourquoi |
+| --- | --- | --- |
+| `GET /todos/list-all` | `GET /todos` avec `page` et `page_size` | Il renvoie toutes les tâches d'un coup, ce qui ralentit à mesure que la liste s'allonge |
+
+## Abandonner `list-all` {#migrate-off-list-all}
+
+<Steps>
+  <Step title="Changer le chemin">
+    Appelez `GET /todos` au lieu de `GET /todos/list-all`.
+  </Step>
+  <Step title="Lire les éléments dans la réponse">
+    La nouvelle réponse est un objet. Les tâches se trouvent dans `items`, et non au premier niveau.
+  </Step>
+  <Step title="Parcourir les pages">
+    Utilisez `total_pages` pour savoir quand vous arrêter. Consultez la [pagination](/fr/todo-api/guides/pagination).
+  </Step>
+</Steps>
+
+<Note>
+  Dans la spécification OpenAPI, cet endpoint a `deprecated: true` : Mintlify l'affiche donc avec un marqueur de dépréciation.
+</Note>

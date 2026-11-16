@@ -1,0 +1,47 @@
+---
+title: API de Merge Sort
+description: Ordena números con merge sort y observa cada paso de fusión por el camino.
+icon: arrow-down-wide-short
+---
+
+{user.name ? <>Hola de nuevo, <strong>{user.name}</strong>{user.plan ? <> (plan <strong>{user.plan}</strong>)</> : null}.</> : null} La API de Merge Sort es un pequeño servicio de FastAPI con dos endpoints. Uno te devuelve una lista ordenada. El otro te muestra **cómo** se ordenó la lista.
+
+<Note>
+  Esta API es una demo. Su código está en el [repositorio merge-sort-api](https://github.com/mintlify-demo/merge-sort-api), y esta documentación está en el [repositorio docs](https://github.com/mintlify-demo/docs/tree/main/merge-sort-api).
+</Note>
+
+## Qué puedes hacer {#what-you-can-do}
+
+<CardGroup cols={2}>
+  <Card title="Inicio rápido" icon="rocket" href="/es/merge-sort-api/quickstart">
+    Ejecuta la API localmente y ordena tu primera lista en menos de un minuto.
+  </Card>
+  <Card title="Cómo funciona merge sort" icon="diagram-project" href="/es/merge-sort-api/guides/how-it-works">
+    Un recorrido visual por la división, la ordenación y la fusión.
+  </Card>
+  <Card title="Ordenar números" icon="arrow-down-wide-short" href="/es/merge-sort-api/api-reference/sorting/sort-numbers">
+    `POST /sort` devuelve la lista ordenada.
+  </Card>
+  <Card title="Ordenar con pasos" icon="list-ol" href="/es/merge-sort-api/api-reference/sorting/sort-numbers-and-return-every-merge-step">
+    `POST /sort/steps` también devuelve cada fusión.
+  </Card>
+</CardGroup>
+
+<Visibility for={{ groups: ["enterprise"] }}>
+  <Check>
+    Lectores de Enterprise: consulten [Ordenación a escala](/es/merge-sort-api/guides/sorting-at-scale) para conocer los límites y el dimensionamiento.
+  </Check>
+</Visibility>
+
+## De un vistazo {#at-a-glance}
+
+test
+
+| Endpoint | Método | Propósito |
+| --- | --- | --- |
+| `/sort` | `POST` | Ordenar una lista de números, de forma ascendente o descendente |
+| `/sort/steps` | `POST` | Lo mismo, más cada paso de fusión |
+
+<Tip>
+  Cada página de endpoint tiene un playground **Try it**. Apúntalo a `http://localhost:8000` mientras la API esté en ejecución.
+</Tip>

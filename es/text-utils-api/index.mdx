@@ -1,0 +1,34 @@
+---
+title: Text Utils API
+description: Invierte texto, cuenta palabras y comprueba palíndromos con una solicitud POST cada uno.
+icon: font
+---
+
+{user.name ? <>Bienvenido de nuevo, <strong>{user.name}</strong>{user.plan ? <> (plan <strong>{user.plan}</strong>)</> : null}.</> : null} La Text Utils API tiene tres endpoints. Cada uno recibe `{"text": "..."}` y devuelve JSON. Cada página de endpoint de la referencia de la API incluye ejemplos de código listos para ejecutar en **cURL, Python, JavaScript y Go**.
+
+<CardGroup cols={2}>
+  <Card title="Inicio rápido" icon="rocket" href="/es/text-utils-api/quickstart">
+    Ejecuta la API e invierte tu primera cadena.
+  </Card>
+  <Card title="Ejemplos" icon="flask" href="/es/text-utils-api/guides/examples">
+    Entradas y salidas reales para cada endpoint.
+  </Card>
+  <Card title="Invertir texto" icon="arrow-right-arrow-left" href="/es/text-utils-api/api-reference/text/reverse-text">
+    `POST /reverse`
+  </Card>
+  <Card title="Comprobar un palíndromo" icon="spell-check" href="/es/text-utils-api/api-reference/text/check-for-a-palindrome">
+    `POST /palindrome`
+  </Card>
+</CardGroup>
+
+<Columns cols={3}>
+  <Card title="/reverse" icon="arrow-right-arrow-left">
+    El texto, al revés.
+  </Card>
+  <Card title="/word-count" icon="hashtag">
+    Palabras, palabras únicas, caracteres, líneas.
+  </Card>
+  <Card title="/palindrome" icon="spell-check">
+    ¿Igual al derecho y al revés?
+  </Card>
+</Columns>

@@ -1,0 +1,71 @@
+---
+title: Inicio rápido
+description: Ejecuta la API de Calculadora localmente y haz tu primer cálculo.
+icon: rocket
+---
+
+<Steps>
+  <Step title="Instala y ejecuta">
+    ```bash
+    git clone https://github.com/mintlify-demo/calculator-api.git
+    cd calculator-api
+    python3 -m venv .venv && source .venv/bin/activate
+    pip install -r requirements.txt
+    uvicorn main:app --reload
+    ```
+  </Step>
+
+  <Step title="Suma dos números (v1)">
+    <CodeGroup>
+      ```bash cURL
+      curl -X POST http://localhost:8000/v1/add \
+        -H "Content-Type: application/json" \
+        -d '{"a": 12, "b": 4}'
+      ```
+
+      ```python Python
+      import requests
+
+      r = requests.post("http://localhost:8000/v1/add", json={"a": 12, "b": 4})
+      print(r.json())  # {'result': 16.0}
+      ```
+
+      ```javascript JavaScript
+      const res = await fetch("http://localhost:8000/v1/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ a: 12, b: 4 }),
+      });
+      console.log(await res.json()); // { result: 16 }
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Prueba la v2">
+    Resta varios números en una sola llamada. La operación se ejecuta de izquierda a derecha.
+
+    ```bash
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "subtract", "operands": [10, 3, 2]}'
+    ```
+
+    ```json
+    { "result": 5, "operation": "subtract", "operands": [10, 3, 2] }
+    ```
+  </Step>
+
+  <Step title="Provoca un error a propósito">
+    ```bash
+    curl -i -X POST http://localhost:8000/v1/divide \
+      -H "Content-Type: application/json" \
+      -d '{"a": 1, "b": 0}'
+    ```
+
+    Recibes un HTTP `400` y `{"detail": "Cannot divide by zero"}`. Consulta [manejo de errores](/es/calculator-api/guides/errors).
+  </Step>
+</Steps>
+
+<Tip>
+  Usa el playground **Try it** de cualquier [página de endpoint](/es/calculator-api/api-reference/v2/calculate-with-any-operation) para enviar solicitudes desde tu navegador.
+</Tip>

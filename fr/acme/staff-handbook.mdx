@@ -1,0 +1,26 @@
+---
+title: "Manuel du personnel"
+description: "Notes internes pour l'équipe d'Acme Coffee Club. Connectez-vous pour le lire."
+icon: "lock"
+keywords: ["personnel", "manuel", "interne", "équipe"]
+---
+
+{user.acmeRole === "staff" ? (
+  <>
+    <Info>Bienvenue, {user.firstName}. Cette page est réservée à l'équipe Acme.</Info>
+
+    <Steps>
+      <Step title="Ouvrez la brûlerie">
+        La brûlerie ouvre à 7 h. La première personne arrivée allume le torréfacteur.
+      </Step>
+      <Step title="Préparez les commandes du jour">
+        Emballez chaque commande avant 14 h pour qu'elle soit expédiée le jour même.
+      </Step>
+      <Step title="Répondez à la boîte de réception de l'assistance">
+        Répondez à chaque client dans un délai d'un jour ouvré.
+      </Step>
+    </Steps>
+  </>
+) : (
+  <Warning>Cette page est réservée au personnel d'Acme. Connectez-vous avec un compte du personnel pour la lire.</Warning>
+)}

@@ -1,0 +1,26 @@
+---
+title: "Manual del personal"
+description: "Notas internas para el equipo de Acme Coffee Club. Inicia sesión para leerlo."
+icon: "lock"
+keywords: ["personal", "manual", "interno", "equipo"]
+---
+
+{user.acmeRole === "staff" ? (
+  <>
+    <Info>Bienvenido, {user.firstName}. Esta página es solo para el equipo de Acme.</Info>
+
+    <Steps>
+      <Step title="Abre la tostaduría">
+        La tostaduría abre a las 7 a. m. La primera persona en llegar enciende la tostadora.
+      </Step>
+      <Step title="Empaca los pedidos del día">
+        Empaca todos los pedidos antes de las 2 p. m. para que se envíen el mismo día.
+      </Step>
+      <Step title="Responde la bandeja de entrada de soporte">
+        Responde a cada cliente en un plazo de un día hábil.
+      </Step>
+    </Steps>
+  </>
+) : (
+  <Warning>Esta página es solo para el personal de Acme. Inicia sesión con una cuenta de personal para leerla.</Warning>
+)}
