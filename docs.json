@@ -349,6 +349,13 @@
                   "acme/password-help",
                   "acme/faq"
                 ]
+              },
+              {
+                "group": "For Acme staff",
+                "icon": "lock",
+                "pages": [
+                  "acme/staff-handbook"
+                ]
               }
             ]
           },

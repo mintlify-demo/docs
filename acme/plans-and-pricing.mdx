@@ -8,6 +8,10 @@ keywords: ["plans", "pricing", "price", "cost", "free", "pro", "team"]
 
 Acme Coffee Club has three plans. All prices are in US dollars.
 
+{user.firstName ? (
+  <Info>Hi {user.firstName}! You're on the <strong>{user.acmePlan ?? "Free"}</strong> plan.</Info>
+) : null}
+
 <Columns cols={3}>
   <Card title="Free" icon="seedling">
     **$0**
@@ -35,3 +39,7 @@ Acme Coffee Club has three plans. All prices are in US dollars.
 | Team | $29 per month, per person | For your whole team |
 
 <Note>You can switch plans at any time. Every new account starts with a [free trial](/acme/free-trial).</Note>
+
+{user.acmePlan === "Pro" ? (
+  <Tip>Pro member perk: you can swap your roast any time from <strong>Account</strong> settings.</Tip>
+) : null}
