@@ -27,9 +27,9 @@ L'API Calculator effectue des opérations arithmétiques de base. Elle est volon
 
 | Version | Forme | À utiliser quand |
 | --- | --- | --- |
-| **v1** | `POST /v1/add`, `/v1/subtract`, `/v1/multiply`, `/v1/divide` avec `{a, b}` | Vous avez exactement deux nombres |
+| **v1** | `POST /v1/add`, `/v1/subtract`, `/v1/multiply`, `/v1/divide` avec `{a, b}` | Obsolète. Migrez vers la v2 avant le 2027-01-31 |
 | **v2** | `POST /v2/calculate` avec `{operation, operands}` | Vous avez deux nombres ou plus, ou souhaitez un seul endpoint |
 
-<Note>
-  Les deux versions sont prises en charge. La v1 n'est pas obsolète.
-</Note>
+<Warning>
+  La v1 est obsolète et sera supprimée le 2027-01-31. Utilisez `POST /v2/calculate` pour les nouvelles intégrations. Consultez [Migrer de la v1 à la v2](/fr/calculator-api/guides/v1-vs-v2#migrating-from-v1-to-v2).
+</Warning>
