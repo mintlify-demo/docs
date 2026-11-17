@@ -6,10 +6,6 @@ icon: clock-rotate-left
 
 You're reading the docs for **v1**, the original Calculator API. For `POST /v2/calculate`, switch to **v2** in the version switcher at the top of the sidebar.
 
-<Warning>
-  All v1 endpoints are deprecated and will be removed on 2027-01-31. Each one maps to `POST /v2/calculate` with the matching `operation`. For example, `POST /v1/add` becomes `{"operation": "add", "operands": [a, b]}`.
-</Warning>
-
 | Endpoint | Body | Returns |
 | --- | --- | --- |
 | `POST /v1/add` | `{"a": 12, "b": 4}` | `{"result": 16}` |
