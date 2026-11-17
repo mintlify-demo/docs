@@ -1,0 +1,63 @@
+---
+title: Fechas de vencimiento y tareas vencidas en la Todo API
+description: Define un due_date opcional en tus tareas, cámbialo o bórralo después y lista las tareas incompletas vencidas con el filtro overdue de GET /todos.
+icon: calendar
+---
+
+Asigna una fecha límite a una tarea con el campo opcional `due_date`. Luego usa el filtro `overdue` para encontrar el trabajo atrasado.
+
+## Definir una fecha de vencimiento
+
+Envía `due_date` como una cadena `YYYY-MM-DD` al crear una tarea. Omítelo si la tarea no tiene fecha límite. En ese caso, el campo es `null`.
+
+```bash
+curl -X POST http://localhost:8000/todos \
+  -H "X-API-Key: demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "File expenses", "due_date": "2026-11-15"}'
+```
+
+```json Respuesta (201)
+{
+  "title": "File expenses",
+  "completed": false,
+  "due_date": "2026-11-15",
+  "id": 1,
+  "created_at": "2026-11-10T09:30:00Z"
+}
+```
+
+Un valor que no es una fecha válida, como `"next week"`, devuelve `422`.
+
+## Cambiar o borrar una fecha de vencimiento
+
+Usa `PATCH /todos/{todo_id}` con una nueva fecha. Envía `null` para quitar la fecha de vencimiento.
+
+```bash
+curl -X PATCH http://localhost:8000/todos/1 \
+  -H "X-API-Key: demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"due_date": null}'
+```
+
+Si omites `due_date` en el cuerpo de la solicitud, la API conserva el valor actual.
+
+## Listar tareas vencidas
+
+Añade `overdue=true` a `GET /todos`.
+
+<ParamField query="overdue" type="boolean">
+  `true` devuelve solo las tareas incompletas cuyo `due_date` es anterior a hoy (UTC). `false` devuelve todas las demás. Omítelo para no aplicar el filtro.
+</ParamField>
+
+```bash
+curl "http://localhost:8000/todos?overdue=true" -H "X-API-Key: demo-key"
+```
+
+Una tarea está vencida cuando se cumple todo lo siguiente:
+
+- `completed` es `false`.
+- `due_date` está definido.
+- `due_date` es anterior a la fecha de hoy en UTC. Una tarea que vence hoy todavía no está vencida.
+
+El filtro `overdue` funciona junto con `completed`, `page` y `page_size`. Consulta [paginación](/es/todo-api/guides/pagination) para recorrer listas largas de resultados.

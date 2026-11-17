@@ -237,6 +237,7 @@
                     "pages": [
                       "todo-api/guides/authentication",
                       "todo-api/guides/pagination",
+                      "todo-api/guides/due-dates",
                       "todo-api/guides/deprecations",
                       "todo-api/guides/partner-integrations",
                       "todo-api/guides/enterprise-bulk-import"
@@ -506,6 +507,7 @@
                     "pages": [
                       "es/todo-api/guides/authentication",
                       "es/todo-api/guides/pagination",
+                      "es/todo-api/guides/due-dates",
                       "es/todo-api/guides/deprecations",
                       "es/todo-api/guides/partner-integrations",
                       "es/todo-api/guides/enterprise-bulk-import"

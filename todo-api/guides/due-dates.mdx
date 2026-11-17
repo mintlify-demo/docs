@@ -1,0 +1,63 @@
+---
+title: Due dates and overdue todos in the Todo API
+description: Set an optional due_date on todos, change or clear it later, and list incomplete todos that are past due with the overdue filter on GET /todos.
+icon: calendar
+---
+
+Give a todo a deadline with the optional `due_date` field. Then use the `overdue` filter to find work that slipped.
+
+## Set a due date
+
+Send `due_date` as a `YYYY-MM-DD` string when you create a todo. Leave it out if the todo has no deadline. The field is then `null`.
+
+```bash
+curl -X POST http://localhost:8000/todos \
+  -H "X-API-Key: demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "File expenses", "due_date": "2026-11-15"}'
+```
+
+```json Response (201)
+{
+  "title": "File expenses",
+  "completed": false,
+  "due_date": "2026-11-15",
+  "id": 1,
+  "created_at": "2026-11-10T09:30:00Z"
+}
+```
+
+A value that isn't a valid date, such as `"next week"`, returns `422`.
+
+## Change or clear a due date
+
+Use `PATCH /todos/{todo_id}` with a new date. Send `null` to remove the due date.
+
+```bash
+curl -X PATCH http://localhost:8000/todos/1 \
+  -H "X-API-Key: demo-key" \
+  -H "Content-Type: application/json" \
+  -d '{"due_date": null}'
+```
+
+If you leave `due_date` out of the request body, the API keeps the current value.
+
+## List overdue todos
+
+Add `overdue=true` to `GET /todos`.
+
+<ParamField query="overdue" type="boolean">
+  `true` returns only incomplete todos whose `due_date` is before today (UTC). `false` returns every other todo. Leave it out to skip the filter.
+</ParamField>
+
+```bash
+curl "http://localhost:8000/todos?overdue=true" -H "X-API-Key: demo-key"
+```
+
+A todo counts as overdue when all of these are true:
+
+- `completed` is `false`.
+- `due_date` is set.
+- `due_date` is earlier than today's date in UTC. A todo due today isn't overdue yet.
+
+The `overdue` filter works with `completed`, `page`, and `page_size`. See [pagination](/todo-api/guides/pagination) to walk through long result lists.
