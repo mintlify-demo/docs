@@ -4,7 +4,7 @@ description: Pick the right version of the Calculator API for your use case.
 icon: code-compare
 ---
 
-v1 shipped first with one endpoint per operation. v2 added a single, more flexible endpoint. Here is the same job in both.
+v1 shipped first with one endpoint per operation. v2 added a single, more flexible endpoint. v1 is deprecated and will be removed on 2027-01-31. Here is the same job in both.
 
 <Tabs>
   <Tab title="v1: two numbers">
@@ -50,6 +50,8 @@ v1 shipped first with one endpoint per operation. v2 added a single, more flexib
 </Info>
 
 ## Migrating from v1 to v2
+
+Move every v1 call to `POST /v2/calculate` before 2027-01-31.
 
 <Steps>
   <Step title="Change the URL">
