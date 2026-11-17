@@ -4,7 +4,7 @@ description: Choisissez la bonne version de l'API Calculator pour votre cas d'us
 icon: code-compare
 ---
 
-La v1 est sortie en premier, avec un endpoint par opération. La v2 a ajouté un endpoint unique et plus flexible. Voici la même tâche dans les deux versions.
+La v1 est sortie en premier, avec un endpoint par opération. La v2 a ajouté un endpoint unique et plus flexible. La v1 est obsolète et sera supprimée le 2027-01-31. Voici la même tâche dans les deux versions.
 
 <Tabs>
   <Tab title="v1 : deux nombres">
@@ -50,6 +50,8 @@ La v1 est sortie en premier, avec un endpoint par opération. La v2 a ajouté un
 </Info>
 
 ## Migrer de la v1 à la v2 {#migrating-from-v1-to-v2}
+
+Migrez tous vos appels v1 vers `POST /v2/calculate` avant le 2027-01-31.
 
 <Steps>
   <Step title="Changer l'URL">

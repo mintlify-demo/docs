@@ -6,6 +6,10 @@ icon: clock-rotate-left
 
 Estás leyendo la documentación de la **v1**, la API de Calculadora original. Para `POST /v2/calculate`, cambia a la **v2** en el selector de versión de la parte superior de la barra lateral.
 
+<Warning>
+  Todos los endpoints de la v1 están obsoletos y se eliminarán el 2027-01-31. Cada uno equivale a `POST /v2/calculate` con la `operation` correspondiente. Por ejemplo, `POST /v1/add` pasa a ser `{"operation": "add", "operands": [a, b]}`.
+</Warning>
+
 | Endpoint | Cuerpo | Devuelve |
 | --- | --- | --- |
 | `POST /v1/add` | `{"a": 12, "b": 4}` | `{"result": 16}` |
