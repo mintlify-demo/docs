@@ -9,7 +9,7 @@ icon: triangle-exclamation
 | Estado | Significado | Cuándo |
 | --- | --- | --- |
 | `200` | Éxito | El cálculo funcionó |
-| `400` | Solicitud incorrecta | Dividiste por cero |
+| `400` | Solicitud incorrecta | Dividiste por cero o usaste `modulo` con un divisor `0` |
 | `422` | Error de validación | Falta un campo, tiene el tipo incorrecto o `operands` tiene menos de dos números |
 
 ## División por cero {#division-by-zero}
@@ -27,6 +27,22 @@ icon: triangle-exclamation
 
   ```json Response (400)
   { "detail": "Cannot divide by zero" }
+  ```
+</CodeGroup>
+
+## Módulo por cero {#modulo-by-zero}
+
+La operación `modulo` de v2 también devuelve un `400` cuando cualquier divisor después del primer operando es `0`.
+
+<CodeGroup>
+  ```bash Request
+  curl -i -X POST http://localhost:8000/v2/calculate \
+    -H "Content-Type: application/json" \
+    -d '{"operation": "modulo", "operands": [17, 0]}'
+  ```
+
+  ```json Response (400)
+  { "detail": "Cannot take a remainder when dividing by zero" }
   ```
 </CodeGroup>
 

@@ -43,6 +43,19 @@ La v1 est sortie en premier, avec un endpoint par opération. La v2 a ajouté un
   <Accordion title="Erreurs">
     Identiques dans les deux : diviser par zéro renvoie une `400` avec un message `detail`.
   </Accordion>
+  <Accordion title="Opérations">
+    v1 prend en charge `add`, `subtract`, `multiply` et `divide`. v2 prend en charge ces quatre opérations ainsi que `power` et `modulo`. `power` élève chaque résultat au nombre suivant, donc `[2, 3, 2]` donne `(2 ** 3) ** 2 = 64`. `modulo` renvoie le reste, donc `[17, 5]` donne `2`.
+
+    ```bash
+    curl -X POST http://localhost:8000/v2/calculate \
+      -H "Content-Type: application/json" \
+      -d '{"operation": "power", "operands": [2, 3, 2]}'
+    ```
+
+    ```json
+    { "result": 64, "operation": "power", "operands": [2, 3, 2] }
+    ```
+  </Accordion>
 </AccordionGroup>
 
 <Info>
