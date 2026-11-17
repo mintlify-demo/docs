@@ -52,18 +52,29 @@ icon: rocket
       "title": "Write the docs",
       "completed": false,
       "id": 1,
-      "created_at": "2026-01-15T09:30:00Z"
+      "created_at": "2026-01-15T09:30:00Z",
+      "completed_at": null
     }
     ```
   </Step>
 
   <Step title="Mark it done">
     ```bash
-    curl -X PATCH http://localhost:8000/todos/1 \
-      -H "X-API-Key: demo-key" \
-      -H "Content-Type: application/json" \
-      -d '{"completed": true}'
+    curl -X POST http://localhost:8000/todos/1/complete \
+      -H "X-API-Key: demo-key"
     ```
+
+    ```json Response (200)
+    {
+      "title": "Write the docs",
+      "completed": true,
+      "id": 1,
+      "created_at": "2026-01-15T09:30:00Z",
+      "completed_at": "2026-01-16T17:05:00Z"
+    }
+    ```
+
+    The API sets `completed_at` to the current UTC time. Calling the endpoint again on a completed todo keeps the original `completed_at`.
   </Step>
 
   <Step title="List todos">
@@ -74,5 +85,5 @@ icon: rocket
 </Steps>
 
 <Check>
-  You've covered create, update, and list. Next, learn about [authentication](/todo-api/guides/authentication) and [pagination](/todo-api/guides/pagination).
+  You've covered create, complete, and list. Next, learn about [authentication](/todo-api/guides/authentication) and [pagination](/todo-api/guides/pagination).
 </Check>
