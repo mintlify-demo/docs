@@ -1,0 +1,88 @@
+---
+title: Compare sorting algorithm speed with /sort/stats
+description: Use POST /sort/stats to sort one list with quick sort, merge sort, and heap sort, then compare how many milliseconds each algorithm took.
+icon: stopwatch
+---
+
+`POST /sort/stats` sorts the same list with three algorithms and reports how long each one took. Use it to see that the fastest algorithm depends on the input, or to pick an algorithm for your own data.
+
+The API runs these algorithms:
+
+| Algorithm | Value | How it works |
+| --- | --- | --- |
+| Quick sort | `quick` | Picks a pivot, splits the list around it, and sorts each side |
+| Merge sort | `merge` | Splits the list in half, sorts each half, and merges them. Stable. |
+| Heap sort | `heap` | Builds a heap, then removes the top item until the heap is empty |
+
+## Prerequisites
+
+- The API running locally on `http://localhost:8000`. See the [quickstart](/merge-sort-api/quickstart).
+
+## Send a request
+
+The request body is the same as `POST /sort`: a `numbers` list (up to 1000 items) and an optional `order` of `asc` or `desc`.
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X POST http://localhost:8000/sort/stats \
+      -H "Content-Type: application/json" \
+      -d '{"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"}'
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    import requests
+
+    r = requests.post(
+        "http://localhost:8000/sort/stats",
+        json={"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"},
+    )
+    print(r.json())
+    ```
+  </Tab>
+  <Tab title="JavaScript">
+    ```javascript
+    const res = await fetch("http://localhost:8000/sort/stats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ numbers: [5, 2, 9, 1, 5, 6], order: "asc" }),
+    });
+    console.log(await res.json());
+    ```
+  </Tab>
+</Tabs>
+
+<Note>
+  The endpoint ignores any `algorithm` field in the request because it always runs every algorithm.
+</Note>
+
+## Read the response
+
+```json
+{
+  "count": 6,
+  "order": "asc",
+  "result": [1, 2, 5, 5, 6, 9],
+  "timings": [
+    { "algorithm": "heap", "elapsed_ms": 0.0031 },
+    { "algorithm": "quick", "elapsed_ms": 0.0052 },
+    { "algorithm": "merge", "elapsed_ms": 0.0078 }
+  ],
+  "fastest": "heap"
+}
+```
+
+| Field | Description |
+| --- | --- |
+| `count` | How many numbers were sorted |
+| `order` | The direction that was used |
+| `result` | The sorted numbers. Every algorithm produces the same list. |
+| `timings` | One entry per algorithm, sorted fastest first. `elapsed_ms` is the sort time in milliseconds. |
+| `fastest` | The algorithm that finished first on this input. It always matches the first entry in `timings`. |
+
+<Tip>
+  The server measures timings, and they vary from run to run. Send the same list a few times before you draw conclusions. Very small lists finish in a few microseconds, so try larger or already-sorted lists to see clearer differences.
+</Tip>
+
+See the [API reference](/merge-sort-api/api-reference/sorting/compare-how-long-each-algorithm-takes) for the full schema and a **Try it** playground.

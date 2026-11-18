@@ -146,6 +146,7 @@
                     "icon": "book-open",
                     "pages": [
                       "merge-sort-api/guides/how-it-works",
+                      "merge-sort-api/guides/compare-algorithms",
                       "merge-sort-api/guides/sorting-at-scale"
                     ]
                   },
@@ -416,6 +417,7 @@
                     "icon": "book-open",
                     "pages": [
                       "es/merge-sort-api/guides/how-it-works",
+                      "es/merge-sort-api/guides/compare-algorithms",
                       "es/merge-sort-api/guides/sorting-at-scale"
                     ]
                   },

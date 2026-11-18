@@ -1,0 +1,88 @@
+---
+title: Comparar la velocidad de algoritmos con /sort/stats
+description: Usa POST /sort/stats para ordenar una lista con quick sort, merge sort y heap sort, y compara cuántos milisegundos tardó cada algoritmo.
+icon: stopwatch
+---
+
+`POST /sort/stats` ordena la misma lista con tres algoritmos e informa cuánto tardó cada uno. Úsalo para ver que el algoritmo más rápido depende de la entrada, o para elegir un algoritmo para tus propios datos.
+
+La API ejecuta estos algoritmos:
+
+| Algoritmo | Valor | Cómo funciona |
+| --- | --- | --- |
+| Quick sort | `quick` | Elige un pivote, divide la lista a su alrededor y ordena cada lado |
+| Merge sort | `merge` | Divide la lista por la mitad, ordena cada mitad y las fusiona. Estable. |
+| Heap sort | `heap` | Construye un montículo y extrae el elemento superior hasta vaciarlo |
+
+## Requisitos previos {#prerequisites}
+
+- La API ejecutándose localmente en `http://localhost:8000`. Consulta el [inicio rápido](/es/merge-sort-api/quickstart).
+
+## Enviar una solicitud {#send-a-request}
+
+El cuerpo de la solicitud es el mismo que en `POST /sort`: una lista `numbers` (hasta 1000 elementos) y un `order` opcional, `asc` o `desc`.
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X POST http://localhost:8000/sort/stats \
+      -H "Content-Type: application/json" \
+      -d '{"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"}'
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    import requests
+
+    r = requests.post(
+        "http://localhost:8000/sort/stats",
+        json={"numbers": [5, 2, 9, 1, 5, 6], "order": "asc"},
+    )
+    print(r.json())
+    ```
+  </Tab>
+  <Tab title="JavaScript">
+    ```javascript
+    const res = await fetch("http://localhost:8000/sort/stats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ numbers: [5, 2, 9, 1, 5, 6], order: "asc" }),
+    });
+    console.log(await res.json());
+    ```
+  </Tab>
+</Tabs>
+
+<Note>
+  El endpoint ignora cualquier campo `algorithm` de la solicitud porque siempre ejecuta todos los algoritmos.
+</Note>
+
+## Leer la respuesta {#read-the-response}
+
+```json
+{
+  "count": 6,
+  "order": "asc",
+  "result": [1, 2, 5, 5, 6, 9],
+  "timings": [
+    { "algorithm": "heap", "elapsed_ms": 0.0031 },
+    { "algorithm": "quick", "elapsed_ms": 0.0052 },
+    { "algorithm": "merge", "elapsed_ms": 0.0078 }
+  ],
+  "fastest": "heap"
+}
+```
+
+| Campo | Descripción |
+| --- | --- |
+| `count` | Cuántos números se ordenaron |
+| `order` | La dirección que se usó |
+| `result` | Los números ordenados. Todos los algoritmos producen la misma lista. |
+| `timings` | Una entrada por algoritmo, de la más rápida a la más lenta. `elapsed_ms` es el tiempo de ordenación en milisegundos. |
+| `fastest` | El algoritmo que terminó primero con esta entrada. Siempre coincide con la primera entrada de `timings`. |
+
+<Tip>
+  El servidor mide los tiempos, y varían de una ejecución a otra. Envía la misma lista varias veces antes de sacar conclusiones. Las listas muy pequeñas terminan en pocos microsegundos, así que prueba listas más grandes o ya ordenadas para ver diferencias más claras.
+</Tip>
+
+Consulta la [referencia de la API](/es/merge-sort-api/api-reference/sorting/compare-how-long-each-algorithm-takes) para ver el esquema completo y un playground **Try it**.
