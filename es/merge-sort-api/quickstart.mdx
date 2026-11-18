@@ -66,7 +66,7 @@ icon: rocket
     Deberías recibir:
 
     ```json
-    { "result": [1, 2, 5, 5, 6, 9], "count": 6, "order": "asc" }
+    { "result": [1, 2, 5, 5, 6, 9], "count": 6, "order": "asc", "algorithm": "quick" }
     ```
   </Step>
 
@@ -85,5 +85,16 @@ icon: rocket
   </Accordion>
   <Accordion title="¿Hay un límite de tamaño?">
     Sí, 1000 números por solicitud. Una lista más larga devuelve un `422`.
+  </Accordion>
+  <Accordion title="¿Puedo usar otro algoritmo?">
+    Sí. `POST /sort` acepta un campo opcional `algorithm`: `quick` (predeterminado), `merge` o `heap`. Usa `merge` cuando los números iguales deban conservar su orden original. Usa `heap` para mantener constante la memoria adicional. La respuesta devuelve el `algorithm` que se usó. Cualquier otro valor devuelve un `422`.
+
+    ```bash
+    curl -X POST http://localhost:8000/sort \
+      -H "Content-Type: application/json" \
+      -d '{"numbers": [5, 2, 9, 1, 5, 6], "algorithm": "merge"}'
+    ```
+
+    `/sort/steps` siempre usa `quick` y devuelve `"algorithm": "quick"`.
   </Accordion>
 </AccordionGroup>
