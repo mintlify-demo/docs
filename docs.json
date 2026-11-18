@@ -337,6 +337,7 @@
                 "pages": [
                   "acme/plans-and-pricing",
                   "acme/free-trial",
+                  "acme/gift-subscriptions",
                   "acme/shipping",
                   "acme/refunds"
                 ]

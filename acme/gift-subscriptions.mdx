@@ -1,0 +1,32 @@
+---
+title: "Gift a subscription"
+description: "Give someone a month of Acme Coffee Club."
+icon: "gift"
+public: true
+keywords: ["gift", "gift subscription", "give coffee"]
+---
+
+import { FlagGate } from "/snippets/flag-gate.jsx";
+
+<FlagGate
+  flag="gift-subscriptions"
+  fallback={
+    <Warning>Gift subscriptions are coming soon.</Warning>
+  }
+>
+  <Check>Gift subscriptions are now available.</Check>
+
+  ## Gift a subscription
+
+  <Steps>
+    <Step title="Pick a plan">
+      Choose the Free, Pro, or Team plan you want to give.
+    </Step>
+    <Step title="Enter their details">
+      Add your friend's name, email, and shipping address.
+    </Step>
+    <Step title="Send the gift">
+      Pay at checkout. We email your friend a link to start their coffee.
+    </Step>
+  </Steps>
+</FlagGate>
