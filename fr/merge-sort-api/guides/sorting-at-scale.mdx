@@ -15,12 +15,12 @@ groups: ["enterprise"]
 | --- | --- | --- |
 | 1 000 nombres | moins de 5 ms | Convient à toute requête |
 | 100 000 nombres | environ 200 ms | Utilisez `/sort`, pas `/sort/steps` |
-| 1 000 000 nombres | 2 à 3 s | Divisez la liste et fusionnez vous-même les parties triées |
+| 1 000 000 nombres | 2 à 3 s | Divisez la liste, triez chaque partie et fusionnez vous-même les parties triées |
 
 ## Pourquoi pas `/sort/steps` pour les grandes listes ? {#why-not-/sort/steps-for-big-lists}
 
-`/sort/steps` renvoie chaque fusion, et une liste de *n* nombres comporte *n − 1* fusions. Pour 100 000 nombres, cela représente une réponse de plusieurs mégaoctets. Utilisez-le pour l'apprentissage et le débogage, pas pour le trafic de production.
+`/sort/steps` renvoie chaque partition, et une liste de *n* nombres peut nécessiter jusqu'à *n − 1* partitions. Chaque étape répète aussi les éléments `before` et `after`. Pour 100 000 nombres, cela représente une réponse de plusieurs mégaoctets. Utilisez-le pour l'apprentissage et le débogage, pas pour le trafic de production.
 
 ## Mémoire {#memory}
 
-Le tri fusion nécessite une mémoire supplémentaire égale à la taille de l'entrée. L'API conserve toute la liste en mémoire : limitez donc chaque requête à environ 10 Mo de JSON.
+Le tri rapide construit de nouvelles listes `before`, `equal` et `after` à chaque partition : il nécessite donc une mémoire supplémentaire en plus de l'entrée. L'API conserve toute la liste en mémoire : limitez donc chaque requête à environ 10 Mo de JSON.

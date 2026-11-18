@@ -1,48 +1,49 @@
 ---
-title: Fonctionnement du tri fusion
-description: Divisez la liste, triez chaque moitié, puis fusionnez les moitiés.
+title: Fonctionnement du tri rapide
+description: Choisissez un pivot, divisez la liste autour de lui, puis triez chaque côté de la même façon.
 icon: diagram-project
 ---
 
-Le tri fusion est un algorithme de type **diviser pour régner**. Il ne compare jamais tout avec tout. Il divise la liste jusqu'à ce que chaque morceau ne contienne qu'un seul élément (trivialement trié), puis fusionne les morceaux dans l'ordre.
+Le tri rapide est un algorithme de type **diviser pour régner**. Il choisit un élément comme **pivot**, divise le reste de la liste en éléments qui viennent avant le pivot et éléments qui viennent après, puis trie chaque côté de la même façon. Une liste de zéro ou un élément est déjà triée : la récursion s'arrête donc là.
 
 ## Le principe {#the-idea}
 
 ```mermaid
 flowchart TD
-    A["[4, 3, 2, 1]"] --> B["[4, 3]"]
-    A --> C["[2, 1]"]
-    B --> D["[4]"]
-    B --> E["[3]"]
-    C --> F["[2]"]
-    C --> G["[1]"]
-    D --> H["fusion : [3, 4]"]
+    A["[4, 3, 2, 1]<br/>pivot: 2"] --> B["before: [1]"]
+    A --> C["equal: [2]"]
+    A --> D["after: [4, 3]<br/>pivot: 3"]
+    D --> E["before: []"]
+    D --> F["equal: [3]"]
+    D --> G["after: [4]"]
+    B --> H["[1, 2, 3, 4]"]
+    C --> H
     E --> H
-    F --> I["fusion : [1, 2]"]
-    G --> I
-    H --> J["fusion : [1, 2, 3, 4]"]
-    I --> J
+    F --> H
+    G --> H
 ```
 
-## Fusionner deux listes triées {#merging-two-sorted-lists}
+## Partitionner autour d'un pivot {#partitioning-around-a-pivot}
 
-La fusion est le seul vrai travail. Regardez le premier élément de chaque liste, prenez le plus petit, et recommencez.
+La partition est le seul vrai travail. L'API choisit toujours l'**élément du milieu** comme pivot et divise la liste en trois groupes.
 
 <Steps>
-  <Step title="Partir de deux listes triées">
-    `left = [3, 4]` et `right = [1, 2]`
+  <Step title="Choisir le pivot">
+    Pour `[4, 3, 2, 1]`, l'élément du milieu (indice `4 // 2 = 2`) est `2`.
   </Step>
-  <Step title="Comparer les premiers éléments">
-    `3` contre `1` : on prend `1`. Puis `3` contre `2` : on prend `2`.
+  <Step title="Diviser en trois groupes">
+    `before = [1]`, `equal = [2]` et `after = [4, 3]`. Les groupes `before` et `after` ne sont pas encore triés.
   </Step>
-  <Step title="Ajouter ce qui reste">
-    La liste de droite est vide, on ajoute donc le reste de la liste de gauche : `3, 4`.
+  <Step title="Trier chaque côté et assembler">
+    Appliquez le tri rapide aux groupes `before` et `after` de la même façon, puis assemblez `before + equal + after`.
   </Step>
 </Steps>
 
+Lorsque vous envoyez `"order": "desc"`, les groupes s'inversent. Les éléments plus grands que le pivot vont dans `before`, et les plus petits dans `after`.
+
 ## Le voir avec l'API {#see-it-with-the-api}
 
-Demandez à `/sort/steps` de trier `[4, 3, 2, 1]` et il renvoie chaque fusion :
+Demandez à `/sort/steps` de trier `[4, 3, 2, 1]` et il renvoie chaque partition :
 
 <CodeGroup>
   ```bash Request
@@ -57,20 +58,35 @@ Demandez à `/sort/steps` de trier `[4, 3, 2, 1]` et il renvoie chaque fusion :
     "count": 4,
     "order": "asc",
     "steps": [
-      { "step": 1, "left": [4], "right": [3], "merged": [3, 4] },
-      { "step": 2, "left": [2], "right": [1], "merged": [1, 2] },
-      { "step": 3, "left": [3, 4], "right": [1, 2], "merged": [1, 2, 3, 4] }
+      { "step": 1, "pivot": 2, "before": [1], "equal": [2], "after": [4, 3] },
+      { "step": 2, "pivot": 3, "before": [], "equal": [3], "after": [4] }
     ]
   }
   ```
 </CodeGroup>
 
+Chaque étape comporte les champs suivants :
+
+| Champ | Description |
+| --- | --- |
+| `step` | Position (à partir de 1) de cette partition dans l'exécution |
+| `pivot` | La valeur autour de laquelle la liste a été divisée (l'élément du milieu) |
+| `before` | Les éléments placés avant le pivot, encore non triés |
+| `equal` | Les éléments égaux au pivot |
+| `after` | Les éléments placés après le pivot, encore non triés |
+
+Les étapes sont listées en profondeur d'abord. L'API partitionne entièrement le côté `before` avant de commencer le côté `after`. Les listes de zéro ou un élément ne nécessitent aucune partition : elles n'apparaissent donc pas comme étapes.
+
 <Info>
-  Le tri est **stable** : les nombres égaux conservent leur ordre d'origine. Il s'exécute en temps O(n log n).
+  Le tri rapide s'exécute en temps O(n log n) en moyenne et O(n²) dans le pire des cas.
 </Info>
 
+<Warning>
+  La version 2.0.0 a remplacé le tri fusion par le tri rapide. `/sort/steps` ne renvoie plus `left`, `right` et `merged`. Si vous analysez les étapes, lisez plutôt `pivot`, `before`, `equal` et `after`. `/sort` renvoie la même forme de réponse qu'auparavant.
+</Warning>
+
 <Expandable title="Lire le code">
-  L'algorithme complet tient en environ 25 lignes dans `main.py` : une fonction `merge()` qui combine deux listes triées, et une fonction récursive `merge_sort()` qui divise la liste et appelle `merge()`.
+  L'algorithme complet tient en une seule fonction récursive `quick_sort()` dans `main.py`. Elle choisit l'élément du milieu comme pivot, construit les listes `before`, `equal` et `after`, puis s'appelle elle-même sur `before` et `after`.
 </Expandable>
 
 Prêt à essayer ? Rendez-vous au [démarrage rapide](/fr/merge-sort-api/quickstart).

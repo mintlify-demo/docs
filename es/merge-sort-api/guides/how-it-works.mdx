@@ -1,48 +1,49 @@
 ---
-title: Cómo funciona merge sort
-description: Divide la lista, ordena cada mitad y luego vuelve a fusionar las mitades.
+title: Cómo funciona quick sort
+description: Elige un pivote, divide la lista a su alrededor y luego ordena cada lado de la misma manera.
 icon: diagram-project
 ---
 
-Merge sort es un algoritmo de **divide y vencerás**. Nunca compara todo con todo. Sigue dividiendo la lista hasta que cada parte tiene un solo elemento (que trivialmente está ordenado) y luego vuelve a fusionar las partes en orden.
+Quick sort es un algoritmo de **divide y vencerás**. Elige un elemento como **pivote**, divide el resto de la lista en los elementos que van antes del pivote y los que van después, y luego ordena cada lado de la misma manera. Una lista con cero o un elemento ya está ordenada, así que la recursión se detiene ahí.
 
 ## La idea {#the-idea}
 
 ```mermaid
 flowchart TD
-    A["[4, 3, 2, 1]"] --> B["[4, 3]"]
-    A --> C["[2, 1]"]
-    B --> D["[4]"]
-    B --> E["[3]"]
-    C --> F["[2]"]
-    C --> G["[1]"]
-    D --> H["fusión: [3, 4]"]
+    A["[4, 3, 2, 1]<br/>pivot: 2"] --> B["before: [1]"]
+    A --> C["equal: [2]"]
+    A --> D["after: [4, 3]<br/>pivot: 3"]
+    D --> E["before: []"]
+    D --> F["equal: [3]"]
+    D --> G["after: [4]"]
+    B --> H["[1, 2, 3, 4]"]
+    C --> H
     E --> H
-    F --> I["fusión: [1, 2]"]
-    G --> I
-    H --> J["fusión: [1, 2, 3, 4]"]
-    I --> J
+    F --> H
+    G --> H
 ```
 
-## Fusionar dos listas ordenadas {#merging-two-sorted-lists}
+## Particionar alrededor de un pivote {#partitioning-around-a-pivot}
 
-La fusión es el único trabajo real. Mira el primer elemento de cada lista, toma el menor y repite.
+La partición es el único trabajo real. La API siempre elige el **elemento central** como pivote y divide la lista en tres grupos.
 
 <Steps>
-  <Step title="Empieza con dos listas ordenadas">
-    `left = [3, 4]` y `right = [1, 2]`
+  <Step title="Elige el pivote">
+    Para `[4, 3, 2, 1]`, el elemento central (índice `4 // 2 = 2`) es `2`.
   </Step>
-  <Step title="Compara los elementos del frente">
-    `3` frente a `1`: toma `1`. Luego `3` frente a `2`: toma `2`.
+  <Step title="Divide en tres grupos">
+    `before = [1]`, `equal = [2]` y `after = [4, 3]`. Los grupos `before` y `after` todavía no están ordenados.
   </Step>
-  <Step title="Añade lo que queda">
-    La lista derecha está vacía, así que añade el resto de la lista izquierda: `3, 4`.
+  <Step title="Ordena cada lado y únelos">
+    Aplica quick sort a los grupos `before` y `after` de la misma manera y luego une `before + equal + after`.
   </Step>
 </Steps>
 
+Cuando envías `"order": "desc"`, los grupos se invierten. Los elementos mayores que el pivote van en `before` y los menores van en `after`.
+
 ## Míralo con la API {#see-it-with-the-api}
 
-Pide a `/sort/steps` que ordene `[4, 3, 2, 1]` y devolverá cada fusión:
+Pide a `/sort/steps` que ordene `[4, 3, 2, 1]` y devolverá cada partición:
 
 <CodeGroup>
   ```bash Request
@@ -57,20 +58,35 @@ Pide a `/sort/steps` que ordene `[4, 3, 2, 1]` y devolverá cada fusión:
     "count": 4,
     "order": "asc",
     "steps": [
-      { "step": 1, "left": [4], "right": [3], "merged": [3, 4] },
-      { "step": 2, "left": [2], "right": [1], "merged": [1, 2] },
-      { "step": 3, "left": [3, 4], "right": [1, 2], "merged": [1, 2, 3, 4] }
+      { "step": 1, "pivot": 2, "before": [1], "equal": [2], "after": [4, 3] },
+      { "step": 2, "pivot": 3, "before": [], "equal": [3], "after": [4] }
     ]
   }
   ```
 </CodeGroup>
 
+Cada paso tiene estos campos:
+
+| Campo | Descripción |
+| --- | --- |
+| `step` | Posición (empezando en 1) de esta partición en la ejecución |
+| `pivot` | El valor alrededor del cual se dividió la lista (el elemento central) |
+| `before` | Elementos que se ordenan antes del pivote, todavía sin ordenar |
+| `equal` | Elementos iguales al pivote |
+| `after` | Elementos que se ordenan después del pivote, todavía sin ordenar |
+
+Los pasos se listan en profundidad. La API particiona por completo el lado `before` antes de empezar con el lado `after`. Las listas con cero o un elemento no necesitan partición, así que no aparecen como pasos.
+
 <Info>
-  La ordenación es **estable**: los números iguales mantienen su orden original. Se ejecuta en tiempo O(n log n).
+  Quick sort se ejecuta en tiempo O(n log n) en promedio y O(n²) en el peor caso.
 </Info>
 
+<Warning>
+  La versión 2.0.0 reemplazó merge sort por quick sort. `/sort/steps` ya no devuelve `left`, `right` ni `merged`. Si procesas los pasos, lee `pivot`, `before`, `equal` y `after` en su lugar. `/sort` devuelve la misma forma de respuesta que antes.
+</Warning>
+
 <Expandable title="Lee el código">
-  Todo el algoritmo ocupa unas 25 líneas en `main.py`: una función `merge()` que combina dos listas ordenadas y una función recursiva `merge_sort()` que divide la lista y llama a `merge()`.
+  Todo el algoritmo es una única función recursiva `quick_sort()` en `main.py`. Elige el elemento central como pivote, construye las listas `before`, `equal` y `after`, y se llama a sí misma sobre `before` y `after`.
 </Expandable>
 
 ¿Listo para probarlo? Ve al [inicio rápido](/es/merge-sort-api/quickstart).
