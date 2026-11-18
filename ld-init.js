@@ -7,7 +7,7 @@
 // The client-side ID is public by design; never put an SDK key (sdk-...) or
 // API token (api-...) here.
 (function () {
-  var LD_CLIENT_SIDE_ID = '6afdfcced96bdf0778ce61ad';
+  var LD_CLIENT_SIDE_ID = '6afdfcced96bdf0778ce61af';
 
   // Do nothing if no client-side ID is set (keeps other pages quiet).
   if (!LD_CLIENT_SIDE_ID) return;
