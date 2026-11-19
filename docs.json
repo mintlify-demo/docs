@@ -356,6 +356,16 @@
                 "pages": [
                   "acme/staff-handbook"
                 ]
+              },
+              {
+                "group": "Support playbook (internal)",
+                "icon": "book-bookmark",
+                "pages": [
+                  "playbook/index",
+                  "playbook/escalation-process",
+                  "playbook/refund-approvals",
+                  "playbook/hours-and-on-call"
+                ]
               }
             ]
           },
