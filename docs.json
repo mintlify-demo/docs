@@ -129,9 +129,9 @@
             "icon": "code",
             "menu": [
               {
-                "item": "Merge Sort API",
+                "item": "Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Sort a list and see every merge step",
+                "description": "Sort a list and see every partition step",
                 "groups": [
                   {
                     "group": "Get started",
@@ -398,9 +398,9 @@
             "icon": "code",
             "menu": [
               {
-                "item": "Merge Sort API",
+                "item": "Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Ordena una lista y ve cada paso de fusión",
+                "description": "Ordena una lista y ve cada paso de partición",
                 "groups": [
                   {
                     "group": "Empezar",
@@ -667,9 +667,9 @@
             "icon": "code",
             "menu": [
               {
-                "item": "Merge Sort API",
+                "item": "Sort API",
                 "icon": "arrow-down-wide-short",
-                "description": "Triez une liste et voyez chaque étape de fusion",
+                "description": "Triez une liste et voyez chaque étape de partition",
                 "groups": [
                   {
                     "group": "Démarrer",

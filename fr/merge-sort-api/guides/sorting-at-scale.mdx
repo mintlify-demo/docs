@@ -19,8 +19,8 @@ groups: ["enterprise"]
 
 ## Pourquoi pas `/sort/steps` pour les grandes listes ? {#why-not-/sort/steps-for-big-lists}
 
-`/sort/steps` renvoie chaque fusion, et une liste de *n* nombres comporte *n − 1* fusions. Pour 100 000 nombres, cela représente une réponse de plusieurs mégaoctets. Utilisez-le pour l'apprentissage et le débogage, pas pour le trafic de production.
+`/sort/steps` renvoie chaque partition, et une liste de *n* nombres peut produire jusqu'à *n* partitions. Chaque étape copie aussi les éléments qu'elle a répartis. Pour 100 000 nombres, cela représente une réponse de plusieurs mégaoctets. Utilisez-le pour l'apprentissage et le débogage, pas pour le trafic de production.
 
 ## Mémoire {#memory}
 
-Le tri fusion nécessite une mémoire supplémentaire égale à la taille de l'entrée. L'API conserve toute la liste en mémoire : limitez donc chaque requête à environ 10 Mo de JSON.
+Le tri rapide crée de nouvelles listes `before`, `equal` et `after` à chaque partition : il nécessite donc de la mémoire supplémentaire en plus de l'entrée. L'API conserve toute la liste en mémoire : limitez donc chaque requête à environ 10 Mo de JSON.
