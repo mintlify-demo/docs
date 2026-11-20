@@ -927,10 +927,5 @@
       "source": "/docs/:slug*",
       "destination": "/:slug*"
     }
-  ],
-  "integrations": {
-    "intercom": {
-      "appId": "zlahmt1o"
-    }
-  }
+  ]
 }
