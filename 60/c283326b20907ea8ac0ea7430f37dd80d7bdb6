@@ -1,0 +1,19 @@
+workflow-test.mdx
+  s_d76b07823cae86::t_af85595d718d69 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "60c283326b20907ea8ac0ea7430f37dd80d7bdb6",
+  "prompts": {},
+  "sessions": {
+    "s_d76b07823cae86": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0b6d1f63-c89e-4801-a553-37bd964609cb",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "API Governance Team <api-governance@paloaltonetworks.com>"
+    }
+  }
+}
