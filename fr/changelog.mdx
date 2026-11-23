@@ -5,6 +5,22 @@ icon: clock-rotate-left
 public: true
 ---
 
+<Update label="Novembre 2026" description="Sort API v2.0.0" tags={["API", "Changement incompatible"]}>
+  ## Merge Sort API devient la Sort API, propulsée par le tri rapide {#merge-sort-api-is-now-the-sort-api-powered-by-quick-sort}
+
+  `POST /sort` et `POST /sort/steps` trient désormais avec le tri rapide au lieu du tri fusion. Le corps de la requête est inchangé.
+
+  <Warning>
+    `POST /sort/steps` renvoie des étapes de partition au lieu d'étapes de fusion. Chaque étape contient désormais `pivot`, `before`, `equal` et `after` au lieu de `left`, `right` et `merged`.
+  </Warning>
+
+  ```json
+  { "step": 1, "pivot": 1, "before": [], "equal": [1], "after": [5, 2, 9, 5, 6] }
+  ```
+
+  Consultez [Fonctionnement du tri rapide](/fr/merge-sort-api/guides/how-it-works) pour une présentation complète.
+</Update>
+
 <Update label="Octobre 2026" description="v1.0.0" tags={["Lancement", "Documentation"]}>
   ## L'organisation de démo Mintlify est en ligne {#the-mintlify-demo-org-is-live}
 

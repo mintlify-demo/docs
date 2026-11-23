@@ -1,10 +1,10 @@
 ---
-title: API de Merge Sort
-description: Ordena números con merge sort y observa cada paso de fusión por el camino.
+title: Sort API
+description: Ordena una lista de números con quick sort a través de HTTP y observa cada paso de partición por el camino. Un pequeño servicio de demo con FastAPI.
 icon: arrow-down-wide-short
 ---
 
-{user.name ? <>Hola de nuevo, <strong>{user.name}</strong>{user.plan ? <> (plan <strong>{user.plan}</strong>)</> : null}.</> : null} La API de Merge Sort es un pequeño servicio de FastAPI con dos endpoints. Uno te devuelve una lista ordenada. El otro te muestra **cómo** se ordenó la lista.
+{user.name ? <>Hola de nuevo, <strong>{user.name}</strong>{user.plan ? <> (plan <strong>{user.plan}</strong>)</> : null}.</> : null} La Sort API es un pequeño servicio de FastAPI con dos endpoints. Uno te devuelve una lista ordenada. El otro te muestra **cómo** se ordenó la lista.
 
 <Note>
   Esta API es una demo. Su código está en el [repositorio merge-sort-api](https://github.com/mintlify-demo/merge-sort-api), y esta documentación está en el [repositorio docs](https://github.com/mintlify-demo/docs/tree/main/merge-sort-api).
@@ -16,14 +16,14 @@ icon: arrow-down-wide-short
   <Card title="Inicio rápido" icon="rocket" href="/es/merge-sort-api/quickstart">
     Ejecuta la API localmente y ordena tu primera lista en menos de un minuto.
   </Card>
-  <Card title="Cómo funciona merge sort" icon="diagram-project" href="/es/merge-sort-api/guides/how-it-works">
-    Un recorrido visual por la división, la ordenación y la fusión.
+  <Card title="Cómo funciona quick sort" icon="diagram-project" href="/es/merge-sort-api/guides/how-it-works">
+    Un recorrido visual por los pivotes y las particiones.
   </Card>
   <Card title="Ordenar números" icon="arrow-down-wide-short" href="/es/merge-sort-api/api-reference/sorting/sort-numbers">
     `POST /sort` devuelve la lista ordenada.
   </Card>
-  <Card title="Ordenar con pasos" icon="list-ol" href="/es/merge-sort-api/api-reference/sorting/sort-numbers-and-return-every-merge-step">
-    `POST /sort/steps` también devuelve cada fusión.
+  <Card title="Ordenar con pasos" icon="list-ol" href="/es/merge-sort-api/api-reference/sorting/sort-numbers-and-return-every-partition-step">
+    `POST /sort/steps` también devuelve cada partición.
   </Card>
 </CardGroup>
 
@@ -40,7 +40,7 @@ test
 | Endpoint | Método | Propósito |
 | --- | --- | --- |
 | `/sort` | `POST` | Ordenar una lista de números, de forma ascendente o descendente |
-| `/sort/steps` | `POST` | Lo mismo, más cada paso de fusión |
+| `/sort/steps` | `POST` | Lo mismo, más cada paso de partición |
 
 <Tip>
   Cada página de endpoint tiene un playground **Try it**. Apúntalo a `http://localhost:8000` mientras la API esté en ejecución.
