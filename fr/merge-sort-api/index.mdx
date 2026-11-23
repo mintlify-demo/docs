@@ -4,7 +4,7 @@ description: Triez des nombres avec le tri fusion et visualisez chaque étape de
 icon: arrow-down-wide-short
 ---
 
-{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : null} L'API Merge Sort est un petit service FastAPI doté de deux endpoints. L'un vous renvoie une liste triée. L'autre vous montre **comment** la liste a été triée.
+{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : null} L'API Merge Sort est un petit service FastAPI doté de trois endpoints. L'un vous renvoie une liste triée. Un autre vous montre **comment** la liste a été triée. Le troisième compare la rapidité de chaque algorithme de tri sur votre liste.
 
 <Note>
   Cette API est une démo. Son code se trouve dans le [dépôt merge-sort-api](https://github.com/mintlify-demo/merge-sort-api), et cette documentation dans le [dépôt docs](https://github.com/mintlify-demo/docs/tree/main/merge-sort-api).
@@ -41,6 +41,7 @@ test
 | --- | --- | --- |
 | `/sort` | `POST` | Trier une liste de nombres, par ordre croissant ou décroissant |
 | `/sort/steps` | `POST` | Idem, avec en plus chaque étape de fusion |
+| `/sort/stats` | `POST` | Chronométrer quick sort, merge sort et heap sort sur la même liste, du plus rapide au plus lent |
 
 <Tip>
   Chaque page d'endpoint dispose d'un playground **Try it**. Pointez-le vers `http://localhost:8000` pendant que l'API tourne.
