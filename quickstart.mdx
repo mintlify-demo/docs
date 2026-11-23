@@ -1,15 +1,19 @@
 ---
-title: Quickstart
-description: Run the four demo APIs locally and try them from this site's API playground.
-icon: rocket
+title: "Quickstart"
+description: "Run the four demo APIs locally and poke them from this site's API playground. No lab coat required."
+icon: "rocket"
 public: true
 ---
 
-You can read this whole site without running anything. To use the **Try it** playground, run an API on your laptop.
+Good news: you can read this whole site without running a single thing. Lounge around, skim, nod thoughtfully. But if you want to press the shiny **Try it** button and actually make something happen, you'll need an API humming away on your laptop.
+
+<Card type="tip">
+  new feature<br /><br /><br /><br />
+</Card>
 
 <Steps>
-  <Step title="Check what you need">
-    You need Python 3.10 or newer and `git`.
+  <Step title="Gather your adventuring gear">
+    You need Python 3.10 or newer and `git`. That's it. No dragons, no blood oaths.
 
     <Tabs>
       <Tab title="macOS">
@@ -30,7 +34,9 @@ You can read this whole site without running anything. To use the **Try it** pla
     </Tabs>
   </Step>
 
-  <Step title="Pick an API and start it">
+  <Step title="Pick an API and wake it up">
+    Choose your fighter. They're all lovely. We don't play favorites (out loud).
+
     <CodeGroup>
       ```bash Merge Sort API
       git clone https://github.com/mintlify-demo/merge-sort-api.git
@@ -66,44 +72,46 @@ You can read this whole site without running anything. To use the **Try it** pla
     </CodeGroup>
 
     <Warning>
-      Every API uses port `8000`. Run one at a time, or start others with `--port 8001`.
+      Every API wants port `8000`, and they do not share nicely. Run one at a time, or send the extras to their own room with `--port 8001`.
     </Warning>
   </Step>
 
   <Step title="Open its API reference">
-    Choose the matching tab at the top of this site, pick an endpoint, and click **Try it**. The playground sends the request from your browser straight to `http://localhost:8000`.
+    Pick the matching tab at the top of this site, choose an endpoint, and smash **Try it** (gently, it's a button, not a piñata). The playground fires the request from your browser straight to `http://localhost:8000`. No middlemen, no carrier pigeons.
   </Step>
 
   <Step title="Send a request">
-    For the Todo API, enter `demo-key` as the API key. Every other API needs no key.
+    For the Todo API, use the top-secret API key `demo-key`. Please don't tell anyone. Every other API is a free-for-all and needs no key at all.
   </Step>
 </Steps>
 
 <Check>
-  You're running a real API and calling it from generated docs.
+  Look at you! You're running a real API and calling it from generated docs. Go ahead, tell your mom.
 </Check>
 
 <Tip>
-  Showing this live? Start the API before the call, and keep your browser on the endpoint page. The playground, the code samples and the response viewer all update as you type.
+  Showing this off live? Start the API _before_ the call (trust us on this one), and keep your browser parked on the endpoint page. The playground, the code samples and the response viewer all update as you type, which looks extremely impressive.
 </Tip>
 
 ## Troubleshooting
 
+Things went sideways? Happens to the best of us.
+
 <AccordionGroup>
   <Accordion title="The playground says it can't reach the server">
-    Make sure the API is running and shows `Uvicorn running on http://127.0.0.1:8000`. The APIs allow cross-origin requests, so no extra setup is needed.
+    Is the API actually running? Check that your terminal proudly says `Uvicorn running on http://127.0.0.1:8000`. The APIs already allow cross-origin requests, so there's no secret handshake to configure.
   </Accordion>
   <Accordion title="`pip install` fails">
-    Check that you activated the virtual environment: your prompt should start with `(.venv)`.
+    Nine times out of ten, the virtual environment isn't activated. Your prompt should start with `(.venv)`. If it doesn't, the venv is napping. Wake it up and try again.
   </Accordion>
   <Accordion title="Port 8000 is already in use">
-    Stop the other API, or run `uvicorn main:app --port 8001`.
+    Someone's sitting in your seat. Stop the other API, or politely relocate with `uvicorn main:app --port 8001`.
   </Accordion>
 </AccordionGroup>
 
 ## How this site is built
 
-Each API's code and tests live in that API's repository. All of the docs, including each API's guides and OpenAPI spec, live in the [docs repository](https://github.com/mintlify-demo/docs). When an API's code changes, Mintlify's agent opens a pull request in the docs repository with the matching docs update.
+Each API's code and tests live in that API's own repository, like responsible adults. All of the docs, including each API's guides and OpenAPI spec, live together in the [docs repository](https://github.com/mintlify-demo/docs). When an API's code changes, Mintlify's agent notices (it's very observant) and opens a pull request in the docs repository with the matching docs update. Nobody has to remember. Nobody has to nag.
 
 ```mermaid
 flowchart LR
@@ -117,9 +125,9 @@ flowchart LR
 
 <Columns cols={2}>
   <Card title="Components" icon="shapes" href="/showcase/components">
-    Every building block used on this site.
+    Every Lego brick used to build this site.
   </Card>
   <Card title="AI features" icon="sparkles" href="/showcase/ai">
-    The assistant, llms.txt, the MCP server and more.
+    The assistant, llms.txt, the MCP server and other robot magic.
   </Card>
 </Columns>
