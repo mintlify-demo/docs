@@ -4,9 +4,9 @@
   "name": "Mintlify Demo",
   "description": "A demo docs site showing what Mintlify can do: guides, interactive API references from OpenAPI, AI features, and docs kept in sync with code by Mintlify's agent.",
   "colors": {
-    "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "primary": "#1D4ED8",
+    "light": "#60A5FA",
+    "dark": "#1D4ED8"
   },
   "logo": {
     "light": "/logo/light.svg",
