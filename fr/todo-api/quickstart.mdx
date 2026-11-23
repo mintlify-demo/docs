@@ -71,6 +71,23 @@ icon: rocket
     curl "http://localhost:8000/todos?completed=true" -H "X-API-Key: demo-key"
     ```
   </Step>
+
+  <Step title="Définir une date d'échéance">
+    Ajoutez un `due_date` facultatif (AAAA-MM-JJ) lorsque vous créez ou modifiez une tâche. Envoyez `"due_date": null` pour le supprimer.
+
+    ```bash
+    curl -X POST http://localhost:8000/todos \
+      -H "X-API-Key: demo-key" \
+      -H "Content-Type: application/json" \
+      -d '{"title": "File taxes", "due_date": "2026-04-15"}'
+    ```
+
+    Utilisez `overdue=true` pour lister les tâches non terminées dont la date d'échéance est antérieure à aujourd'hui (UTC).
+
+    ```bash
+    curl "http://localhost:8000/todos?overdue=true" -H "X-API-Key: demo-key"
+    ```
+  </Step>
 </Steps>
 
 <Check>

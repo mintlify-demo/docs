@@ -71,6 +71,23 @@ icon: rocket
     curl "http://localhost:8000/todos?completed=true" -H "X-API-Key: demo-key"
     ```
   </Step>
+
+  <Step title="Set a due date">
+    Add an optional `due_date` (YYYY-MM-DD) when you create or update a todo. Send `"due_date": null` to clear it.
+
+    ```bash
+    curl -X POST http://localhost:8000/todos \
+      -H "X-API-Key: demo-key" \
+      -H "Content-Type: application/json" \
+      -d '{"title": "File taxes", "due_date": "2026-04-15"}'
+    ```
+
+    Pass `overdue=true` to list incomplete todos whose due date is before today (UTC).
+
+    ```bash
+    curl "http://localhost:8000/todos?overdue=true" -H "X-API-Key: demo-key"
+    ```
+  </Step>
 </Steps>
 
 <Check>

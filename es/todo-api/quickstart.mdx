@@ -71,6 +71,23 @@ icon: rocket
     curl "http://localhost:8000/todos?completed=true" -H "X-API-Key: demo-key"
     ```
   </Step>
+
+  <Step title="Asignar una fecha de vencimiento">
+    Añade un `due_date` opcional (AAAA-MM-DD) al crear o actualizar una tarea. Envía `"due_date": null` para quitarlo.
+
+    ```bash
+    curl -X POST http://localhost:8000/todos \
+      -H "X-API-Key: demo-key" \
+      -H "Content-Type: application/json" \
+      -d '{"title": "File taxes", "due_date": "2026-04-15"}'
+    ```
+
+    Usa `overdue=true` para listar las tareas sin completar cuya fecha de vencimiento es anterior a hoy (UTC).
+
+    ```bash
+    curl "http://localhost:8000/todos?overdue=true" -H "X-API-Key: demo-key"
+    ```
+  </Step>
 </Steps>
 
 <Check>
