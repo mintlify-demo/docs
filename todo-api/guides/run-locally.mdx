@@ -1,0 +1,32 @@
+---
+title: Run the API locally
+description: Start your own copy of the Todo API on your laptop for testing.
+icon: laptop-code
+---
+
+Run the Todo API on your own machine to try changes before you call the hosted API.
+
+## Start the server
+
+<Steps>
+  <Step title="Install the dependencies">
+    ```bash
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Start the server">
+    ```bash
+    uvicorn main:app --reload
+    ```
+    The server listens on port `8080`.
+  </Step>
+  <Step title="Check that it's running">
+    ```bash
+    curl http://localhost:8080/todos -H "X-API-Key: demo-key"
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  Use the `demo-key` API key while you test. See [Authentication](/todo-api/guides/authentication) for the other demo keys.
+</Tip>
