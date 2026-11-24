@@ -16,13 +16,17 @@ Exécutez la Todo API sur votre propre machine pour tester vos modifications ava
   </Step>
   <Step title="Démarrez le serveur">
     ```bash
-    uvicorn main:app --reload
+    python serve.py
     ```
-    Le serveur écoute sur le port `8080`.
+    Le serveur écoute sur `127.0.0.1`, sur le port `8000`, et se recharge lorsque vous modifiez le code. Pour utiliser un autre port, définissez `PORT` :
+    ```bash
+    PORT=9000 python serve.py
+    ```
+    Définissez `HOST` pour écouter sur une autre interface. `uvicorn main:app --reload` démarre aussi le serveur sur le port `8000`.
   </Step>
   <Step title="Vérifiez qu'il est en cours d'exécution">
     ```bash
-    curl http://localhost:8080/todos -H "X-API-Key: demo-key"
+    curl http://localhost:8000/todos -H "X-API-Key: demo-key"
     ```
   </Step>
 </Steps>

@@ -16,13 +16,17 @@ Ejecuta la Todo API en tu propia máquina para probar cambios antes de llamar a 
   </Step>
   <Step title="Inicia el servidor">
     ```bash
-    uvicorn main:app --reload
+    python serve.py
     ```
-    El servidor escucha en el puerto `8080`.
+    El servidor escucha en `127.0.0.1`, en el puerto `8000`, y se recarga cuando cambias el código. Para usar otro puerto, establece `PORT`:
+    ```bash
+    PORT=9000 python serve.py
+    ```
+    Establece `HOST` para escuchar en otra interfaz. `uvicorn main:app --reload` también inicia el servidor en el puerto `8000`.
   </Step>
   <Step title="Comprueba que está en ejecución">
     ```bash
-    curl http://localhost:8080/todos -H "X-API-Key: demo-key"
+    curl http://localhost:8000/todos -H "X-API-Key: demo-key"
     ```
   </Step>
 </Steps>
