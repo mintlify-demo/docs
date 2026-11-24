@@ -34,6 +34,8 @@ Una clave ausente o incorrecta devuelve `401`:
 { "detail": "Invalid or missing API key" }
 ```
 
+Una clave Standard o Partner que llama a POST /todos/bulk devuelve 403.
+
 ## En el playground de la API {#in-the-api-playground}
 
 Cada página de endpoint de la referencia de la API tiene un campo **Authorization**. Cuando has iniciado sesión en la documentación, se completa con la clave de tu plan. De lo contrario, introduce `demo-key` ahí y el playground añadirá el encabezado por ti.
@@ -43,5 +45,5 @@ Cada página de endpoint de la referencia de la API tiene un campo **Authorizati
 </ParamField>
 
 <Warning>
-  Nunca confirmes claves de API reales en el repositorio. Esta clave de demostración es pública a propósito.
+  Nunca confirmes claves de API reales en el repositorio. Esta clave de demostración es pública a propósito. Guarda las claves reales en una variable de entorno.
 </Warning>
