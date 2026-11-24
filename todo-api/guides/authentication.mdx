@@ -34,6 +34,8 @@ A missing or wrong key returns `401`:
 { "detail": "Invalid or missing API key" }
 ```
 
+A Standard or Partner key that calls POST /todos/bulk returns 403.
+
 ## In the API playground
 
 Each endpoint page in the API reference has an **Authorization** field. When you're signed in to the docs, it's filled in with your plan's key. Otherwise, enter `demo-key` there, and the playground adds the header for you.
@@ -43,5 +45,5 @@ Each endpoint page in the API reference has an **Authorization** field. When you
 </ParamField>
 
 <Warning>
-  Never commit real API keys. This demo key is public on purpose.
+  Never commit real API keys Keep them in an environment variable instead.. This demo key is public on purpose.
 </Warning>
