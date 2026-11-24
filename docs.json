@@ -515,6 +515,7 @@
                     "group": "Guías",
                     "icon": "book-open",
                     "pages": [
+                      "es/todo-api/guides/run-locally",
                       "es/todo-api/guides/authentication",
                       "es/todo-api/guides/pagination",
                       "es/todo-api/guides/deprecations",
@@ -794,6 +795,7 @@
                     "group": "Guides",
                     "icon": "book-open",
                     "pages": [
+                      "fr/todo-api/guides/run-locally",
                       "fr/todo-api/guides/authentication",
                       "fr/todo-api/guides/pagination",
                       "fr/todo-api/guides/deprecations",

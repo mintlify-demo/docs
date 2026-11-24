@@ -1,0 +1,32 @@
+---
+title: Ejecutar la API localmente
+description: Inicia tu propia copia de la Todo API en tu portátil para hacer pruebas.
+icon: laptop-code
+---
+
+Ejecuta la Todo API en tu propia máquina para probar cambios antes de llamar a la API alojada.
+
+## Iniciar el servidor {#start-the-server}
+
+<Steps>
+  <Step title="Instala las dependencias">
+    ```bash
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Inicia el servidor">
+    ```bash
+    uvicorn main:app --reload
+    ```
+    El servidor escucha en el puerto `8080`.
+  </Step>
+  <Step title="Comprueba que está en ejecución">
+    ```bash
+    curl http://localhost:8080/todos -H "X-API-Key: demo-key"
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  Usa la clave de API `demo-key` mientras haces pruebas. Consulta [Autenticación](/es/todo-api/guides/authentication) para ver las demás claves de demo.
+</Tip>
