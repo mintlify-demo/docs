@@ -34,8 +34,6 @@ Une clé manquante ou incorrecte renvoie `401` :
 { "detail": "Invalid or missing API key" }
 ```
 
-Une clé Standard ou Partner qui appelle POST /todos/bulk renvoie 403.
-
 ## Dans le playground de l'API {#in-the-api-playground}
 
 Chaque page d'endpoint de la référence d'API comporte un champ **Authorization**. Lorsque vous êtes connecté à la documentation, il est rempli avec la clé de votre forfait. Sinon, saisissez-y `demo-key`, et le playground ajoute l'en-tête pour vous.
@@ -45,5 +43,5 @@ Chaque page d'endpoint de la référence d'API comporte un champ **Authorization
 </ParamField>
 
 <Warning>
-  Ne commitez jamais de vraies clés d'API. Cette clé de démo est publique à dessein. Stockez les vraies clés dans une variable d'environnement.
+  Ne commitez jamais de vraies clés d'API. Cette clé de démo est publique à dessein.
 </Warning>
