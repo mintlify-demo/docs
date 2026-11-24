@@ -235,6 +235,7 @@
                     "group": "Guides",
                     "icon": "book-open",
                     "pages": [
+                      "todo-api/guides/run-locally",
                       "todo-api/guides/authentication",
                       "todo-api/guides/pagination",
                       "todo-api/guides/deprecations",
