@@ -16,13 +16,17 @@ Run the Todo API on your own machine to try changes before you call the hosted A
   </Step>
   <Step title="Start the server">
     ```bash
-    uvicorn main:app --reload
+    python serve.py
     ```
-    The server listens on port `8080`.
+    The server listens on `127.0.0.1` port `8000` and reloads when you change the code. To use another port, set `PORT`:
+    ```bash
+    PORT=9000 python serve.py
+    ```
+    Set `HOST` to listen on another interface. `uvicorn main:app --reload` also starts the server on port `8000`.
   </Step>
   <Step title="Check that it's running">
     ```bash
-    curl http://localhost:8080/todos -H "X-API-Key: demo-key"
+    curl http://localhost:8000/todos -H "X-API-Key: demo-key"
     ```
   </Step>
 </Steps>
