@@ -38,6 +38,16 @@ icon: flask
     { "is_palindrome": true, "text": "Racecar" }
     ```
   </Tab>
+
+  <Tab title="Slug">
+    ```json Request to /slugify
+    { "text": "Héllo, Mintlify Docs!" }
+    ```
+
+    ```json Response
+    { "original": "Héllo, Mintlify Docs!", "slug": "hello-mintlify-docs" }
+    ```
+  </Tab>
 </Tabs>
 
 ## Mode palindrome strict {#strict-palindrome-mode}
@@ -47,6 +57,26 @@ Par défaut, `/palindrome` ignore la casse, les espaces et la ponctuation. Désa
 <ParamField body="ignore_case_and_punctuation" type="boolean" default="true">
   Avec `false`, `Racecar` n'est **pas** un palindrome (R majuscule), mais `racecar` l'est.
 </ParamField>
+
+## Options de slug {#slug-options}
+
+`/slugify` met le texte en minuscules, supprime les accents (`é` devient `e`), retire tout ce qui n'est ni une lettre ni un chiffre et relie les mots avec un séparateur. Utilisez-le pour créer des URL, des noms de fichiers ou des identifiants à partir de titres.
+
+<ParamField body="separator" type="string" default="-">
+  Caractère placé entre les mots. Utilisez `-` ou `_`. Toute autre valeur renvoie une `422`.
+</ParamField>
+
+<ParamField body="max_length" type="integer">
+  Longueur maximale du slug, de `1` à `200`. Les slugs plus longs sont tronqués et tout séparateur final est supprimé.
+</ParamField>
+
+```json Request to /slugify
+{ "text": "Hello, Mintlify Docs!", "separator": "_", "max_length": 15 }
+```
+
+```json Response
+{ "original": "Hello, Mintlify Docs!", "slug": "hello_mintlify" }
+```
 
 <AccordionGroup>
   <Accordion title="Qu'est-ce qui compte comme un mot ?">

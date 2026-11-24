@@ -1,10 +1,10 @@
 ---
 title: API Text Utils
-description: Inversez du texte, comptez les mots et détectez les palindromes, avec une seule requête POST pour chaque opération.
+description: Inversez du texte, comptez les mots, détectez les palindromes et créez des slugs d'URL, avec une seule requête POST par opération.
 icon: font
 ---
 
-{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : null} L'API Text Utils comporte trois endpoints. Chacun accepte `{"text": "..."}` et renvoie du JSON. Chaque page d'endpoint de la référence d'API inclut des exemples de code prêts à l'emploi en **cURL, Python, JavaScript et Go**.
+{user.name ? <>Bon retour, <strong>{user.name}</strong>{user.plan ? <> (forfait <strong>{user.plan}</strong>)</> : null}.</> : null} L'API Text Utils comporte quatre endpoints. Chacun accepte `{"text": "..."}` et renvoie du JSON. Chaque page d'endpoint de la référence d'API inclut des exemples de code prêts à l'emploi en **cURL, Python, JavaScript et Go**.
 
 <CardGroup cols={2}>
   <Card title="Démarrage rapide" icon="rocket" href="/fr/text-utils-api/quickstart">
@@ -30,5 +30,8 @@ icon: font
   </Card>
   <Card title="/palindrome" icon="spell-check">
     Identique dans les deux sens ?
+  </Card>
+  <Card title="/slugify" icon="link">
+    Un slug adapté aux URL.
   </Card>
 </Columns>
