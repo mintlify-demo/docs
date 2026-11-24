@@ -635,6 +635,16 @@
                 "pages": [
                   "es/acme/staff-handbook"
                 ]
+              },
+              {
+                "group": "Manual de soporte (interno)",
+                "icon": "book-bookmark",
+                "pages": [
+                  "es/playbook/index",
+                  "es/playbook/escalation-process",
+                  "es/playbook/refund-approvals",
+                  "es/playbook/hours-and-on-call"
+                ]
               }
             ]
           },
@@ -903,6 +913,16 @@
                 "icon": "lock",
                 "pages": [
                   "fr/acme/staff-handbook"
+                ]
+              },
+              {
+                "group": "Guide du support (interne)",
+                "icon": "book-bookmark",
+                "pages": [
+                  "fr/playbook/index",
+                  "fr/playbook/escalation-process",
+                  "fr/playbook/refund-approvals",
+                  "fr/playbook/hours-and-on-call"
                 ]
               }
             ]
