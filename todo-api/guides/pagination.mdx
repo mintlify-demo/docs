@@ -11,7 +11,7 @@ icon: layer-group
 </ParamField>
 
 <ParamField query="page_size" type="integer" default="10">
-  Items per page, from `1` to `100`.
+  Items per page, from `1` to `100`. A `page_size` above `100` returns a `422` error.
 </ParamField>
 
 ## Reading the response
