@@ -1,0 +1,8 @@
+extends: existence
+message: "Avoid '%s'. See the Acme style guide."
+level: error
+ignorecase: true
+tokens:
+  - utilize
+  - simply
+  - easy
