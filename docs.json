@@ -515,6 +515,7 @@
                     "group": "Guías",
                     "icon": "book-open",
                     "pages": [
+                      "es/todo-api/guides/run-locally",
                       "es/todo-api/guides/authentication",
                       "es/todo-api/guides/pagination",
                       "es/todo-api/guides/deprecations",
@@ -635,6 +636,16 @@
                 "icon": "lock",
                 "pages": [
                   "es/acme/staff-handbook"
+                ]
+              },
+              {
+                "group": "Manual de soporte (interno)",
+                "icon": "book-bookmark",
+                "pages": [
+                  "es/playbook/index",
+                  "es/playbook/escalation-process",
+                  "es/playbook/refund-approvals",
+                  "es/playbook/hours-and-on-call"
                 ]
               }
             ]
@@ -784,6 +795,7 @@
                     "group": "Guides",
                     "icon": "book-open",
                     "pages": [
+                      "fr/todo-api/guides/run-locally",
                       "fr/todo-api/guides/authentication",
                       "fr/todo-api/guides/pagination",
                       "fr/todo-api/guides/deprecations",
@@ -904,6 +916,16 @@
                 "icon": "lock",
                 "pages": [
                   "fr/acme/staff-handbook"
+                ]
+              },
+              {
+                "group": "Guide du support (interne)",
+                "icon": "book-bookmark",
+                "pages": [
+                  "fr/playbook/index",
+                  "fr/playbook/escalation-process",
+                  "fr/playbook/refund-approvals",
+                  "fr/playbook/hours-and-on-call"
                 ]
               }
             ]
